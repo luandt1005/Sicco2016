@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Sicco Dispatch Manager</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <!-- TuNT -->
+    <string name="can_phe">Cần phê</string>
+    <string name="cv_can_phe">Công văn cần phê</string>
+    <string name="xu_ly">Xử lý</string>
+    <string name="cv_xu_ly">Công văn xử lý</string>
+    <string name="cac_loai">Các loại</string>
+    <string name="option">Thiết lập</string>
+    <string name="exit">Đăng xuất</string>
+    <string name="cancel">Hủy</string>
+    <string name="confirm_exit">Bản thử nghiệm đã hết hạn. Vui lòng cài đặt bản chính thức để tiếp tục sử dụng.</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="approval">Phê</string>
+    <string name="login">Đăng nhập</string>
+    <string name="username">Tên đăng nhập</string>
+    <string name="password">Mật khẩu</string>
+    <string name="forgot_password">Quên mật khẩu?</string>
+    <string name="connect_error">Lỗi kết nối</string>
+    <string name="internet_false">Không kết nối được tới server do server đang bảo trì hoặc điện thoại của bạn không bật kết nối gprs/3g/wifi.</string>
+    <string name="retry">Thử lại</string>
+    <string name="send">Gửi</string>
+    <string name="insert_text">Nhập văn bản</string>
+    <string name="data_empty">Không có dữ liệu.</string>
+    <string name="nguoi_xu_ly">D/s xử lý:</string>
+    <string name="nguoi_phe_duyet">Người phê duyệt:</string>
+    <string name="sh_cong_van">Số hiệu:</string>
+    <string name="trich_yeu">Trích yếu:</string>
+    <string name="bao_cao"><u><b>D/s báo cáo xử lý:</b></u></string>
+    <string name="chi_tiet_cong_van">Chi tiết công văn</string>
+    <string name="dang_xu_ly_trong_han">Đang xử lý</string>
+    <string name="dang_xu_ly_qua_han">Đang xử lý quá hạn</string>
+    <string name="hoan_thanh">Hoàn thành</string>
+    <string name="tam_dung">Tạm dừng</string>
+    <string name="da_huy">Đã hủy</string>
+    <!-- End TuNT -->
+
+
+    <!-- NgaDV -->
+    <string name="hint_input_report_steer">Nhập chỉ đạo/báo cáo...</string>
+    <string name="handler">Người xử lý:"</string>
+    <string name="handler1">Người xử lý</string>
+    <string name="time">Thời gian:"</string>
+    <string name="report">Báo cáo:"</string>
+    <string name="sep">" / "</string>
+    <string name="empty_content_report">Bạn chưa nhập nội dung</string>
+    <string name="job_type">Loại công việc</string>
+    <string name="from_date">Từ ngày</string>
+    <string name="to_date">Đến ngày</string>
+    <string name="status">Trạng thái</string>
+    <string name="progress">Tiến độ</string>
+    <string name="level">Mức độ</string>
+    <string name="viewer">Người xem</string>
+    <string name="department">Phòng ban</string>
+    <string name="title">Tiêu đề</string>
+    <string name="des">Mô tả</string>
+    <string name="convert">Chuyển</string>
+    <string name="everyday">Hàng ngày</string>
+    <string name="execute">Thực hiện</string>
+    <string name="normal">Bình thường</string>
+    <string name="begin_progress">0%</string>
+    <string name="msg_sending">"    Đang gửi</string>
+    <string name="choose_status">Chọn trạng thái</string>
+    <string name="need_approval">Cần phê</string>
+    <string name="need_handle">Cần xử lý</string>
+    <string name="handling">Đang xử lý</string>
+    <string name="pause_handle">Tạm dừng xử lý</string>
+    <string name="finish_handle">Kết thúc xử lý</string>
+    <string name="chua_xu_ly">Chưa xử lý</string>
+    <string name="da_xu_ly">Đã xử lý</string>
+    <string name="tam_dung_xu_ly">Tạm dừng xử lý</string>
+    <string name="all">Tất cả</string>
+    
+    <string name="file">Tệp đính kèm</string>
+	<string name="date_handle">Ngày thực hiện</string>
+	<string name="date_finish">Ngày kết thúc</string>
+	<string name="priority">Mức ưu tiên</string>
+    <string name="project">Dự án</string>
+    <string name="choose_project">Chọn dự án</string>
+    <string name="path_file">Đường dẫn file: "</string>
+    
+    <string name="title_null">Bạn chưa nhập tiêu đề</string>
+    <string name="description_null">Bạn chưa nhập mô tả</string>
+    <string name="date_handle_null">Bạn chưa nhập chọn ngày thực hiện</string>
+    <string name="date_finish_null">Bạn chưa nhập chọn ngày kết thúc</string>
+    <string name="handler_null">Bạn chưa chọn người xử lý</string>
+    <string name="viewer_null">Bạn chưa chọn người xem</string>
+    <string name="department_null">Bạn chưa chọn phòng ban</string>
+    
+    <string name="choose_viewer">Chọn người xem</string>
+    <string name="choose_handler">Chọn người xử lý</string>
+    <string name="choose_department">Chọn phòng ban phụ trách</string>
+    <string name="set_date_handle">Đặt ngày thực hiện</string>
+    <string name="set_date_finish">Đặt ngày kết thúc</string>
+    <string name="set_priority">Đặt mức ưu tiên</string>
+    <string name="confirm_delete">Xác nhận xoá</string>
+    <string name="delete">Xoá</string>
+    <string name="error_occured">Có lỗi xảy ra!</string>
+    <string name="content_dialog_delete_task">Bạn có thực sự muốn xoá công việc: "</string>
+    
+    <string name="assign_task_new">Giao việc mới</string>
+    <string name="detail_task">Chi tiết công việc</string>
+    <string name="low">Thấp</string>
+    <string name="medium">Bình Thường</string>
+    <string name="hight">Cao</string>
+   
+    <!-- End NgaDV -->
+    
+    <!-- LuanDT -->
+    <string name="ngaygiao">Ngày giao</string>
+    <string name="hancuoi">Hạn cuối</string>
+    <string name="approval_dispatch">Phê công văn</string>
+    <string name="truong_nay_khong_duoc_de_rong">Trường này không được để rỗng.</string>
+    <string name="enter_title">Nhập tiêu đề</string>
+    <string name="cv_cac_loai">Công văn các loại</string>
+    <string name="task">Tác vụ</string>
+    <string name="file_notfound">Tệp đính kèm không khả dụng</string>
+    <string name="viec_da_giao">Việc đã giao</string>
+    <string name="viec_duoc_giao">Việc được giao</string>
+    <string name="giao_viec">Giao việc</string>
+    <string name="duoc_giao">Được giao</string>
+    <string name="danh_sach_viec">Danh sách việc</string>
+    <string name="nguoi_thuc_hien">Người thực hiên:</string>
+    <string name="du_an">Dự án:</string>
+    <string name="attach">Đính kèm:</string>
+    <string name="no_attach">Không có tệp đính kèm</string>
+    <string name="choose_file">Chọn file</string>
+    <string name="dang_boi">Đăng bởi:</string>
+    <string name="noi_dung">Nội dung:</string>
+    <string name="info_update_status">Bạn là người theo dõi công việc, nên không được cập nhật trạng thái công việc</string>
+    <string name="info_update_rate">Bạn là người theo dõi công việc, nên không được cập nhật tiến độ công việc</string>
+    <string name="not_update_status">Công việc đã hoàn thành bạn không thể cập nhật trạng thái.</string>
+    <string name="not_update_rate">Công việc đã hoàn thành bạn không thể cập nhật tiến độ.</string>
+    <string name="active">Thực hiện</string>
+    <string name="inactive">Tạm dừng</string>
+    <string name="complete">Hoàn thành</string>
+    <!-- <string name="cancel">Hủy bỏ</string> -->
+    
+    <!-- menu_task -->
+    <string name="handle">Gửi xử lý/chuyển tiếp</string>
+    <string name="steer_report">Báo cáo/Xử lý</string>
+    <string name="change_status">Thay đổi trạng thái</string>
+    <string name="job_transfer">Chuyển công việc</string>
+    <string name="done">Xong</string>
+    <string name="chose_user">Chọn người xử lý</string>
+    <string name="chose_dipartment">Chọn phòng ban</string>
+    <string name="choose_handle">Chọn người xử lý/chuyển tiếp</string>
+    <string name="empty_handle">Bạn chưa chọn người sử lý/chuyển tiếp.</string>
+    <string name="success">Thành công</string>
+    <string name="action">Thực hiện công văn số hiệu "</string>
+    <string name="default_value">Giá trị mặc định</string>
+    <string name="list_handler">Danh sách người xử lý/chuyển tiếp</string>
+    <string name="downloading">Đang tải: "</string>
+    <string name="exit_download">Đang tải tệp tin, bạn có muốn hủy?</string>
+    <string name="agree">Đồng ý</string>
+    <string name="no">Không</string>
+    <string name="waiting">Đang xử lý...</string>
+    <string name="error_l">Lỗi! Vui lòng thử lại sau ít phút</string>
+    <string name="file_error">Tệp tin bạn chọn không hợp lệ</string>
+    <string name="delete_task">Xóa công việc</string>
+    <string name="update_rate">Cập nhật tiến độ</string>
+
+    <!-- link api -->
+    <string name="api_get_dispatch_approval">http://office.sinco.pro.vn/api_distpatch/approval_dispatch.php</string>
+    <string name="api_get_dispatch_handle">http://office.sinco.pro.vn/api_distpatch/handl_dispatch.php</string>
+    <string name="api_get_dispatch_other">http://office.sinco.pro.vn/api_distpatch/other_dispatch.php</string>
+    <string name="api_get_all_user">http://office.sinco.pro.vn/api_distpatch/list_users.php</string>
+    <string name="api_get_deparment">http://office.sinco.pro.vn/api_distpatch/departments.php</string>
+    <string name="api_get_steer_report">http://office.sinco.pro.vn/api_distpatch/get_report_steer.php</string>
+    <string name="api_chuyencongvan">http://office.sinco.pro.vn/api_distpatch/chuyencongvan.php</string>
+    <string name="api_phecongvan">http://office.sinco.pro.vn/api_distpatch/phecongvan.php</string>
+    <string name="api_send_report">http://office.sinco.pro.vn/api_distpatch/send_report.php</string>
+    <string name="api_send_handl_forward">http://office.sinco.pro.vn/api_distpatch/guixuly.php</string>
+    <string name="api_change_status">http://office.sinco.pro.vn/api_distpatch/change_status.php</string>
+    <string name="api_get_one_user">http://office.sinco.pro.vn/api_distpatch/get_one_user.php</string>
+    <string name="api_get_dispatch_type">http://office.sinco.pro.vn/api_distpatch/dispatch_type.php</string>
+    <string name="api_get_project">http://office.sinco.pro.vn/api_distpatch/duan.php</string>
+    
+    <string name="api_get_assigned_task">http://office.sinco.pro.vn/api_distpatch/danhsachviecdagiao.php</string>
+    <string name="api_get_task">http://office.sinco.pro.vn/api_distpatch/danhsachcongviec.php</string>
+    <string name="api_get_cv_duoc_giao">http://office.sinco.pro.vn/api_distpatch/dscongviecduocgiao.php</string>
+    <string name="api_get_steer_report_task">http://office.sinco.pro.vn/api_distpatch/binhluan.php</string>
+    <string name="api_get_state">http://office.sinco.pro.vn/api_distpatch/danhsachviecdagiao2.php</string>
+    <string name="api_add_task">http://office.sinco.pro.vn/api_distpatch/giaoviec.php</string>
+    <string name="api_send_comment_task">http://office.sinco.pro.vn/api_distpatch/gblcongviec.php</string>
+    <string name="api_update_status">http://office.sinco.pro.vn/api_distpatch/tdttcongviec.php</string>
+    <string name="api_update_rate">http://office.sinco.pro.vn/api_distpatch/capnhattiendo.php</string>
+    <string name="api_tatcabinhluan">http://office.sinco.pro.vn/api_distpatch/tatcabinhluan.php</string>
+    <string name="api_xoacongviec">http://office.sinco.pro.vn/api_distpatch/xoacongviec.php</string>
+	<string name="api_get_infor_task_by_id">http://office.sinco.pro.vn/api_distpatch/infortaskbyid.php</string>
+    
+     <!-- ToanNM -->
+    <string name="cong_van">công văn cần phê</string>
+    <string name="cong_viec">công văn cần xử lý</string>
+    <string name="lich_bieu">công văn các loại</string>
+    <string name="one_msg">Bạn có 1 %1$s</string>
+    <string name="multi_msg">Bạn có %1$i cảnh báo mới</string>
+    <string name="new_noti">Cảnh báo mới</string>
+    <string name="new_noti_mess">Bạn có </string>
+    <string name="notify_new_congviec">công việc mới</string>
+    <string name="notify_new_comment">bình luận mới</string>
+    <string name="notify_new_comment_msg">đã bình luận</string> 
+    <string name="in">trong</string>
+    <string name="congviec">công việc</string>
+    <string name="congviec_1">Công việc</string>
+    <string name="ten_cv">Tên Công Việc:</string>
+    <string name="nguoi_xem_cv">Người xem:</string>
+    <string name="nguoi_thuc_hien_cv">Người thực hiện:</string>
+    <string name="mota">Mô tả:</string>
+    <string name="cv_handler">Người xử lý:</string>
+    <string name="cv_handler_new_comment">Người bình luận:</string>
+    <string name="chose_process">Tiến độ Công việc</string>
+    <string name="task_process">Tiến độ:</string>
+    <string name="task_title">Công việc:</string>
+    <string name="task_content">Nội dung:</string>
+    <string name="task_assigned_at">Ngày giao:</string>
+    <string name="task_assigner">Người giao:</string>
+    <string name="task_completed_infact">Ngày hoàn thành:</string>
+    <string name="task_expired_at">Hạn cuối:</string>
+    <string name="task_detail">Chi tiết Công việc</string>
+    <string name="report_content">Nội dung các báo cáo</string>
+    <string name="task_attach_file">Tệp đính kèm:</string>
+    <string name="da">đã</string>
+    
+    <string-array name="process_key">
+        <item>0</item>
+        <item>10</item>
+        <item>20</item>
+        <item>30</item>
+        <item>40</item>
+        <item>50</item>
+        <item>60</item>
+        <item>70</item>
+        <item>80</item>
+        <item>90</item>
+        <item>100</item>
+    </string-array>
+    
+    <string-array name="process_value">
+        <item>0%</item>
+        <item>10%</item>
+        <item>20%</item>
+        <item>30%</item>
+        <item>40%</item>
+        <item>50%</item>
+        <item>60%</item>
+        <item>70%</item>
+        <item>80%</item>
+        <item>90%</item>
+        <item>100%</item>
+    </string-array>
+    <!-- Home -->
+    <string name="progress_msg">Đang đăng nhập...</string>
+    <string name="error_title">Lỗi đăng nhập</string>
+    <string name="error_null">Bạn chưa nhập tên tài khoản hoặc mật khẩu</string>
+    <string name="error">Sai tên tài khoản hoặc mật khẩu</string>
+
+    <!-- AcctentRemover -->
+    <string-array name="special_characters">
+        <item>À</item>
+        <item>Á</item>
+        <item>Â</item>
+        <item>Ã</item>
+        <item>È</item>
+        <item>É</item>
+        <item>Ê</item>
+        <item>Ì</item>
+        <item>Í</item>
+        <item>Ò</item>
+        <item>Ó</item>
+        <item>Ô</item>
+        <item>Õ</item>
+        <item>Ù</item>
+        <item>Ú</item>
+        <item>Ý</item>
+        <item>à</item>
+        <item>á</item>
+        <item>â</item>
+        <item>ã</item>
+        <item>è</item>
+        <item>é</item>
+        <item>ê</item>
+        <item>ì</item>
+        <item>í</item>
+        <item>ò</item>
+        <item>ó</item>
+        <item>ô</item>
+        <item>õ</item>
+        <item>ù</item>
+        <item>ú</item>
+        <item>ý</item>
+        <item>Ă</item>
+        <item>ă</item>
+        <item>Đ</item>
+        <item>đ</item>
+        <item>Ĩ</item>
+        <item>ĩ</item>
+        <item>Ũ</item>
+        <item>ũ</item>
+        <item>Ơ</item>
+        <item>ơ</item>
+        <item>Ư</item>
+        <item>ư</item>
+        <item>Ạ</item>
+        <item>ạ</item>
+        <item>Ả</item>
+        <item>ả</item>
+        <item>Ấ</item>
+        <item>ấ</item>
+        <item>Ầ</item>
+        <item>ầ</item>
+        <item>Ẩ</item>
+        <item>ẩ</item>
+        <item>Ẫ</item>
+        <item>ẫ</item>
+        <item>Ậ</item>
+        <item>ậ</item>
+        <item>Ắ</item>
+        <item>ắ</item>
+        <item>Ằ</item>
+        <item>ằ</item>
+        <item>Ẳ</item>
+        <item>ẳ</item>
+        <item>Ẵ</item>
+        <item>ẵ</item>
+        <item>Ặ</item>
+        <item>ặ</item>
+        <item>Ẹ</item>
+        <item>ẹ</item>
+        <item>Ẻ</item>
+        <item>ẻ</item>
+        <item>Ẽ</item>
+        <item>ẽ</item>
+        <item>Ế</item>
+        <item>ế</item>
+        <item>Ề</item>
+        <item>ề</item>
+        <item>Ể</item>
+        <item>ể</item>
+        <item>Ễ</item>
+        <item>ễ</item>
+        <item>Ệ</item>
+        <item>ệ</item>
+        <item>Ỉ</item>
+        <item>ỉ</item>
+        <item>Ị</item>
+        <item>ị</item>
+        <item>Ọ</item>
+        <item>ọ</item>
+        <item>Ỏ</item>
+        <item>ỏ</item>
+        <item>Ố</item>
+        <item>ố</item>
+        <item>Ồ</item>
+        <item>ồ</item>
+        <item>Ổ</item>
+        <item>ổ</item>
+        <item>Ỗ</item>
+        <item>ỗ</item>
+        <item>Ộ</item>
+        <item>ộ</item>
+        <item>Ớ</item>
+        <item>ớ</item>
+        <item>Ờ</item>
+        <item>ờ</item>
+        <item>Ở</item>
+        <item>ở</item>
+        <item>Ỡ</item>
+        <item>ỡ</item>
+        <item>Ợ</item>
+        <item>ợ</item>
+        <item>Ụ</item>
+        <item>ụ</item>
+        <item>Ủ</item>
+        <item>ủ</item>
+        <item>Ứ</item>
+        <item>ứ</item>
+        <item>Ừ</item>
+        <item>ừ</item>
+        <item>Ử</item>
+        <item>ử</item>
+        <item>Ữ</item>
+        <item>ữ</item>
+        <item>Ự</item>
+        <item>ự</item>
+    </string-array>
+    <string-array name="characters">
+        <item>A</item>
+        <item>A</item>
+        <item>A</item>
+        <item>A</item>
+        <item>E</item>
+        <item>E</item>
+        <item>E</item>
+        <item>I</item>
+        <item>I</item>
+        <item>O</item>
+        <item>O</item>
+        <item>O</item>
+        <item>O</item>
+        <item>U</item>
+        <item>U</item>
+        <item>Y</item>
+        <item>a</item>
+        <item>a</item>
+        <item>a</item>
+        <item>a</item>
+        <item>e</item>
+        <item>e</item>
+        <item>e</item>
+        <item>i</item>
+        <item>i</item>
+        <item>o</item>
+        <item>o</item>
+        <item>o</item>
+        <item>o</item>
+        <item>u</item>
+        <item>u</item>
+        <item>y</item>
+        <item>A</item>
+        <item>a</item>
+        <item>D</item>
+        <item>d</item>
+        <item>I</item>
+        <item>i</item>
+        <item>U</item>
+        <item>u</item>
+        <item>O</item>
+        <item>o</item>
+        <item>U</item>
+        <item>u</item>
+        <item>A</item>
+        <item>a</item>
+        <item>A</item>
+        <item>a</item>
+        <item>A</item>
+        <item>a</item>
+        <item>A</item>
+        <item>a</item>
+        <item>A</item>
+        <item>a</item>
+        <item>A</item>
+        <item>a</item>
+        <item>A</item>
+        <item>a</item>
+        <item>A</item>
+        <item>a</item>
+        <item>A</item>
+        <item>a</item>
+        <item>A</item>
+        <item>a</item>
+        <item>A</item>
+        <item>a</item>
+        <item>A</item>
+        <item>a</item>
+        <item>E</item>
+        <item>e</item>
+        <item>E</item>
+        <item>e</item>
+        <item>E</item>
+        <item>e</item>
+        <item>E</item>
+        <item>e</item>
+        <item>E</item>
+        <item>e</item>
+        <item>E</item>
+        <item>e</item>
+        <item>E</item>
+        <item>e</item>
+        <item>E</item>
+        <item>e</item>
+        <item>I</item>
+        <item>i</item>
+        <item>I</item>
+        <item>i</item>
+        <item>O</item>
+        <item>o</item>
+        <item>O</item>
+        <item>o</item>
+        <item>O</item>
+        <item>o</item>
+        <item>O</item>
+        <item>o</item>
+        <item>O</item>
+        <item>o</item>
+        <item>O</item>
+        <item>o</item>
+        <item>O</item>
+        <item>o</item>
+        <item>O</item>
+        <item>o</item>
+        <item>O</item>
+        <item>o</item>
+        <item>O</item>
+        <item>o</item>
+        <item>O</item>
+        <item>o</item>
+        <item>O</item>
+        <item>o</item>
+        <item>U</item>
+        <item>u</item>
+        <item>U</item>
+        <item>u</item>
+        <item>U</item>
+        <item>u</item>
+        <item>U</item>
+        <item>u</item>
+        <item>U</item>
+        <item>u</item>
+        <item>U</item>
+        <item>u</item>
+        <item>U</item>
+        <item>u</item>
+    </string-array>
+
+    <string name="title_activity_assign_task">AssignTaskActivity</string>
+    <string name="title_activity_assigned_task">AssignedTaskActivity</string>
+    <string name="title_activity_list_task">ListTask</string>
+    <string name="title_activity_steer_report_task">SteerReportTaskActivity</string>
+
+</resources>

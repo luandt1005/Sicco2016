@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="D:\Sicco\app\libs\android-async-http-1.4.6.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="a845a88238be0b5be9d238652c1bc0605ef91f52">
+        <dex dex="D:\Sicco\app\build\intermediates\pre-dexed\debug\android-async-http-1.4.6-c3cac54862ce7acf457c82fe1bae8d420a8d2fa7.jar" />
+    </item>
+    <item
+        jar="D:\Sicco\app\libs\glide-3.6.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="a7537446a030da8eb0da4c71424d16c2589f6c4a">
+        <dex dex="D:\Sicco\app\build\intermediates\pre-dexed\debug\glide-3.6.0-4161ddc0e597d04e23f32a711e3f1c386ef8ea1e.jar" />
+    </item>
+    <item
+        jar="D:\Sicco\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\jars\libs\internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="D:\Sicco\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-599388d667cfa0a450396908b5608ce7e4f6da62.jar" />
+    </item>
+    <item
+        jar="D:\Sicco\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="D:\Sicco\app\build\intermediates\pre-dexed\debug\classes-7210fc899159d64a498c12038023dac2114b7a9b.jar" />
+    </item>
+    <item
+        jar="F:\AndroidStudio\SDK\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="D:\Sicco\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-a6f5d5e5c3c79b18ded292e37190df8901a908cd.jar" />
+    </item>
+    <item
+        jar="D:\Sicco\app\libs\PdfViewer.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="a53b4c813e4237286bd10f0c334c46e894970666">
+        <dex dex="D:\Sicco\app\build\intermediates\pre-dexed\debug\PdfViewer-7f5ebe332a8c3aef441ae7cb1f4c77a47393a305.jar" />
+    </item>
+    <item
+        jar="D:\Sicco\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="D:\Sicco\app\build\intermediates\pre-dexed\debug\classes-2617ac87fcb85c760c1cc6eb6bcd3e4bc2cc2b56.jar" />
+    </item>
+
+</items>

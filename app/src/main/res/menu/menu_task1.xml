@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <item android:id="@+id/action_handle" android:title="@string/handle"/>
+    <item android:id="@+id/action_steer" android:title="@string/steer_report"/>
+    <item android:id="@+id/action_job_transfer" android:title="@string/job_transfer"/>
+
+</menu>

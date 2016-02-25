@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minHeight="55dp"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:background="#FFe6e6e6" >
+
+    <TextView
+        android:id="@+id/departmentName"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:text="Unknown"
+        android:textSize="16sp"
+        android:textColor="#111111"
+        android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
+        android:textStyle="bold" />
+
+</LinearLayout>

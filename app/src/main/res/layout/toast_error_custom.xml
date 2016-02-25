@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="wrap_content"
+    android:layout_height="60dp"
+    android:background="@android:color/holo_red_light"
+    android:gravity="center"
+    android:orientation="horizontal"
+    
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/abc_btn_check_material" />
+
+    <TextView
+        android:id="@+id/txtToastError"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Custom toast với nền màu đỏ"
+        android:textColor="@android:color/white"
+        android:textSize="20dp" />
+
+</LinearLayout>

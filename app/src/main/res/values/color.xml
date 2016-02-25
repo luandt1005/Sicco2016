@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="item_menu_pressed">#7ccae6</color>
+    <color name="item_menu_selected">#7ccae6</color>
+    <color name="category_text_color">#aaaaaa</color>
+    <color name="white">#ffffff</color>
+    <color name="text_color">#676767</color>
+    <color name="option_color">#3c5c95</color>
+    <color name="option_select_color">#6d8bbf</color>
+    <color name="exit_color">#358cd1</color>
+    <color name="exit_select_color">#76b5e7</color>
+    <color name="home_item_select_color">#d1d1d1</color>
+    <color name="empty">#00ffffff</color>
+    <color name="actionbar_color">#358cd1</color>
+    <color name="pressed">#4DFFFFFF</color>
+    <color name="item_title_color">#323232</color>
+    <color name="item_desc_color">#676363</color>
+    <color name="approval_color">#5e7af8</color>
+    <color name="approval_select_color">#96a8fb</color>
+    <color name="item_color">#e0e0e0</color>
+    
+    <!-- NgaDV -->
+    <color name="bg_pressed">#30000000</color>
+    <color name="label_item">#111</color>
+    
+    <!-- LuanDT -->
+    <color name="black">#212121</color>
+    <color name="red">#d50000</color>
+    <color name="yellow">#ffd600</color>
+    <color name="green">#00c853</color>
+    <color name="gray">#757575</color>
+</resources>
