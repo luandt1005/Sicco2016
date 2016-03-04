@@ -73,9 +73,7 @@ public class TaskAdapter extends BaseAdapter {
 					arg2, false);
 			holder = new ViewHolder();
 			holder.taskName = (TextView) view.findViewById(R.id.taskName);
-			holder.handler = (TextView) view.findViewById(R.id.handler);
 			holder.date_handle = (TextView) view.findViewById(R.id.date_handle);
-			holder.date_finish = (TextView) view.findViewById(R.id.date_finish);
 			holder.action = (TextView) view.findViewById(R.id.action);
 			view.setTag(holder);
 		} else {
@@ -96,20 +94,12 @@ public class TaskAdapter extends BaseAdapter {
 
 		String date_handle_no_time = task.getNgay_bat_dau().substring(0,10);
 		String date_finish_no_time = task.getNgay_ket_thuc().substring(0,10);
-		String handler = "<font weigth='bold'><b><u><i>"
-				+ context.getResources().getString(R.string.nguoi_thuc_hien)
-				+ "</i></u></b></font>" + "  " + task.getNguoi_thuc_hien();
 		String date_handle = "<font weigth='bold'><b><u><i>"
 				+ context.getResources().getString(R.string.ngaygiao)
 				+ "</i></u></b></font>" + ":  " + date_handle_no_time;
-		String date_finish = "<font weigth='bold'><b><u><i>"
-				+ context.getResources().getString(R.string.hancuoi)
-				+ "</i></u></b></font>" + ":  " + date_finish_no_time;
 
 		holder.taskName.setText(task.getTen_cong_viec());
-		holder.handler.setText(Html.fromHtml(handler));
 		holder.date_handle.setText(Html.fromHtml(date_handle));
-		holder.date_finish.setText(Html.fromHtml(date_finish));
 
 		String colorAction = context.getResources().getString(R.color.actionbar_color);
 		//mh danh sach viec

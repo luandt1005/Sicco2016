@@ -23,26 +23,7 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/handler"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingTop="4dp"
-            android:textSize="16sp"
-            android:text="TextView"
-            android:textColor="@color/item_desc_color" />
-        
-        <TextView
             android:id="@+id/date_handle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingTop="4dp"
-            android:textSize="16sp"
-            android:text="TextView"
-            android:textColor="@color/item_desc_color" />
-        <TextView
-            android:id="@+id/date_finish"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"

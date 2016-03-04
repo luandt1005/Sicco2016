@@ -65,22 +65,15 @@
                 android:padding="10dp"
                 android:background="@drawable/item_convert_job_selector" >
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/title"
-                    android:textColor="@color/label_item"
-                    android:textSize="18dp" />
-
                 <EditText
                     android:id="@+id/edtTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 					android:hint="@string/enter_title"
-                    android:layout_marginTop="7dp"
                     android:textColor="@color/label_item"
-                    android:textSize="15dp"
-                    android:background="@null"/>
+                    android:textSize="18dp"
+                    android:background="@null"
+                    android:textCursorDrawable="@drawable/color_cursor"/>
 
             </LinearLayout>
             <TextView 
@@ -97,22 +90,15 @@
                 android:padding="10dp"
                 android:background="@drawable/item_convert_job_selector" >
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/des"
-                    android:textColor="@color/label_item"
-                    android:textSize="18dp" />
-
                 <EditText
                     android:id="@+id/edtDes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 					android:hint="@string/des"
-                    android:layout_marginTop="7dp"
                     android:textColor="@color/label_item"
-                    android:textSize="15dp"
-                    android:background="@null"/>
+                    android:textSize="18dp"
+                    android:background="@null"
+                    android:textCursorDrawable="@drawable/color_cursor"/>
 
             </LinearLayout>
             <TextView 
