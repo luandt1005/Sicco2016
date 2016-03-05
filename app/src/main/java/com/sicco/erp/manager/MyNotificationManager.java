@@ -198,7 +198,7 @@ public class MyNotificationManager {
 			String about = context.getResources().getString(R.string.about);
 			String cv_new = context.getResources().getString(R.string.notify_new_congvan);
 
-			if (notification_count == 1) {
+			//if (notification_count == 1) {
 				String username = Utils.getString(context, SessionManager.KEY_NAME);
 
 				//String ten_cong_van = getCongVanData(context, dispatch_id, username);
@@ -210,14 +210,14 @@ public class MyNotificationManager {
 						+ about + " " + context.getResources().getString(R.string.congvan) + ": " + ten_cong_van + ".\n"
 						+ content  + "\n";
 
-			} else if (notification_count > 1) {
+			/*} else if (notification_count > 1) {
 				message = context.getResources().getString(R.string.new_noti_mess) + " " + notification_count + " "
 						+ noti + " "  + about + " " + cv_new + "\n";
 				String cv_handler_new_comment = context.getResources().getString(R.string.cv_handler_new_comment);
 
 				name += handler + "\n";
 				contentText = "" + cv_handler_new_comment + "\n" + name;
-			}
+			}*/
 
 		}
 		Log.d("ToanNMMMMMMMMMM", contentText);
@@ -394,16 +394,14 @@ public class MyNotificationManager {
 		pendInt = PendingIntent.getActivity(context, 0, notIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 		Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
-		//
-
 		builder.setContentIntent(pendInt).setOngoing(false).setAutoCancel(true)
 				// .setPriority(Notification.PRIORITY_HIGH)
 				.setSound(alarmSound);
 
-		int build_version = android.os.Build.VERSION.SDK_INT;
+		/*int build_version = android.os.Build.VERSION.SDK_INT;
 		if (build_version >= 16) {
 			builder.setPriority(Notification.PRIORITY_HIGH);
-		}
+		} */
 		NotificationCompat.BigTextStyle style = new NotificationCompat.BigTextStyle();
 		style.bigText(contentText);
 		// style.setSummaryText("Swipe Left or Right to dismiss this

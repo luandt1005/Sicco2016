@@ -19,6 +19,7 @@ import android.content.IntentFilter;
 import android.database.Cursor;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -421,7 +422,7 @@ public class GetAllNotificationService extends Service {
 		Log.d("BinhLuanCongVanAsync", "BinhLuanCongVanAsync");
 
 		db = NotificationDBController.getInstance(getApplicationContext());
-		db.deleteReportCongVanData();
+		//db.deleteReportCongVanData();
 
 		url_get_binhluan = getResources().getString(R.string.api_get_steer_congvan_report);
 		reportCongVanData = new ArrayList<ReportSteer>();
