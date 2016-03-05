@@ -29,7 +29,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sicco.erp.adapter.ActionAdapter;
-import com.sicco.erp.adapter.SpinnerStatusAdapter;
 import com.sicco.erp.adapter.SpinnerTypeAdapter;
 import com.sicco.erp.database.NotificationDBController;
 import com.sicco.erp.model.Dispatch;
@@ -48,7 +47,7 @@ public class OtherActivity extends Activity implements OnClickListener,
 	private LinearLayout searchView, connectError;
 	private ImageView back, search, close, empty;
 	private EditText editSearch;
-	private TextView emptyView;
+	private TextView emptyView, something, something1;
 	private ListView listDispatch;
 	private ProgressBar loading;
 	private Button retry;
@@ -82,6 +81,10 @@ public class OtherActivity extends Activity implements OnClickListener,
 	}
 
 	private void init() {
+		something = (TextView) findViewById(R.id.something);
+		something1 = (TextView) findViewById(R.id.something1);
+		something.setVisibility(View.GONE);
+		something1.setVisibility(View.GONE);
 		searchView = (LinearLayout) findViewById(R.id.searchview);
 		back = (ImageView) findViewById(R.id.back);
 		search = (ImageView) findViewById(R.id.search);
