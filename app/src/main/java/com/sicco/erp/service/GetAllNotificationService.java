@@ -421,7 +421,7 @@ public class GetAllNotificationService extends Service {
 		Log.d("BinhLuanCongVanAsync", "BinhLuanCongVanAsync");
 
 		db = NotificationDBController.getInstance(getApplicationContext());
-		//db.deleteReportCongVanData();
+		db.deleteReportCongVanData();
 
 		url_get_binhluan = getResources().getString(R.string.api_get_steer_congvan_report);
 		reportCongVanData = new ArrayList<ReportSteer>();
