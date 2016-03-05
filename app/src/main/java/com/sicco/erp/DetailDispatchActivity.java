@@ -23,7 +23,7 @@ import com.sicco.erp.model.ReportSteer.OnLoadListener;
 
 public class DetailDispatchActivity extends Activity{
 	private ImageView back;
-	private TextView title, shCongVan, trichYeu, nguoiPheDuyet, nguoiXuLy, emptyView;
+	private TextView title, shCongVan, trichYeu, nguoiPheDuyet, nguoiXuLy, nguoiXem, emptyView;
 	private ListView baoCao;
 	private ProgressBar loading;
 	private LinearLayout connectError;
@@ -51,6 +51,7 @@ public class DetailDispatchActivity extends Activity{
 		trichYeu  =(TextView) findViewById(R.id.trichYeu);
 		nguoiPheDuyet  =(TextView) findViewById(R.id.nguoiPheDuyet);
 		nguoiXuLy  =(TextView) findViewById(R.id.nguoiXuLy);
+		nguoiXem  =(TextView) findViewById(R.id.nguoiXem);
 		baoCao = (ListView) findViewById(R.id.baoCao);
 		loading = (ProgressBar) findViewById(R.id.loading);
 		emptyView = (TextView) findViewById(R.id.emptyView);
@@ -79,6 +80,7 @@ public class DetailDispatchActivity extends Activity{
 		trichYeu.setText(Html.fromHtml("<font><b><u><i>" + getResources().getString(R.string.trich_yeu) + "</i></u></b></font>" + " " + dispatch.getDescription()));
 		nguoiPheDuyet.setText(Html.fromHtml("<font><b><u><i>" + getResources().getString(R.string.nguoi_phe_duyet) + "</i></u></b></font>" + " " + dispatch.getNguoi_phe_duyet()));
 		nguoiXuLy.setText(Html.fromHtml("<font><b><u><i>" + getResources().getString(R.string.nguoi_xu_ly) + "</i></u></b></font>" + " " + dispatch.getHandler()));
+		nguoiXem.setText(Html.fromHtml("<font><b><u><i>" + getResources().getString(R.string.nguoi_xem) + "</i></u></b></font>" + " " + dispatch.getNguoiXem()));
 	}
 	
 	private void setListReportSteer(Dispatch dispatch) {

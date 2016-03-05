@@ -1,6 +1,7 @@
 package com.sicco.erp.adapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import com.sicco.erp.R;
 import com.sicco.erp.SendApprovalActivity;
 import com.sicco.erp.model.Dispatch;
+import com.sicco.erp.util.Utils;
 
 public class DispatchAdapter extends BaseAdapter {
 	private Context context;
@@ -56,6 +58,11 @@ public class DispatchAdapter extends BaseAdapter {
 			holder.title = (TextView) view.findViewById(R.id.title);
 			holder.description = (TextView) view.findViewById(R.id.description);
 			holder.approval = (TextView) view.findViewById(R.id.approval);
+			if(dispatch.getNguoi_phe_duyet().equals(Utils.getString(context, "name"))){
+				holder.approval.setVisibility(View.VISIBLE);
+			} else {
+				holder.approval.setVisibility(View.GONE);
+			}
 			view.setTag(holder);
 		} else {
 			holder = (ViewHolder) view.getTag();

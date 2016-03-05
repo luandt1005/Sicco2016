@@ -34,9 +34,11 @@ public class Dispatch implements Serializable {
 	private String status;
 	private String coQuanBanHanh;
 	private String loaicongvan;
+	private String idLoaicongvan;
 	private String nguoithaydoitrangthai;
 	private String pheduyet;
 	private String nguoi_phe_duyet;
+	private String nguoiXem;
 
 	private ArrayList<Dispatch> data;
 	private ArrayList<DispatchType> dataDispatchType;
@@ -48,6 +50,26 @@ public class Dispatch implements Serializable {
 		this.context = context;
 	}
 
+	public Dispatch(long id, String numberDispatch, String description,
+			String content, String date, String handler, String status,
+			String coQuanBanHanh, String loaicongvan, String idLoaicongvan,
+			String nguoithaydoitrangthai, String pheduyet, String nguoi_phe_duyet, String nguoiXem) {
+		super();
+		this.id = id;
+		this.numberDispatch = numberDispatch;
+		this.description = description;
+		this.content = content;
+		this.date = date;
+		this.handler = handler;
+		this.status = status;
+		this.coQuanBanHanh = coQuanBanHanh;
+		this.loaicongvan = loaicongvan;
+		this.idLoaicongvan = idLoaicongvan;
+		this.nguoithaydoitrangthai = nguoithaydoitrangthai;
+		this.pheduyet = pheduyet;
+		this.nguoi_phe_duyet =  nguoi_phe_duyet;
+		this.nguoiXem =  nguoiXem;
+	}
 	public Dispatch(long id, String numberDispatch, String description,
 			String content, String date, String handler, String status,
 			String coQuanBanHanh, String loaicongvan,
@@ -115,6 +137,14 @@ public class Dispatch implements Serializable {
 		return description;
 	}
 
+	public String getIdLoaicongvan() {
+		return idLoaicongvan;
+	}
+
+	public void setIdLoaicongvan(String idLoaicongvan) {
+		this.idLoaicongvan = idLoaicongvan;
+	}
+
 	public String getNumberDispatch() {
 		return numberDispatch;
 	}
@@ -133,6 +163,14 @@ public class Dispatch implements Serializable {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public String getNguoiXem() {
+		return nguoiXem;
+	}
+
+	public void setNguoiXem(String nguoiXem) {
+		this.nguoiXem = nguoiXem;
 	}
 
 	public String getStatus() {
@@ -242,6 +280,7 @@ public class Dispatch implements Serializable {
 		AsyncHttpClient client = new AsyncHttpClient();
 		RequestParams params = new RequestParams();
 		params.add("username", Utils.getString(context, "name"));
+		params.add("userId", Utils.getString(context, "user_id"));
 
 		client.post(url, params, new JsonHttpResponseHandler() {
 			@Override
@@ -270,6 +309,7 @@ public class Dispatch implements Serializable {
 									.getString("nguoi_thay_doi_trang_thai");
 							String pheduyet = row.getString("phe_duyet");
 							String nguoi_phe_duyet = row.getString("nguoi_phe_duyet");
+							String nguoiXem = row.getString("nguoi_xem");
 
 							content = content.replace(" ", "%20");
 
@@ -280,8 +320,8 @@ public class Dispatch implements Serializable {
 										data.add(new Dispatch(id,
 												numberDispatch, description,
 												content, date, handler, status,
-												coQuanBanHanh, type.getTitle(),
-												nguoithaydoitrangthai, pheduyet, nguoi_phe_duyet));
+												coQuanBanHanh, type.getTitle(), idloaicv,
+												nguoithaydoitrangthai, pheduyet, nguoi_phe_duyet, nguoiXem));
 										// Log.d("LuanDT",
 										// "----->>>loai cong van: "
 										// + type.getTitle());
@@ -290,8 +330,8 @@ public class Dispatch implements Serializable {
 							} else {
 								data.add(new Dispatch(id, numberDispatch,
 										description, content, date, handler,
-										status, coQuanBanHanh, "",
-										nguoithaydoitrangthai, pheduyet, nguoi_phe_duyet));
+										status, coQuanBanHanh, "", idloaicv,
+										nguoithaydoitrangthai, pheduyet, nguoi_phe_duyet, nguoiXem));
 							}
 
 							addToDB(context, type, id, numberDispatch, content,
@@ -451,17 +491,15 @@ public class Dispatch implements Serializable {
 		return result;
 	}
 
-	public ArrayList<Dispatch> filterDispatch(Long keyStatus,
+	public ArrayList<Dispatch> filterDispatch(String type,
 			ArrayList<Dispatch> data) {
 		ArrayList<Dispatch> result = new ArrayList<Dispatch>();
-		Log.d("NgaDV", "keyStatus0: " + keyStatus);
+		Log.d("LuanDT", "typeId: " + type);
 		if (!data.isEmpty()) {
-			Log.d("NgaDV", "keyStatus1: " + keyStatus);
 			for (Dispatch dispatch : data) {
-				if (dispatch.getStatus().equals("" + keyStatus)) {
+				if (dispatch.getIdLoaicongvan().equals(type)) {
 					result.add(dispatch);
-				}else if(keyStatus == -1) {
-					Log.d("NgaDV", "keyStatus: " + keyStatus);
+				}else if(type.equals("-1")) {
 					return data;
 				}
 			}

@@ -73,8 +73,8 @@ public class LoginActivity extends Activity implements OnClickListener {
 
 	private void login() {
 
-		u = username.getText().toString().trim().toLowerCase();
-		p = password.getText().toString().trim().toLowerCase();
+		u = username.getText().toString().trim();
+		p = password.getText().toString().trim();
 
 		if (u.trim().length() > 0 && p.trim().length() > 0) {
 			MyAsync();

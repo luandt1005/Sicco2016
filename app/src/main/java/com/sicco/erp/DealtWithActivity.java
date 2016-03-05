@@ -1,7 +1,5 @@
 package com.sicco.erp;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -24,14 +22,16 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.sicco.erp.adapter.SpinnerStatusAdapter;
 import com.sicco.erp.adapter.ActionAdapter;
+import com.sicco.erp.adapter.SpinnerTypeAdapter;
 import com.sicco.erp.model.Dispatch;
 import com.sicco.erp.model.Dispatch.OnLoadListener;
-import com.sicco.erp.model.Status;
+import com.sicco.erp.model.DispatchType;
 import com.sicco.erp.service.GetAllNotificationService;
 import com.sicco.erp.util.Keyboard;
 import com.sicco.erp.util.ViewDispatch;
+
+import java.util.ArrayList;
 
 public class DealtWithActivity extends Activity implements OnClickListener,
 		OnItemClickListener {
@@ -49,9 +49,10 @@ public class DealtWithActivity extends Activity implements OnClickListener,
 	private ViewDispatch viewDispatch;
 
 	private AlertDialog alertDialog;
-	private SpinnerStatusAdapter spinnerStatusAdapter;
+	private SpinnerTypeAdapter spinnerStatusAdapter;
 	private Spinner spnFilter;
 	private TextView title_actionbar;
+	private ArrayList<DispatchType> dataDispatchType;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +61,10 @@ public class DealtWithActivity extends Activity implements OnClickListener,
 		setContentView(R.layout.activity_approval);
 
 		OtherActivity.otherActivitySelected = false;
+
+		DispatchType dispatchType = new DispatchType();
+		dataDispatchType = dispatchType.getData(getString(R.string.api_get_dispatch_type));
+		dataDispatchType.add(0, new DispatchType("-1", getResources().getString(R.string.all)));
 
 		init();
 
@@ -84,7 +89,7 @@ public class DealtWithActivity extends Activity implements OnClickListener,
 		spnFilter = (Spinner) findViewById(R.id.spnFilter);
 		title_actionbar = (TextView) findViewById(R.id.title_actionbar);
 		title_actionbar.setText(getResources().getString(R.string.cv_xu_ly));
-		spnFilter.setVisibility(View.GONE);
+		title_actionbar.setVisibility(View.GONE);
 		// click
 		back.setOnClickListener(this);
 		search.setOnClickListener(this);
@@ -125,16 +130,16 @@ public class DealtWithActivity extends Activity implements OnClickListener,
 
 		// setFilter
 		// set spinner
-		ArrayList<Status> listStatus = new ArrayList<Status>();
-		listStatus.add(new Status(getResources().getString(R.string.all), Long
-				.parseLong("-1")));
-		listStatus.add(new Status(getResources()
-				.getString(R.string.need_handle), Long.parseLong("2")));
-		listStatus.add(new Status(getResources().getString(R.string.handling),
-				Long.parseLong("3")));
+//		ArrayList<Status> listStatus = new ArrayList<Status>();
+//		listStatus.add(new Status(getResources().getString(R.string.all), Long
+//				.parseLong("-1")));
+//		listStatus.add(new Status(getResources()
+//				.getString(R.string.need_handle), Long.parseLong("2")));
+//		listStatus.add(new Status(getResources().getString(R.string.handling),
+//				Long.parseLong("3")));
 
-		spinnerStatusAdapter = new SpinnerStatusAdapter(
-				getApplicationContext(), listStatus);
+		spinnerStatusAdapter = new SpinnerTypeAdapter(
+				getApplicationContext(), dataDispatchType);
 		spnFilter.setAdapter(spinnerStatusAdapter);
 
 		spnFilter.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -142,13 +147,13 @@ public class DealtWithActivity extends Activity implements OnClickListener,
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View view,
 					int position, long id) {
-				Status status = (Status) parent.getAdapter().getItem(position);
-				Log.d("NgaDV", "status.getKey(): " + status.getKey());
+				DispatchType type = (DispatchType) parent.getAdapter().getItem(position);
+				Log.d("LuanDT", "type.getId(): " + type.getId());
 
 				if (!arrDispatch.isEmpty()) {
 					adapter = new ActionAdapter(DealtWithActivity.this,
-							dispatch.filterDispatch(status.getKey(),
-									arrDispatch), 0);
+							dispatch.filterDispatch(type.getId(),
+									arrDispatch), 1);
 					listDispatch.setAdapter(adapter);
 				}
 			}
@@ -309,7 +314,7 @@ public class DealtWithActivity extends Activity implements OnClickListener,
 						connectError.setVisibility(View.VISIBLE);
 					}
 				}, 0);
-		adapter = new ActionAdapter(DealtWithActivity.this, arrDispatch, 0);
+		adapter = new ActionAdapter(DealtWithActivity.this, arrDispatch, 1);
 		listDispatch.setAdapter(adapter);
 		super.onResume();
 	}

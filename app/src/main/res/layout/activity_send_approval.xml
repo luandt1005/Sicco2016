@@ -68,6 +68,7 @@
                 android:gravity="top|left"
                 android:hint="@string/insert_text"
                 android:minHeight="100dp"
+                android:textSize="16sp"
                 android:padding="8dp" >
             </EditText>
 
@@ -80,12 +81,12 @@
                     style="?android:attr/borderlessButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/bg_btn_login_selector"
                     android:text="@string/chose_user"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:layout_weight="1" 
                     android:layout_marginRight="10dp"/>
 
@@ -94,13 +95,13 @@
                     style="?android:attr/borderlessButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/bg_btn_login_selector"
                     android:text="@string/approval"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="18sp" 
+                    android:textSize="16sp"
                     android:layout_weight="1"/>
 
             </LinearLayout>
@@ -109,8 +110,8 @@
                 android:id="@+id/txt_handler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:textSize="18sp"
+                android:layout_marginTop="0dp"
+                android:textSize="16sp"
                 android:text="@string/handler" />
         </LinearLayout>
     </ScrollView>

@@ -94,9 +94,20 @@
             android:background="@color/white"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:paddingBottom="10dp"
             android:textColor="@android:color/black"
             android:text="Nguoi xu ly:"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/nguoiXem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:textColor="@android:color/black"
+            android:text="Nguoi xem:"
             android:textSize="18sp" />
 
         <TextView
