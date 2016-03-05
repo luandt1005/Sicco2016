@@ -144,7 +144,7 @@ public class ReportSteer {
 									String reporter = row.getString("reporter");
 									String dateCreated = row.getString("date_created");
 									String content = row.getString("content");
-									long id_cong_van = row.getLong("id_cong_van");
+									long id_cong_van = row.getLong("diploma_id");
 		
 									data.add(new ReportSteer(i, reporter, dateCreated, content, id_cong_van));
 
