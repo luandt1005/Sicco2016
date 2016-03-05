@@ -47,7 +47,7 @@
             android:layout_height="match_parent"
             android:text="Content"
             android:padding="10dp"
-            android:textSize="20dp"/>
+            android:textSize="17dp"/>
 
         <ProgressBar
             android:id="@+id/loading"
@@ -113,24 +113,28 @@
 	        style="?android:attr/borderlessButtonStyle"
 	        android:layout_width="match_parent"
 	        android:layout_height="40dp"
-	        android:layout_margin="10dp"
+	        android:layout_marginBottom="10dp"
+	        android:layout_marginLeft="10dp"
+	        android:layout_marginRight="10dp"
 	        android:background="@drawable/bg_btn_login_selector"
 	        android:text="@string/cancel"
 	        android:textAllCaps="false"
 	        android:textColor="@color/white"
-	        android:textSize="18sp" 
+	        android:textSize="17sp"
 	        android:layout_weight="1"/>
 	    <Button
 	        android:id="@+id/btnDelete"
 	        style="?android:attr/borderlessButtonStyle"
 	        android:layout_width="match_parent"
 	        android:layout_height="40dp"
-	        android:layout_margin="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
 	        android:background="@drawable/bg_btn_login_selector"
 	        android:text="@string/delete"
 	        android:textAllCaps="false"
 	        android:textColor="@color/white"
-	        android:textSize="18sp" 
+	        android:textSize="17sp"
 	        android:layout_weight="1"/>
 	</LinearLayout>
    

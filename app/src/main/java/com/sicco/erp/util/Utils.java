@@ -11,6 +11,11 @@ import android.os.SystemClock;
 import com.sicco.erp.manager.SessionManager;
 import com.sicco.erp.service.GetAllNotificationService;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * TimeAlarm for starting GetNotificationService
  */
@@ -120,5 +125,41 @@ public class Utils {
 
 		}
 		return ret;
+	}
+
+	public static String convertDate(String input){
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		try {
+			if(input != null) {
+				if (input != "") {
+					Date date = formatter.parse(input);
+					DateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+					return formatter1.format(date);
+				} else {
+					return "";
+				}
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public static String convertDate1(String input){
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		try {
+			if(input != null) {
+				if (input != "") {
+					Date date = formatter.parse(input);
+					DateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy");
+					return formatter1.format(date);
+				} else {
+					return "";
+				}
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return "";
 	}
 }

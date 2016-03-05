@@ -26,7 +26,7 @@
     <string name="send">Gửi</string>
     <string name="insert_text">Nhập văn bản</string>
     <string name="data_empty">Không có dữ liệu.</string>
-    <string name="nguoi_xu_ly">D/s xử lý:</string>
+    <string name="nguoi_xu_ly">Người xử lý:</string>
     <string name="nguoi_phe_duyet">Người phê duyệt:</string>
     <string name="nguoi_xem">Người xem:</string>
     <string name="sh_cong_van">Số hiệu:</string>
@@ -46,6 +46,7 @@
     <string name="handler">Người xử lý:"</string>
     <string name="handler1">Người xử lý</string>
     <string name="time">Thời gian:"</string>
+    <string name="date">Ngày:"</string>
     <string name="report">Báo cáo:"</string>
     <string name="sep">" / "</string>
     <string name="empty_content_report">Bạn chưa nhập nội dung</string>

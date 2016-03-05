@@ -92,11 +92,8 @@ public class TaskAdapter extends BaseAdapter {
 			}
 		}
 
-		String date_handle_no_time = task.getNgay_bat_dau().substring(0,10);
-		String date_finish_no_time = task.getNgay_ket_thuc().substring(0,10);
-		String date_handle = "<font weigth='bold'><b><u><i>"
-				+ context.getResources().getString(R.string.ngaygiao)
-				+ "</i></u></b></font>" + ":  " + date_handle_no_time;
+		String date_handle = "<font weigth='bold'><b>" + context.getResources().getString(R.string.ngaygiao)
+				+ "</b></font>" + ":  " + task.getNgay_bat_dau();
 
 		holder.taskName.setText(task.getTen_cong_viec());
 		holder.date_handle.setText(Html.fromHtml(date_handle));

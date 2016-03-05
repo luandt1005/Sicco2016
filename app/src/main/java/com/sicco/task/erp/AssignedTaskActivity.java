@@ -43,7 +43,6 @@ public class AssignedTaskActivity extends Activity implements OnClickListener,
 	public static ProgressBar loading;
 	private Button retry;
 	public static Task task;
-	private ViewDispatch viewDispatch;
 	public static ArrayList<Task> arrTask;
 	public static TaskAdapter adapter;
 

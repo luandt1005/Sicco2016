@@ -71,7 +71,7 @@
                     android:layout_height="wrap_content"
 					android:hint="@string/enter_title"
                     android:textColor="@color/label_item"
-                    android:textSize="18dp"
+                    android:textSize="16dp"
                     android:background="@null"
                     android:textCursorDrawable="@drawable/color_cursor"/>
 
@@ -96,7 +96,7 @@
                     android:layout_height="wrap_content"
 					android:hint="@string/des"
                     android:textColor="@color/label_item"
-                    android:textSize="18dp"
+                    android:textSize="16dp"
                     android:background="@null"
                     android:textCursorDrawable="@drawable/color_cursor"/>
 

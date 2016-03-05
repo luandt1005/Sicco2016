@@ -142,7 +142,7 @@ public class ReportSteerTask {
 
 							String id = row.getString("id");
 							String handler = row.getString("nguoi_binh_luan");
-							String date = row.getString("thoi_gian");
+							String date = Utils.convertDate(row.getString("thoi_gian"));
 							String content = row.getString("noi_dung");
 							String file = row.getString("dinh_kem");
 

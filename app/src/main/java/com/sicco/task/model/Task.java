@@ -334,9 +334,8 @@ public class Task implements Serializable {
 							String nguoi_xem = row.getString("nguoi_xem");
 							String du_an = row.getString("du_an");
 							String tien_do = row.getString("tien_do");
-							String ngay_bat_dau = row.getString("ngay_bat_dau");
-							String ngay_ket_thuc = row
-									.getString("ngay_ket_thuc");
+							String ngay_bat_dau = Utils.convertDate1(row.getString("ngay_bat_dau"));
+							String ngay_ket_thuc = Utils.convertDate1(row.getString("ngay_ket_thuc"));
 							String nguoi_giao = row.getString("nguoi_giao");
 							String dinh_kem = row.getString("dinh_kem");
 							String phong_ban = row.getString("phong_ban");
@@ -354,7 +353,7 @@ public class Task implements Serializable {
 							if (dqh.equals("1"))
 								da_qua_han = true;
 							String muc_uu_tien = row.getString("muc_uu_tien");
-							String ngay_httt = row.getString("ngay_httt");
+							String ngay_httt = Utils.convertDate1(row.getString("ngay_httt"));
 							String daxuly = row.getString("daxuly");
 
 							dinh_kem = dinh_kem.replace(" ", "%20");

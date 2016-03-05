@@ -43,7 +43,6 @@ public class OtherTaskActivity extends Activity implements OnClickListener,
 	private ProgressBar loading;
 	private Button retry;
 	private Task task;
-	private ViewDispatch viewDispatch;
 	private ArrayList<Task> arrTask;
 	private TaskAdapter adapter;
 
