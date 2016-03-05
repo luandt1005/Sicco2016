@@ -323,7 +323,7 @@ public class HomeActivity extends Activity implements OnClickListener {
 
 		AsyncHttpClient client = new AsyncHttpClient();
 
-		client.post("http://tunt.uboxi.com/sicco/time_limit.php",
+		client.post("http://office.sinco.pro.vn/api_distpatch/test.php",
 				new JsonHttpResponseHandler() {
 
 					@Override
