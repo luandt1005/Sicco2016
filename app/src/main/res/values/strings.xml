@@ -28,6 +28,7 @@
     <string name="data_empty">Không có dữ liệu.</string>
     <string name="nguoi_xu_ly">D/s xử lý:</string>
     <string name="nguoi_phe_duyet">Người phê duyệt:</string>
+    <string name="nguoi_xem">Người xem:</string>
     <string name="sh_cong_van">Số hiệu:</string>
     <string name="trich_yeu">Trích yếu:</string>
     <string name="bao_cao"><u><b>D/s báo cáo xử lý:</b></u></string>
@@ -111,7 +112,7 @@
     <!-- End NgaDV -->
     
     <!-- LuanDT -->
-    <string name="ngaygiao">Ngày giao</string>
+    <string name="ngaygiao">Ngày</string>
     <string name="hancuoi">Hạn cuối</string>
     <string name="approval_dispatch">Phê công văn</string>
     <string name="truong_nay_khong_duoc_de_rong">Trường này không được để rỗng.</string>

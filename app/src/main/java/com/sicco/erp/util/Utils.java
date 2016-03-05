@@ -30,7 +30,7 @@ public class Utils {
 		pIntent = PendingIntent.getService(context, 0, intent,
 				Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
 		manager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-				time + 20 * 60 * 1000, pIntent);
+				time + 2 * 60 * 1000, pIntent);
 
 	}
 
