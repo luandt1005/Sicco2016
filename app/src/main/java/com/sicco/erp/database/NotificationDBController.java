@@ -49,6 +49,7 @@ public class NotificationDBController extends SQLiteOpenHelper {
 	public static String DISPATCH_TABLE_NAME = "dispatch_tbl";
 	public static String TASK_TABLE_NAME = "task_tbl";
 	public static String REPORT_TABLE_NAME = "report_tbl";
+	public static String REPORT_CONGVAN_TABLE_NAME = "report_congvan_tbl";
 	
 	public static String ID_COL = "_id";
 	public static String DISPATCH_COL = "did";
@@ -123,6 +124,14 @@ public class NotificationDBController extends SQLiteOpenHelper {
 			+ REPORT_HANDLER + " text,"
 			+ REPORT_DATE + " text,"
 			+ REPORT_CONTENT + " text);";
+
+	private static String CREATE_REPORT_CONGVAN_TABLE = "CREATE TABLE IF NOT EXISTS "
+			+ REPORT_CONGVAN_TABLE_NAME + "("
+			+ ID_COL + " integer primary key autoincrement,"
+			+ USERNAME_COL + " text,"
+			+ REPORT_HANDLER + " text,"
+			+ REPORT_DATE + " text,"
+			+ REPORT_CONTENT + " text);";
 	
 	@Override
 	public void onCreate(SQLiteDatabase db) {
@@ -130,6 +139,7 @@ public class NotificationDBController extends SQLiteOpenHelper {
 		db.execSQL(CREATE_DISPATCH_TABLE);
 		db.execSQL(CREATE_TASK_TABLE);
 		db.execSQL(CREATE_REPORT_TABLE);
+		db.execSQL(CREATE_REPORT_CONGVAN_TABLE);
 //		db.execSQL(CREATE_STATE_TABLE);
 	}
 
@@ -139,6 +149,7 @@ public class NotificationDBController extends SQLiteOpenHelper {
 		arg0.execSQL("DROP TABLE IF EXISTS " + DISPATCH_TABLE_NAME);
 		arg0.execSQL("DROP TABLE IF EXISTS " + TASK_TABLE_NAME);
 		arg0.execSQL("DROP TABLE IF EXISTS " + REPORT_TABLE_NAME);
+		arg0.execSQL("DROP TABLE IF EXISTS " + REPORT_CONGVAN_TABLE_NAME);
 		onCreate(arg0);
 	}
 	
@@ -244,6 +255,14 @@ public class NotificationDBController extends SQLiteOpenHelper {
 //	    sdb.rawQuery(sql, null);
 		
 		sdb.delete(REPORT_TABLE_NAME, NotificationDBController.REPORT_DATE
+				+ " != \"" + currentDate + "\"", null);
+	}
+
+	public void deleteReportCongVanData(){
+		SQLiteDatabase sdb= this.getWritableDatabase();
+		String currentDate = getCurrentDate();
+
+		sdb.delete(REPORT_CONGVAN_TABLE_NAME, NotificationDBController.REPORT_DATE
 				+ " != \"" + currentDate + "\"", null);
 	}
 	

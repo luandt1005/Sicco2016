@@ -29,7 +29,9 @@ import com.sicco.erp.database.NotificationDBController;
 import com.sicco.erp.manager.MyNotificationManager;
 import com.sicco.erp.manager.SessionManager;
 import com.sicco.erp.model.Dispatch;
+import com.sicco.erp.model.DispatchType;
 import com.sicco.erp.model.NotificationModel;
+import com.sicco.erp.model.ReportSteer;
 import com.sicco.erp.util.BadgeUtils;
 import com.sicco.erp.util.Utils;
 import com.sicco.task.model.ReportSteerTask;
@@ -45,6 +47,7 @@ public class GetAllNotificationService extends Service {
 
 	private ArrayList<Task> taskData, stateData;
 	private ArrayList<ReportSteerTask> reportData;
+	private ArrayList<ReportSteer> reportCongVanData;
 	// count
 	static String CONGVIEC = "congviec", CONGVAN = "congvan", LICHBIEU = "lichbieu";
 	//
@@ -64,6 +67,8 @@ public class GetAllNotificationService extends Service {
 	public static String CV_KEY = "CONGVIEC_KEY";
 	public static String BL_ID = "BL_ID";
 	public static String TOTAL_KEY = "TOTAL_KEY";
+
+	private Dispatch dispatch = null;
 
 	@Override
 	public IBinder onBind(Intent arg0) {
@@ -90,6 +95,7 @@ public class GetAllNotificationService extends Service {
 		CongViecAsync();
 		StateAsync();
 		BinhLuanAsync();
+		BinhLuanCongVanAsync();
 
 		if (intent != null) {
 			action = intent.getIntExtra("ACTION", 1);
@@ -410,6 +416,131 @@ public class GetAllNotificationService extends Service {
 
 	}
 
+	private ArrayList<DispatchType> dataDispatchType = new ArrayList<DispatchType>();
+	void BinhLuanCongVanAsync() {
+		Log.d("BinhLuanCongVanAsync", "BinhLuanCongVanAsync");
+
+		db = NotificationDBController.getInstance(getApplicationContext());
+		//db.deleteReportCongVanData();
+
+		url_get_binhluan = getResources().getString(R.string.api_get_steer_congvan_report);
+		reportCongVanData = new ArrayList<ReportSteer>();
+		RequestParams params = new RequestParams();
+		params.add("user_id", Utils.getString(GetAllNotificationService.this, "user_id"));
+		params.add("username", Utils.getString(GetAllNotificationService.this, "name"));
+		// Log.d("LuanDT", "params: " + params);
+		AsyncHttpClient client = new AsyncHttpClient();
+		client.post(url_get_binhluan, params, new JsonHttpResponseHandler() {
+			@Override
+			public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+				String jsonRead = response.toString();
+				Log.d("BinhLuanCongVanAsync", "BinhLuanCongVanAsync jsonRead: " + jsonRead);
+				if (!jsonRead.isEmpty()) {
+					try {
+						JSONObject object = new JSONObject(jsonRead);
+						JSONArray rows = object.getJSONArray("row");
+
+						for (int i = 0; i < rows.length(); i++) {
+							JSONObject row = rows.getJSONObject(i);
+
+							String id = row.getString("id");
+							String date = row.getString("thoi_gian");
+							String handler = row.getString("nguoi_binh_luan");
+							String content = row.getString("noi_dung");
+							long id_cong_van = row.getLong("id_cong_van");
+
+							// congvan
+							String cv_numberDispatch = row.getString("so_hieu");
+							String cv_description = row.getString("trich_yeu");
+							String cv_content = row.getString("content");
+							String cv_date = row.getString("ngay_den");
+							String cv_status = row.getString("status");
+							String cv_coQuanBanHanh = row
+									.getString("co_quan_ban_hanh");
+							String cv_handler = row.getString("handler");
+							String cv_idloaicv = row.getString("id_loai_cong_van");
+							String cv_nguoithaydoitrangthai = row
+									.getString("nguoi_thay_doi_trang_thai");
+							String cv_pheduyet = row.getString("phe_duyet");
+							String cv_nguoi_phe_duyet = row.getString("nguoi_phe_duyet");
+
+							cv_content = content.replace(" ", "%20");
+							cv_date = date.substring(0, 10);
+
+							DispatchType dispatchType = new DispatchType();
+							dataDispatchType = dispatchType.getData(getApplicationContext().getResources()
+									.getString(R.string.api_get_dispatch_type));
+
+							if (!dataDispatchType.isEmpty()) {
+								for (int j = 0; j < dataDispatchType.size(); j++) {
+									DispatchType type = dataDispatchType.get(j);
+									if (cv_idloaicv.equals(type.getId())) {
+										dispatch = new Dispatch(id_cong_van,
+												cv_numberDispatch, cv_description,
+												cv_content, cv_date, cv_handler, cv_status,
+												cv_coQuanBanHanh, type.getTitle(),
+												cv_nguoithaydoitrangthai, cv_pheduyet, cv_nguoi_phe_duyet);
+									}else {
+										dispatch = new Dispatch(id_cong_van,
+												cv_numberDispatch, cv_description,
+												cv_content, cv_date, cv_handler, cv_status,
+												cv_coQuanBanHanh, "",
+												cv_nguoithaydoitrangthai, cv_pheduyet, cv_nguoi_phe_duyet);
+									}
+								}
+							} else {
+								dispatch = new Dispatch(id_cong_van,
+										cv_numberDispatch, cv_description,
+										cv_content, cv_date, cv_handler, cv_status,
+										cv_coQuanBanHanh, "",
+										cv_nguoithaydoitrangthai, cv_pheduyet, cv_nguoi_phe_duyet);
+							}
+							// add to db
+
+							String username = Utils.getString(getApplicationContext(), SessionManager.KEY_NAME);
+							String sql = "Select * from " + NotificationDBController.REPORT_CONGVAN_TABLE_NAME + " where "
+									+ NotificationDBController.ID_COL + " = " + id + " and "
+									+ NotificationDBController.USERNAME_COL + " = \"" + username + "\"";
+							cursor = db.rawQuery(sql, null);
+
+							if (cursor != null && cursor.getCount() > 0) {
+
+							} else {
+								ContentValues values = new ContentValues();
+								values.put(NotificationDBController.ID_COL, id);
+								values.put(NotificationDBController.USERNAME_COL, username);
+								values.put(NotificationDBController.REPORT_CONTENT, content);
+								values.put(NotificationDBController.REPORT_DATE, date);
+								values.put(NotificationDBController.REPORT_HANDLER, handler);
+
+								long insertResult = db.insert(NotificationDBController.REPORT_CONGVAN_TABLE_NAME, null, values);
+								if (insertResult != -1) {
+									inserted = true;
+									Log.d("BinhLuanCongVanAsync", "BinhLuanCongVanAsync inserted comment ---->show noti binh luan");
+									reportCongVanData.add(new ReportSteer(Long.parseLong(id), handler, date, content, id_cong_van));
+								}
+							}
+
+						}
+						if (inserted) {
+							Log.d("BinhLuanCongVanAsync", "data comment: " + reportCongVanData.size());
+							origanizeBinhLuanCongVanNoti(reportCongVanData, reportCongVanData.size());
+						}
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+				}
+				super.onSuccess(statusCode, headers, response);
+			}
+
+			@Override
+			public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+				super.onFailure(statusCode, headers, throwable, errorResponse);
+			}
+		});
+
+	}
+
 	void StateAsync() {
 
 		db = NotificationDBController.getInstance(getApplicationContext());
@@ -539,6 +670,11 @@ public class GetAllNotificationService extends Service {
 		Log.d("LuanDT", "origanizeBinhLuanNoti");
 	}
 
+	void origanizeBinhLuanCongVanNoti(ArrayList<ReportSteer> data, int notification_count) {
+		sereprateBinhLuanCongVanList(data, notification_count);
+		Log.d("BinhLuanCongVanAsync", "origanizeBinhLuanNoti");
+	}
+
 	void origanizeCongViecNoti(ArrayList<Task> data, int notification_count) {
 		sereprateCongViecList(data, notification_count);
 		notifyBR = new NotifyBR();
@@ -655,6 +791,16 @@ public class GetAllNotificationService extends Service {
 			MyNotificationManager myNotificationManager = new MyNotificationManager();
 			myNotificationManager.notifyBinhLuan(getApplicationContext(), data);
 			Log.d("LuanDT", "sereprateBinhLuanList: " + data.size());
+		}
+	}
+
+	void sereprateBinhLuanCongVanList(ArrayList<ReportSteer> data, int notification_count) {
+		int size = data.size();
+		if (action == 1 && size != 0) {
+			Log.d("BinhLuanCongVanAsync", "" + dispatch);
+			MyNotificationManager myNotificationManager = new MyNotificationManager();
+			myNotificationManager.notifyBinhLuanCongVan(getApplicationContext(), data, dispatch);
+			Log.d("BinhLuanCongVanAsync", "sereprateBinhLuanList: " + data.size());
 		}
 	}
 

@@ -316,6 +316,7 @@ public class HomeActivity extends Activity implements OnClickListener {
 		cancelNotification(context, 4);
 		cancelNotification(context, 5);
 		cancelNotification(context, 6);
+		cancelNotification(context, 7);
 	}
 
 	public static void checkDate(final Context context) {

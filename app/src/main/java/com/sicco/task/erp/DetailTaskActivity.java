@@ -1,5 +1,8 @@
 package com.sicco.task.erp;
 
+import java.io.File;
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,9 +30,6 @@ import com.sicco.erp.util.ViewDispatch;
 import com.sicco.task.adapter.ReportSteerTaskAdapter;
 import com.sicco.task.model.ReportSteerTask;
 import com.sicco.task.model.Task;
-
-import java.io.File;
-import java.util.ArrayList;
 
 @SuppressWarnings("deprecation")
 public class DetailTaskActivity extends Activity implements OnClickListener,
@@ -127,7 +127,7 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
 		});
 
 		// setData
-		title.setText(Html.fromHtml(task.getTen_cong_viec()));
+		title.setText(Html.fromHtml("<font><b><u><i>" + getResources().getString(R.string.task_title) + "</i></u></b></font>" + " " + task.getTen_cong_viec()));
 		content.setText(Html.fromHtml("<font><b><u><i>" + getResources().getString(R.string.task_content) + "</i></u></b></font>" + " " + task.getMo_ta()));
 		assigner.setText(Html.fromHtml("<font><b><u><i>" + getResources().getString(R.string.task_assigner) + "</i></u></b></font>" + " " + task.getNguoi_giao()));
 		implementers.setText(Html.fromHtml("<font><b><u><i>" + getResources().getString(R.string.nguoi_thuc_hien_cv) + "</i></u></b></font>" + " " + task.getNguoi_thuc_hien()));

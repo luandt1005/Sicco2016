@@ -18,19 +18,24 @@ public class ReportSteer {
 	private Context context;
 	private String handler, date, content;
 	private ArrayList<ReportSteer> data;
-	private long id;
+	private long id, id_cong_van;
 	public static int CHECK_TOTAL_DATA;
 
 	public ReportSteer(Context context) {
 		this.context = context;
 	}
 
-	public ReportSteer(long id, String handler, String date, String content) {
+	public ReportSteer(long id, String handler, String date, String content, long id_cong_van) {
 		this.id = id;
 		this.handler = handler;
 		this.date = date;
 		this.content = content;
+		this.id_cong_van = id_cong_van;
 	}
+
+	public long getIdCongVan(){ return id_cong_van; }
+
+	public void setIdCongVan(long id_cong_van){this.id_cong_van = id_cong_van; }
 
 	public long getId() {
 		return id;
@@ -139,8 +144,9 @@ public class ReportSteer {
 									String reporter = row.getString("reporter");
 									String dateCreated = row.getString("date_created");
 									String content = row.getString("content");
+									long id_cong_van = row.getLong("id_cong_van");
 		
-									data.add(new ReportSteer(i, reporter, dateCreated, content));
+									data.add(new ReportSteer(i, reporter, dateCreated, content, id_cong_van));
 
 								}
 							}else {

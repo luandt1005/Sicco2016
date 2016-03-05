@@ -28,7 +28,6 @@
     <string name="data_empty">Không có dữ liệu.</string>
     <string name="nguoi_xu_ly">D/s xử lý:</string>
     <string name="nguoi_phe_duyet">Người phê duyệt:</string>
-    <string name="nguoi_xem">Người xem:</string>
     <string name="sh_cong_van">Số hiệu:</string>
     <string name="trich_yeu">Trích yếu:</string>
     <string name="bao_cao"><u><b>D/s báo cáo xử lý:</b></u></string>
@@ -112,7 +111,7 @@
     <!-- End NgaDV -->
     
     <!-- LuanDT -->
-    <string name="ngaygiao">Ngày</string>
+    <string name="ngaygiao">Ngày giao</string>
     <string name="hancuoi">Hạn cuối</string>
     <string name="approval_dispatch">Phê công văn</string>
     <string name="truong_nay_khong_duoc_de_rong">Trường này không được để rỗng.</string>
@@ -172,6 +171,8 @@
     <string name="api_get_all_user">http://office.sinco.pro.vn/api_distpatch/list_users.php</string>
     <string name="api_get_deparment">http://office.sinco.pro.vn/api_distpatch/departments.php</string>
     <string name="api_get_steer_report">http://office.sinco.pro.vn/api_distpatch/get_report_steer.php</string>
+    <string name="api_get_steer_congvan_report">http://office.sinco.pro.vn/api_distpatch/binhluancongvan.php</string>
+
     <string name="api_chuyencongvan">http://office.sinco.pro.vn/api_distpatch/chuyencongvan.php</string>
     <string name="api_phecongvan">http://office.sinco.pro.vn/api_distpatch/phecongvan.php</string>
     <string name="api_send_report">http://office.sinco.pro.vn/api_distpatch/send_report.php</string>
@@ -203,11 +204,15 @@
     <string name="new_noti">Cảnh báo mới</string>
     <string name="new_noti_mess">Bạn có </string>
     <string name="notify_new_congviec">công việc mới</string>
+    <string name="notify_new_congvan">công văn mới</string>
     <string name="notify_new_comment">bình luận mới</string>
     <string name="notify_new_comment_msg">đã bình luận</string> 
     <string name="in">trong</string>
+    <string name="about">về</string>
     <string name="congviec">công việc</string>
     <string name="congviec_1">Công việc</string>
+    <string name="congvan">công văn</string>
+    <string name="congvan_1">Công văn</string>
     <string name="ten_cv">Tên Công Việc:</string>
     <string name="nguoi_xem_cv">Người xem:</string>
     <string name="nguoi_thuc_hien_cv">Người thực hiện:</string>
