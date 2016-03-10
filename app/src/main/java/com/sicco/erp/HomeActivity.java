@@ -44,6 +44,7 @@ import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class HomeActivity extends Activity implements OnClickListener {
 	private LinearLayout canphe, xuly, cacloai, giaoviec, dagiao, danhsachviec;
@@ -60,6 +61,8 @@ public class HomeActivity extends Activity implements OnClickListener {
 	String myPackage = "com.sicco.erp";
 	String p = "";
 	String u;
+
+	private Intent service;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +102,12 @@ public class HomeActivity extends Activity implements OnClickListener {
 	protected void onStart() {
 		super.onStart();
 		setCountNotify();
+
+		// init intent service
+		service = new Intent(getApplicationContext(),
+				GetAllNotificationService.class);
+		service.putExtra("ACTION", 0);
+		// check running service
 		String process = getAllRunningService();
 		if (!process.equalsIgnoreCase(myPackage)) {
 			// ServiceStart.startGetNotificationService(getApplicationContext());
@@ -107,10 +116,9 @@ public class HomeActivity extends Activity implements OnClickListener {
 	}
 
 	void startGetAllNotificationService() {
-		Intent intent = new Intent(getApplicationContext(),
-				GetAllNotificationService.class);
-		intent.putExtra("ACTION", 0);
-		getApplicationContext().startService(intent);
+
+		getApplicationContext().startService(service);
+		Toast.makeText(getApplicationContext(), "startGetAllNotificationService ", Toast.LENGTH_LONG).show();
 	}
 
 	public String getAllRunningService() {
@@ -398,6 +406,8 @@ public class HomeActivity extends Activity implements OnClickListener {
 			Utils.stopAlarm(getApplicationContext());
 			cancelAllNotification(getApplicationContext());
 			clearNotifyCount();
+			// stopService
+			if(service != null) stopService(service);
 			finish();
 			//
 			return null;
