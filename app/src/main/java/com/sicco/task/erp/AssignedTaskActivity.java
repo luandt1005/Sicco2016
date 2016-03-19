@@ -220,6 +220,7 @@ public class AssignedTaskActivity extends Activity implements OnClickListener,
 		Task task = (Task) arg0.getAdapter().getItem(arg2);
 		Intent intent = new Intent(this, DetailTaskActivity.class);
 		intent.putExtra("task", task);
+		intent.putExtra("TASK_TYPE", 1);
 		startActivity(intent);
 	}
 

@@ -223,6 +223,7 @@ public class OtherTaskActivity extends Activity implements OnClickListener,
 		Task task = (Task) arg0.getAdapter().getItem(arg2);
 		Intent intent = new Intent(this, DetailTaskActivity.class);
 		intent.putExtra("task", task);
+		intent.putExtra("TASK_TYPE", 3);
 		startActivity(intent);
 	}
 

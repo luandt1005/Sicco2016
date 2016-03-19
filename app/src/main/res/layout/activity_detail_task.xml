@@ -1,13 +1,13 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <FrameLayout
         android:id="@+id/actionbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/actionbar_size"
-        android:background="@color/actionbar_color" >
+        android:background="@color/actionbar_color">
 
         <ImageView
             android:id="@+id/back"
@@ -26,25 +26,35 @@
             android:gravity="center"
             android:text="@string/detail_task"
             android:textColor="@color/white"
+            android:layout_marginLeft="@dimen/actionbar_size"
+            android:layout_marginRight="@dimen/actionbar_size"
             android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/action"
+            android:layout_width="@dimen/actionbar_size"
+            android:layout_height="@dimen/actionbar_size"
+            android:layout_gravity="right"
+            android:padding="16dp"
+            android:src="@drawable/btn_more" />
     </FrameLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1" >
+        android:layout_weight="1">
 
         <ScrollView
             android:id="@+id/scroll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="55dp"
-            android:background="@android:color/white" >
+            android:background="@android:color/white">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/title"
@@ -69,8 +79,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="5dp"
-                    android:paddingTop="5dp"
                     android:paddingRight="5dp"
+                    android:paddingTop="5dp"
                     android:text="@string/task_assigner"
                     android:textColor="@color/item_title_color"
                     android:textSize="16sp" />
@@ -155,7 +165,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:orientation="vertical"
-            android:visibility="gone" >
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -197,7 +207,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="55dp"
         android:content="@+id/sliding_content"
-        android:handle="@+id/handle" >
+        android:handle="@+id/handle">
 
         <Button
             android:id="@id/handle"
@@ -214,7 +224,7 @@
             android:id="@+id/sliding_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white" >
+            android:background="@color/white">
 
             <TextView
                 android:id="@+id/empty_view"
@@ -229,15 +239,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="bottom"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <ListView
                     android:id="@+id/listReport"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@color/white" >
-                </ListView>
+                    android:background="@color/white"></ListView>
 
                 <TextView
                     android:id="@+id/textView1"
@@ -259,7 +268,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:orientation="vertical"
-                android:visibility="gone" >
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"

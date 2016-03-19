@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
@@ -17,6 +18,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.SlidingDrawer;
@@ -34,9 +36,10 @@ import com.sicco.task.model.Task;
 @SuppressWarnings("deprecation")
 public class DetailTaskActivity extends Activity implements OnClickListener,
         OnItemClickListener {
+    private Context context;
     private TextView title, content, assigner, implementers, assigned_at,
             expired_at, completed_infact, process, emptyView, attach_file;
-    private ImageView back;
+    private ImageView back, btnAction;
     private SlidingDrawer drawer;
     private ViewDispatch viewDispatch;
 
@@ -53,6 +56,7 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
     private ReportSteerTaskAdapter adapter;
     private ReportSteerTask reportSteerTask;
     private String s_id_task;
+    private int taskType = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,10 +64,11 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
         requestWindowFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.activity_detail_task);
 
+        context = DetailTaskActivity.this;
         Intent intent = getIntent();
         // get id notifi
         id_task = intent.getLongExtra("id_task", -1);
-
+        taskType = intent.getIntExtra("TASK_TYPE", -1);
         Log.d("LuanDT", "id_task: " + id_task);
 
         // set id cong viec
@@ -83,6 +88,7 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
         reportSteerTask = new ReportSteerTask(DetailTaskActivity.this);
         drawer = (SlidingDrawer) findViewById(R.id.slidingDrawer);
         back = (ImageView) findViewById(R.id.back);
+        btnAction = (ImageView) findViewById(R.id.action);
 
         title = (TextView) findViewById(R.id.title);
         content = (TextView) findViewById(R.id.task_content);
@@ -109,6 +115,7 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
 
         attach_file.setOnClickListener(this);
         back.setOnClickListener(this);
+        btnAction.setOnClickListener(this);
 
         retry.setOnClickListener(this);
         listReport.setOnItemClickListener(this);
@@ -244,6 +251,19 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
                 break;
             case R.id.back:
                 finish();
+                break;
+            case R.id.action:
+                PopupMenu popupMenu = new PopupMenu(context, arg0);
+                if (taskType == 1) {
+                    popupMenu.getMenuInflater().inflate(R.menu.assigned_task,
+                            popupMenu.getMenu());
+                } else {
+                    popupMenu.getMenuInflater()
+                            .inflate(R.menu.assigned_task1,
+                                    popupMenu.getMenu());
+                }
+
+                popupMenu.show();
                 break;
             case R.id.retry:
                 setListReportSteer("" + id_task);
