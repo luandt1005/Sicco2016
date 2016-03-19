@@ -103,6 +103,9 @@
     <string name="delete">Xoá</string>
     <string name="error_occured">Có lỗi xảy ra!</string>
     <string name="content_dialog_delete_task">Bạn có thực sự muốn xoá công việc: "</string>
+    <string name="confirm">Xác nhận</string>
+    <string name="content_dialog_task_change_status">"Bạn có thực sự muốn thay đổi trạng thái công việc: \""</string>
+    <string name="content_dialog_task_update_rate">"Bạn có thực sự cập nhật tiến độ công việc: \""</string>
     
     <string name="assign_task_new">Giao việc mới</string>
     <string name="detail_task">Chi tiết công việc</string>
