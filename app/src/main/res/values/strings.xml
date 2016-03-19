@@ -106,6 +106,7 @@
     
     <string name="assign_task_new">Giao việc mới</string>
     <string name="detail_task">Chi tiết công việc</string>
+    <string name="edit_task">Sửa công việc</string>
     <string name="low">Thấp</string>
     <string name="medium">Bình Thường</string>
     <string name="hight">Cao</string>
