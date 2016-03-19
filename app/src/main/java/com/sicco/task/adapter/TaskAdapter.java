@@ -21,10 +21,14 @@ import android.widget.Toast;
 
 import com.sicco.erp.R;
 import com.sicco.erp.database.NotificationDBController;
+import com.sicco.erp.model.Status;
+import com.sicco.erp.util.Utils;
 import com.sicco.task.erp.DetailTaskActivity;
 import com.sicco.task.erp.SteerReportTaskActivity;
 import com.sicco.task.model.Task;
+import com.sicco.task.ultil.DialogChangeStatusTask;
 import com.sicco.task.ultil.DialogConfirmDeleteTask;
+import com.sicco.task.ultil.DialogSetProcess;
 
 public class TaskAdapter extends BaseAdapter {
 
@@ -33,6 +37,8 @@ public class TaskAdapter extends BaseAdapter {
     private int type;
     NotificationDBController db;
     Cursor cursor;
+    private ArrayList<Status> listStatus;
+    private ArrayList<Status> listProcess;
 
     public TaskAdapter(Context context, ArrayList<Task> data, int type) {
         super();
@@ -40,6 +46,27 @@ public class TaskAdapter extends BaseAdapter {
         this.data = data;
         this.type = type;
 
+        listStatus = new ArrayList<Status>();
+
+        listStatus.add(new Status(0, "active", context.getResources()
+                .getString(R.string.active)));
+        listStatus.add(new Status(1, "inactive", context.getResources()
+                .getString(R.string.inactive)));
+        listStatus.add(new Status(2, "complete", context.getResources()
+                .getString(R.string.complete)));
+        listStatus.add(new Status(3, "cancel", context.getResources()
+                .getString(R.string.cancel)));
+
+        listProcess = new ArrayList<Status>();
+
+        String[] key = context.getResources().getStringArray(
+                R.array.process_key);
+        String[] value = context.getResources().getStringArray(
+                R.array.process_value);
+        int max = key.length;
+        for (int i = 0; i < max; i++) {
+            listProcess.add(new Status(i + 1, key[i], value[i]));
+        }
     }
 
     public ArrayList<Task> getData() {
@@ -93,12 +120,12 @@ public class TaskAdapter extends BaseAdapter {
             }
         }
 
-        String date_handle = "<font weigth='bold'><b>" + context.getResources().getString(R.string.ngaygiao)
-                + "</b></font>" + ":  " + task.getNgay_bat_dau();
+//        String date_handle = "<font weigth='bold'><b>" + context.getResources().getString(R.string.ngaygiao)
+//                + "</b></font>" + ":  " + task.getNgay_bat_dau();
 
         holder.taskName.setText(task.getTen_cong_viec());
         //holder.date_handle.setText(Html.fromHtml(date_handle));
-        holder.date_handle.setText(""+task.getNgay_bat_dau());
+        holder.date_handle.setText("" + task.getNgay_bat_dau());
 
         String colorAction = context.getResources().getString(R.color.actionbar_color);
         //mh danh sach viec
@@ -180,6 +207,42 @@ public class TaskAdapter extends BaseAdapter {
                                     case R.id.action_delete:
                                         new DialogConfirmDeleteTask(context, task);
                                         break;
+                                    case R.id.action_change_status:
+                                        if (task.getTrang_thai().equals("complete")) {
+                                            Toast.makeText(context,
+                                                    context.getResources().getString(R.string.not_update_status),
+                                                    Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            if (isUpdateStatusAndRate(task.getNguoi_thuc_hien())) {
+                                                new DialogChangeStatusTask(context,
+                                                        listStatus, task);
+                                            } else {
+                                                Toast.makeText(
+                                                        context,
+                                                        context.getResources().getString(
+                                                                R.string.info_update_status),
+                                                        Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                        break;
+                                    case  R.id.action_update_rate:
+                                        if (task.getTrang_thai().equals("complete")) {
+                                            Toast.makeText(context,
+                                                    context.getResources().getString(R.string.not_update_rate),
+                                                    Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            if (isUpdateStatusAndRate(task.getNguoi_thuc_hien())) {
+                                                DialogSetProcess dialog = new DialogSetProcess(
+                                                        context, listProcess, task);
+                                                dialog.showDialog();
+                                            } else {
+                                                Toast.makeText(
+                                                        context,
+                                                        context.getResources().getString(R.string.info_update_rate),
+                                                        Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                        break;
 
                                 }
                                 return false;
@@ -189,6 +252,18 @@ public class TaskAdapter extends BaseAdapter {
         });
 
         return view;
+    }
+
+    private boolean isUpdateStatusAndRate(String stNguoiThucHien) {
+        String username = Utils.getString(context,
+                "name");
+        String[] nguoithuchien = stNguoiThucHien.split(",");
+        for (int i = 0; i < nguoithuchien.length; i++) {
+            if (username.equals(nguoithuchien[i])) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private class ViewHolder {
