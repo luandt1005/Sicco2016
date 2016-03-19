@@ -24,6 +24,7 @@ import com.sicco.erp.database.NotificationDBController;
 import com.sicco.erp.model.Status;
 import com.sicco.erp.util.Utils;
 import com.sicco.task.erp.DetailTaskActivity;
+import com.sicco.task.erp.EditTaskActivity;
 import com.sicco.task.erp.SteerReportTaskActivity;
 import com.sicco.task.model.Task;
 import com.sicco.task.ultil.DialogChangeStatusTask;
@@ -202,7 +203,9 @@ public class TaskAdapter extends BaseAdapter {
                                         context.startActivity(intent);
                                         break;
                                     case R.id.action_edit:
-                                        Toast.makeText(context, "Edit", Toast.LENGTH_SHORT).show();
+                                        intent = new Intent(context, EditTaskActivity.class);
+                                        intent.putExtra("TASK", task);
+                                        context.startActivity(intent);
                                         break;
                                     case R.id.action_delete:
                                         new DialogConfirmDeleteTask(context, task);

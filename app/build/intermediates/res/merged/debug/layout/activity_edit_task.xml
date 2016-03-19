@@ -1,0 +1,390 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/actionbar_color" >
+
+        <LinearLayout
+            android:id="@+id/actionbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/actionbar_size"
+            android:background="@color/actionbar_color"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="@dimen/actionbar_size"
+                android:layout_height="@dimen/actionbar_size"
+                android:background="@drawable/drawer_selector"
+                android:clickable="true"
+                android:padding="16dp"
+                android:src="@drawable/ic_arrow_back_white_48dp" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/actionbar_size"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:lines="1"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@string/giao_viec"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/send"
+                android:layout_width="@dimen/actionbar_size"
+                android:layout_height="@dimen/actionbar_size"
+                android:background="@drawable/drawer_selector"
+                android:clickable="false"
+                android:padding="16dp" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <ScrollView
+        android:id="@+id/scrMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+			<LinearLayout
+			    android:id="@+id/lnTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:background="@drawable/item_convert_job_selector" >
+
+                <EditText
+                    android:id="@+id/edtTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+					android:hint="@string/enter_title"
+                    android:textColor="@color/label_item"
+                    android:textSize="16dp"
+                    android:background="@null"
+                    android:textCursorDrawable="@drawable/color_cursor"/>
+
+            </LinearLayout>
+            <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/item_desc_color"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"/>
+            <LinearLayout
+			    android:id="@+id/lndes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:background="@drawable/item_convert_job_selector" >
+
+                <EditText
+                    android:id="@+id/edtDes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+					android:hint="@string/des"
+                    android:textColor="@color/label_item"
+                    android:textSize="16dp"
+                    android:background="@null"
+                    android:textCursorDrawable="@drawable/color_cursor"/>
+
+            </LinearLayout>
+            <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/item_desc_color"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"/>
+            
+            <LinearLayout
+			    android:id="@+id/lnDateHandle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp" 
+                android:background="@drawable/item_convert_job_selector">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/set_date_handle"
+                    
+                    android:textColor="@color/label_item"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/txtDateHandle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/date_handle" 
+                    android:layout_marginTop="7dp"
+                    android:textColor="@color/label_item"
+                    android:textSize="15dp"/>
+
+            </LinearLayout>
+            
+            <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/item_desc_color"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"/>
+            <LinearLayout
+			    android:id="@+id/lnDateFinish"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp" 
+                android:background="@drawable/item_convert_job_selector">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/set_date_finish"
+                    android:textColor="@color/label_item"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/txtDateFinish"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/date_finish"
+                    android:layout_marginTop="7dp"
+                    android:textColor="@color/label_item"
+                    android:textSize="15dp"/>
+
+            </LinearLayout>
+            
+            <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/item_desc_color"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"/>
+            
+            <LinearLayout
+			    android:id="@+id/lnHandler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp" 
+                android:background="@drawable/item_convert_job_selector">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/choose_handler"
+                    android:textColor="@color/label_item"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/txtHandler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/handler1"
+                    android:layout_marginTop="7dp"
+                    android:textColor="@color/label_item"
+                    android:textSize="15dp"/>
+
+            </LinearLayout>
+            
+            <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/item_desc_color"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"/>
+            <LinearLayout
+			    android:id="@+id/lnViewer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp" 
+                android:background="@drawable/item_convert_job_selector">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/choose_viewer"
+                    android:textColor="@color/label_item"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/txtViewer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/viewer"
+                    android:layout_marginTop="7dp"
+                    android:textColor="@color/label_item"
+                    android:textSize="15dp"/>
+
+            </LinearLayout>
+            
+            <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/item_desc_color"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"/>
+            <LinearLayout
+			    android:id="@+id/lnDepartment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp" 
+                android:background="@drawable/item_convert_job_selector">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/choose_department"
+                    android:textColor="@color/label_item"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/txtDepartment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/department"
+                    android:layout_marginTop="7dp"
+                    android:textColor="@color/label_item"
+                    android:textSize="15dp"/>
+
+            </LinearLayout>
+            
+            
+            
+            <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/item_desc_color"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"/>
+
+            
+            <LinearLayout
+			    android:id="@+id/lnFile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp" 
+                android:background="@drawable/item_convert_job_selector">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/choose_file"
+                    android:textColor="@color/label_item"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/txtFile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/file"
+                    android:layout_marginTop="7dp"
+                    android:textColor="@color/label_item"
+                    android:textSize="15dp"/>
+
+            </LinearLayout>
+			<TextView 
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/item_desc_color"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"/>
+			<LinearLayout
+			    android:id="@+id/lnProject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp" 
+                android:background="@drawable/item_convert_job_selector">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/choose_project"
+                    android:textColor="@color/label_item"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/txtProject"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/project"
+                    android:layout_marginTop="7dp"
+                    android:textColor="@color/label_item"
+                    android:textSize="15dp"/>
+
+            </LinearLayout>
+			<TextView 
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/item_desc_color"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"/>
+			<LinearLayout
+			    android:id="@+id/lnPriority"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp" 
+                android:background="@drawable/item_convert_job_selector">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/set_priority"
+                    android:textColor="@color/label_item"
+                    android:textSize="18dp" />
+
+                <Spinner 
+                    android:id="@+id/spnPriority"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:textColor="@color/label_item"
+                    android:popupBackground="@color/actionbar_color"
+                    android:dropDownWidth="match_parent"/>
+              
+
+            </LinearLayout>
+            
+            <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/item_desc_color"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btnAssign"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="7dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/bg_btn_login_selector"
+        android:text="@string/giao_viec"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+</LinearLayout><!-- From: file:/F:/LamViec/LamThem/SiccoUpdate/Sicco2016/app/src/main/res/layout/activity_edit_task.xml -->

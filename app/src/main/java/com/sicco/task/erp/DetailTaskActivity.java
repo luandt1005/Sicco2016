@@ -1,9 +1,11 @@
 package com.sicco.task.erp;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -56,7 +58,7 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
     private ScrollView scroll;
     private ListView listReport;
     private ProgressBar loading, loading1;
-    private Button retry, retry1;
+    private Button retry, retry1, btnReceiveTask;
 
     private ArrayList<ReportSteerTask> arrReportSteers;
     private ReportSteerTaskAdapter adapter;
@@ -132,6 +134,7 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
         attach_file = (TextView) findViewById(R.id.attach_file);
 
         scroll = (ScrollView) findViewById(R.id.scroll);
+        btnReceiveTask = (Button) findViewById(R.id.receive_task);
 
         loading = (ProgressBar) findViewById(R.id.loading);
         retry = (Button) findViewById(R.id.retry);
@@ -188,6 +191,10 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
             process.setVisibility(View.GONE);
         }
 
+        if (taskType == 2 && task.getDaxuly().equals("0")) {
+            btnReceiveTask.setVisibility(View.VISIBLE);
+            btnReceiveTask.setOnClickListener(this);
+        }
     }
 
     private void setListReportSteer(String id_task) {
@@ -367,6 +374,50 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
                 break;
             case R.id.retry1:
                 setDetailTask(s_id_task);
+                break;
+            case R.id.receive_task:
+                final ProgressDialog progressDialog = new ProgressDialog(context);
+                progressDialog.setMessage(getResources().getString(R.string.waiting));
+                task.changeProcess(context.getResources().getString(R.string.api_update_rate), "" + task.getId(), "10", new Task.OnLoadListener() {
+                    @Override
+                    public void onStart() {
+                        progressDialog.show();
+                    }
+
+                    @Override
+                    public void onSuccess() {
+                        ReportSteerTask reportSteerTask = new ReportSteerTask(context);
+                        try {
+                            reportSteerTask.sendReport(context, task.getId(), context.getResources().getString(R.string.received_task), null, new ReportSteerTask.OnLoadListener() {
+                                @Override
+                                public void onStart() {
+
+                                }
+
+                                @Override
+                                public void onSuccess() {
+                                    progressDialog.dismiss();
+                                    finish();
+                                    Toast.makeText(context, getResources().getString(R.string.received_task_success), Toast.LENGTH_SHORT).show();
+                                }
+
+                                @Override
+                                public void onFailure() {
+
+                                }
+                            });
+                        } catch (FileNotFoundException e) {
+                            progressDialog.dismiss();
+                            Toast.makeText(context, "Error!", Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onFalse() {
+
+                    }
+                });
                 break;
         }
     }

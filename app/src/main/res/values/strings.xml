@@ -38,6 +38,9 @@
     <string name="hoan_thanh">Hoàn thành</string>
     <string name="tam_dung">Tạm dừng</string>
     <string name="da_huy">Đã hủy</string>
+    <string name="receive_task">Nhận công việc</string>
+    <string name="received_task">Đã nhận công việc</string>
+    <string name="received_task_success">Nhận công việc thành công</string>
     <!-- End TuNT -->
 
 
@@ -200,6 +203,7 @@
     <string name="api_tatcabinhluan">http://office.sinco.pro.vn/api_distpatch/tatcabinhluan.php</string>
     <string name="api_xoacongviec">http://office.sinco.pro.vn/api_distpatch/xoacongviec.php</string>
 	<string name="api_get_infor_task_by_id">http://office.sinco.pro.vn/api_distpatch/infortaskbyid.php</string>
+    <string name="api_edit_task">http://office.sinco.pro.vn/api_distpatch/suacongviec.php</string>
     
      <!-- ToanNM -->
     <string name="cong_van">công văn cần phê</string>

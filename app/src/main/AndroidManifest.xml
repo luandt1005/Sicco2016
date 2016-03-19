@@ -104,6 +104,10 @@
             android:windowSoftInputMode="stateHidden"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name="com.sicco.task.erp.EditTaskActivity"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>

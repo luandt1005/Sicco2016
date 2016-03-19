@@ -199,6 +199,20 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
         </LinearLayout>
+
+        <Button
+            android:id="@+id/receive_task"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|bottom"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_btn_login_selector"
+            android:layout_marginBottom="60dp"
+            android:layout_marginRight="16dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:visibility="gone"
+            android:text="@string/receive_task"/>
     </FrameLayout>
 
     <SlidingDrawer
