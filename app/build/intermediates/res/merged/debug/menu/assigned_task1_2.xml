@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <item android:id="@+id/action_change_status" android:title="@string/change_status"/>
+    <item android:id="@+id/action_update_rate" android:title="@string/update_rate"/>
+    <item android:id="@+id/action_report" android:title="@string/steer_report"/>
+    <item android:id="@+id/action_detail" android:title="@string/detail_task"/>
+</menu><!-- From: file:/F:/LamViec/LamThem/SiccoUpdate/Sicco2016/app/src/main/res/menu/assigned_task1_2.xml -->

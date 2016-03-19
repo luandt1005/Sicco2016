@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <item android:id="@+id/action_edit" android:title="@string/edit_task"/>
+    <item android:id="@+id/action_delete" android:title="@string/delete_task"/>
+
+</menu>
+<!-- From: file:/F:/LamViec/LamThem/SiccoUpdate/Sicco2016/app/src/main/res/menu/assigned_task_2.xml -->

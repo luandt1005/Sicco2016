@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -28,10 +29,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sicco.erp.R;
+import com.sicco.erp.model.Status;
+import com.sicco.erp.util.Utils;
 import com.sicco.erp.util.ViewDispatch;
 import com.sicco.task.adapter.ReportSteerTaskAdapter;
 import com.sicco.task.model.ReportSteerTask;
 import com.sicco.task.model.Task;
+import com.sicco.task.ultil.DialogChangeStatusTask;
+import com.sicco.task.ultil.DialogConfirmDeleteTask;
+import com.sicco.task.ultil.DialogSetProcess;
 
 @SuppressWarnings("deprecation")
 public class DetailTaskActivity extends Activity implements OnClickListener,
@@ -58,6 +64,9 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
     private String s_id_task;
     private int taskType = -1;
 
+    private ArrayList<Status> listStatus;
+    private ArrayList<Status> listProcess;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +90,28 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
             s_id_task = "" + task.getId();
             init();
             setListReportSteer(s_id_task);
+        }
+
+        listStatus = new ArrayList<Status>();
+
+        listStatus.add(new Status(0, "active", context.getResources()
+                .getString(R.string.active)));
+        listStatus.add(new Status(1, "inactive", context.getResources()
+                .getString(R.string.inactive)));
+        listStatus.add(new Status(2, "complete", context.getResources()
+                .getString(R.string.complete)));
+        listStatus.add(new Status(3, "cancel", context.getResources()
+                .getString(R.string.cancel)));
+
+        listProcess = new ArrayList<Status>();
+
+        String[] key = context.getResources().getStringArray(
+                R.array.process_key);
+        String[] value = context.getResources().getStringArray(
+                R.array.process_value);
+        int max = key.length;
+        for (int i = 0; i < max; i++) {
+            listProcess.add(new Status(i + 1, key[i], value[i]));
         }
     }
 
@@ -255,15 +286,81 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
             case R.id.action:
                 PopupMenu popupMenu = new PopupMenu(context, arg0);
                 if (taskType == 1) {
-                    popupMenu.getMenuInflater().inflate(R.menu.assigned_task,
+                    popupMenu.getMenuInflater().inflate(R.menu.assigned_task_2,
                             popupMenu.getMenu());
                 } else {
                     popupMenu.getMenuInflater()
-                            .inflate(R.menu.assigned_task1,
+                            .inflate(R.menu.assigned_task1_2,
                                     popupMenu.getMenu());
                 }
 
                 popupMenu.show();
+                popupMenu
+                        .setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                Intent intent = new Intent();
+                                switch (item.getItemId()) {
+                                    case R.id.action_report:
+                                        intent.setClass(context,
+                                                SteerReportTaskActivity.class);
+                                        intent.putExtra("task", task);
+                                        context.startActivity(intent);
+                                        break;
+                                    case R.id.action_detail:
+                                        intent.setClass(context,
+                                                DetailTaskActivity.class);
+                                        intent.putExtra("task", task);
+                                        context.startActivity(intent);
+                                        break;
+                                    case R.id.action_edit:
+                                        Toast.makeText(context, "Edit", Toast.LENGTH_SHORT).show();
+                                        break;
+                                    case R.id.action_delete:
+                                        new DialogConfirmDeleteTask(context, task);
+                                        break;
+                                    case R.id.action_change_status:
+                                        if (task.getTrang_thai().equals("complete")) {
+                                            Toast.makeText(context,
+                                                    context.getResources().getString(R.string.not_update_status),
+                                                    Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            if (isUpdateStatusAndRate(task.getNguoi_thuc_hien())) {
+                                                new DialogChangeStatusTask(context,
+                                                        listStatus, task);
+                                            } else {
+                                                Toast.makeText(
+                                                        context,
+                                                        context.getResources().getString(
+                                                                R.string.info_update_status),
+                                                        Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                        break;
+                                    case R.id.action_update_rate:
+                                        if (task.getTrang_thai().equals("complete")) {
+                                            Toast.makeText(context,
+                                                    context.getResources().getString(R.string.not_update_rate),
+                                                    Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            if (isUpdateStatusAndRate(task.getNguoi_thuc_hien())) {
+                                                DialogSetProcess dialog = new DialogSetProcess(
+                                                        context, listProcess, task);
+                                                dialog.showDialog();
+                                            } else {
+                                                Toast.makeText(
+                                                        context,
+                                                        context.getResources().getString(R.string.info_update_rate),
+                                                        Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                        break;
+
+                                }
+                                return false;
+                            }
+                        });
                 break;
             case R.id.retry:
                 setListReportSteer("" + id_task);
@@ -272,6 +369,18 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
                 setDetailTask(s_id_task);
                 break;
         }
+    }
+
+    private boolean isUpdateStatusAndRate(String stNguoiThucHien) {
+        String username = Utils.getString(context,
+                "name");
+        String[] nguoithuchien = stNguoiThucHien.split(",");
+        for (int i = 0; i < nguoithuchien.length; i++) {
+            if (username.equals(nguoithuchien[i])) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
