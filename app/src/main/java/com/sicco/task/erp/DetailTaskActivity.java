@@ -49,7 +49,7 @@ public class DetailDispatchActivity extends Activity {
     private Button retry;
 
     //
-    private TextView approval;
+//    private TextView approval;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -144,7 +144,7 @@ public class DetailDispatchActivity extends Activity {
 
             @Override
             public void onClick(View arg0) {
-                PopupMenu popupMenu = new PopupMenu(DetailDispatchActivity.this, approval);
+                PopupMenu popupMenu = new PopupMenu(DetailDispatchActivity.this, action);
                 if (dispatch.da_xu_ly.contains(dispatch.getHandler())
                         && isReceivedDispatch(dispatch.getId())) {
                     popupMenu.getMenuInflater().inflate(R.menu.menu_task_without_detail, popupMenu.getMenu());
