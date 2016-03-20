@@ -27,7 +27,7 @@
 
     <style name="PopupMenuListView" parent="AppTheme">
         <item name="android:divider">#CCCCCC</item>
-        <item name="android:dividerHeight">2dp</item>
+        <item name="android:dividerHeight">1dp</item>
     </style>
 
 </resources>
