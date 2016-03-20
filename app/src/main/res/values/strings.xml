@@ -241,6 +241,9 @@
     <string name="report_content">Nội dung các báo cáo</string>
     <string name="task_attach_file">Tệp đính kèm:</string>
     <string name="da">đã</string>
+    <string name="receive_dispatch">Nhận công văn</string>
+    <string name="received_dispatch">Báo cáo đã nhận được Công văn</string>
+    <string name="sent_received_dispatch">Đã gửi Báo cáo nhận được Công văn</string>
     
     <string-array name="process_key">
         <item>0</item>

@@ -38,11 +38,11 @@ public class DetailDispatchActivity extends Activity{
 		setContentView(R.layout.activity_detail_dispatch);
 		Intent intent = getIntent();
 		dispatch = (Dispatch) intent.getSerializableExtra("dispatch");
-		reportSteer = new ReportSteer(DetailDispatchActivity.this); 
+		reportSteer = new ReportSteer(DetailDispatchActivity.this);
 		init();
 		setListReportSteer(dispatch);
 	}
-	
+
 	private void init(){
 		//view
 		back = (ImageView) findViewById(R.id.back);
@@ -57,16 +57,16 @@ public class DetailDispatchActivity extends Activity{
 		emptyView = (TextView) findViewById(R.id.emptyView);
 		connectError = (LinearLayout) findViewById(R.id.connectError);
 		retry = (Button) findViewById(R.id.retry);
-		
+
 		//listener
 		back.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				finish();
 			}
 		});
-		
+
 		retry.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -83,7 +83,7 @@ public class DetailDispatchActivity extends Activity{
 		nguoiXuLy.setText(Html.fromHtml("<font><b>" + getResources().getString(R.string.nguoi_xu_ly) + "</b></font>" + " " + dispatch.getHandler()));
 		nguoiXem.setText(Html.fromHtml("<font><b>" + getResources().getString(R.string.nguoi_xem) + "</b></font>" + " " + dispatch.getNguoiXem()));
 	}
-	
+
 	private void setListReportSteer(Dispatch dispatch) {
 		arrBaoCao = reportSteer.getData(
 				getResources().getString(R.string.api_get_steer_report),

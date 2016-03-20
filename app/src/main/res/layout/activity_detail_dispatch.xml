@@ -39,12 +39,12 @@
                 android:textSize="18sp" />
 
             <ImageView
-                android:id="@+id/send"
+                android:id="@+id/action"
                 android:layout_width="@dimen/actionbar_size"
                 android:layout_height="@dimen/actionbar_size"
-                android:background="@drawable/drawer_selector"
-                android:clickable="false"
-                android:padding="16dp" />
+                android:layout_gravity="right"
+                android:padding="16dp"
+                android:src="@drawable/btn_more" />
         </LinearLayout>
     </FrameLayout>
 
