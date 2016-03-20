@@ -25,7 +25,7 @@ import com.sicco.erp.util.Utils;
 
 public class Dispatch implements Serializable {
 	/**
-	 *
+	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private Context context;
@@ -53,9 +53,9 @@ public class Dispatch implements Serializable {
 	}
 
 	public Dispatch(long id, String numberDispatch, String description,
-					String content, String date, String handler, String status,
-					String coQuanBanHanh, String loaicongvan, String idLoaicongvan,
-					String nguoithaydoitrangthai, String pheduyet, String nguoi_phe_duyet, String nguoiXem, String da_xu_ly) {
+			String content, String date, String handler, String status,
+			String coQuanBanHanh, String loaicongvan, String idLoaicongvan,
+			String nguoithaydoitrangthai, String pheduyet, String nguoi_phe_duyet, String nguoiXem, String da_xu_ly) {
 		super();
 		this.id = id;
 		this.numberDispatch = numberDispatch;
@@ -74,9 +74,9 @@ public class Dispatch implements Serializable {
 		this.da_xu_ly = da_xu_ly;
 	}
 	public Dispatch(long id, String numberDispatch, String description,
-					String content, String date, String handler, String status,
-					String coQuanBanHanh, String loaicongvan,
-					String nguoithaydoitrangthai, String pheduyet, String nguoi_phe_duyet) {
+			String content, String date, String handler, String status,
+			String coQuanBanHanh, String loaicongvan,
+			String nguoithaydoitrangthai, String pheduyet, String nguoi_phe_duyet) {
 		super();
 		this.id = id;
 		this.numberDispatch = numberDispatch;
@@ -93,7 +93,7 @@ public class Dispatch implements Serializable {
 	}
 
 	public Dispatch(long id, String numberDispatch, String description,
-					String content, String date, String handler, String status) {
+			String content, String date, String handler, String status) {
 		super();
 		this.id = id;
 		this.numberDispatch = numberDispatch;
@@ -215,7 +215,7 @@ public class Dispatch implements Serializable {
 	public void setCoQuanBanHanh(String coQuanBanHanh) {
 		this.coQuanBanHanh = coQuanBanHanh;
 	}
-
+	
 	public String getNguoi_phe_duyet() {
 		return nguoi_phe_duyet;
 	}
@@ -225,7 +225,7 @@ public class Dispatch implements Serializable {
 	}
 
 	public void changeStatusDispatch(String url, String id_dispatch,
-									 String status, OnLoadListener OnLoadListener) {
+			String status, OnLoadListener OnLoadListener) {
 		this.onLoadListener = OnLoadListener;
 		onLoadListener.onStart();
 
@@ -238,14 +238,14 @@ public class Dispatch implements Serializable {
 
 			@Override
 			public void onFailure(int statusCode, Header[] headers,
-								  Throwable throwable, JSONObject errorResponse) {
+					Throwable throwable, JSONObject errorResponse) {
 				onLoadListener.onFalse();
 				super.onFailure(statusCode, headers, throwable, errorResponse);
 			}
 
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
-								  JSONObject response) {
+					JSONObject response) {
 				String jsonRead = response.toString();
 
 				if (!jsonRead.isEmpty()) {
@@ -271,7 +271,7 @@ public class Dispatch implements Serializable {
 
 	// ToanNM
 	public ArrayList<Dispatch> getData(final Context context, String url,
-									   OnLoadListener OnLoadListener, final int type) {
+			OnLoadListener OnLoadListener, final int type) {
 
 		DispatchType dispatchType = new DispatchType();
 		dataDispatchType = dispatchType.getData(context.getResources()
@@ -288,7 +288,7 @@ public class Dispatch implements Serializable {
 		client.post(url, params, new JsonHttpResponseHandler() {
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
-								  JSONObject response) {
+					JSONObject response) {
 				String jsonRead = response.toString();
 
 				// Log.d("LuanDT", "json: " + jsonRead);
@@ -354,7 +354,7 @@ public class Dispatch implements Serializable {
 
 			@Override
 			public void onFailure(int statusCode, Header[] headers,
-								  Throwable throwable, JSONObject errorResponse) {
+					Throwable throwable, JSONObject errorResponse) {
 				super.onFailure(statusCode, headers, throwable, errorResponse);
 				onLoadListener.onFalse();
 			}
@@ -363,7 +363,7 @@ public class Dispatch implements Serializable {
 	}
 
 	void addToDB(Context context, int type, long id, String numberDispatch,
-				 String content, String date, String status, String handler, String receive) {
+			String content, String date, String status, String handler, String receive) {
 		// // add to db
 		String username = Utils.getString(context, SessionManager.KEY_NAME);
 		db = NotificationDBController.getInstance(context);
@@ -485,11 +485,11 @@ public class Dispatch implements Serializable {
 							context).removeAccent(dispatch.getLoaicongvan());
 					if (iReplace.toLowerCase().contains(vReplace.toLowerCase())
 							|| replace.toLowerCase().contains(
-							vReplace.toLowerCase())
+									vReplace.toLowerCase())
 							|| replaceCoQuanBanHanh.toLowerCase().contains(
-							vReplace.toLowerCase())
+									vReplace.toLowerCase())
 							|| replaceLoaiCongVan.toLowerCase().contains(
-							vReplace.toLowerCase())) {
+									vReplace.toLowerCase())) {
 						result.add(dispatch);
 					}
 				}
@@ -499,7 +499,7 @@ public class Dispatch implements Serializable {
 	}
 
 	public ArrayList<Dispatch> filterDispatch(String type,
-											  ArrayList<Dispatch> data) {
+			ArrayList<Dispatch> data) {
 		ArrayList<Dispatch> result = new ArrayList<Dispatch>();
 		Log.d("LuanDT", "typeId: " + type);
 		if (!data.isEmpty()) {
@@ -516,7 +516,7 @@ public class Dispatch implements Serializable {
 	}
 
 	public void guiXuLy(String url, String cvId, String nguoiXuLy,
-						OnRequestListener onRequestListener) {
+			OnRequestListener onRequestListener) {
 		Dispatch.this.onRequestListener = onRequestListener;
 		Dispatch.this.onRequestListener.onStart();
 		AsyncHttpClient client = new AsyncHttpClient();
@@ -527,7 +527,7 @@ public class Dispatch implements Serializable {
 		client.post(url, params, new JsonHttpResponseHandler() {
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
-								  JSONObject response) {
+					JSONObject response) {
 				String jsonRead = response.toString();
 				if (!jsonRead.isEmpty()) {
 					try {
@@ -548,7 +548,7 @@ public class Dispatch implements Serializable {
 
 			@Override
 			public void onFailure(int statusCode, Header[] headers,
-								  Throwable throwable, JSONObject errorResponse) {
+					Throwable throwable, JSONObject errorResponse) {
 				super.onFailure(statusCode, headers, throwable, errorResponse);
 				Dispatch.this.onRequestListener.onFalse();
 			}
@@ -556,8 +556,8 @@ public class Dispatch implements Serializable {
 	}
 
 	public void approvalDispatch(String url, String userId, String cvId,
-								 String noiDung, String nguoiXuLy,
-								 OnRequestListener onRequestListener) {
+			String noiDung, String nguoiXuLy,
+			OnRequestListener onRequestListener) {
 		Dispatch.this.onRequestListener = onRequestListener;
 		Dispatch.this.onRequestListener.onStart();
 		RequestParams params = new RequestParams();
@@ -571,14 +571,14 @@ public class Dispatch implements Serializable {
 
 			@Override
 			public void onFailure(int statusCode, Header[] headers,
-								  Throwable throwable, JSONObject errorResponse) {
+					Throwable throwable, JSONObject errorResponse) {
 				Dispatch.this.onRequestListener.onFalse();
 				super.onFailure(statusCode, headers, throwable, errorResponse);
 			}
 
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
-								  JSONObject response) {
+					JSONObject response) {
 				String json = response.toString();
 
 				if (!json.isEmpty()) {
@@ -605,20 +605,20 @@ public class Dispatch implements Serializable {
 
 	// /////////////////
 	public void convertDispatch(
-			String url,
-			String userId,
+			String url, 
+			String userId, 
 			String tenCongViec,
 			String moTa,
-			String tuNgay,
-			String denNgay,
-			String idNguoiXuLy,
+			String tuNgay, 
+			String denNgay, 
+			String idNguoiXuLy, 
 			String nguoiXuLy,
 			String idNguoiXem,
-			String nguoiXem,
-			String phongBan,
+			String nguoiXem, 
+			String phongBan, 
 			String idDuAn,
-			String uuTien,
-			String file,
+			String uuTien,  
+			String file, 
 			OnRequestListener onRequestListener) {
 		Dispatch.this.onRequestListener = onRequestListener;
 		Dispatch.this.onRequestListener.onStart();
@@ -643,14 +643,14 @@ public class Dispatch implements Serializable {
 
 			@Override
 			public void onFailure(int statusCode, Header[] headers,
-								  Throwable throwable, JSONObject errorResponse) {
+					Throwable throwable, JSONObject errorResponse) {
 				Dispatch.this.onRequestListener.onFalse();
 				super.onFailure(statusCode, headers, throwable, errorResponse);
 			}
 
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
-								  JSONObject response) {
+					JSONObject response) {
 				String json = response.toString();
 				Log.d("LuanDT", "json: " + json);
 				if (!json.isEmpty()) {

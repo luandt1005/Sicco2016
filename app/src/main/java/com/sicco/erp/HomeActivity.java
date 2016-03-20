@@ -32,7 +32,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -104,8 +103,7 @@ public class HomeActivity extends Activity implements OnClickListener {
 		setCountNotify();
 
 		// init intent service
-		service = new Intent(getApplicationContext(),
-				GetAllNotificationService.class);
+		service = new Intent(getApplicationContext(), GetAllNotificationService.class);
 		service.putExtra("ACTION", 0);
 		// check running service
 		String process = getAllRunningService();
@@ -116,16 +114,12 @@ public class HomeActivity extends Activity implements OnClickListener {
 	}
 
 	void startGetAllNotificationService() {
-
-		getApplicationContext().startService(service);
-		Toast.makeText(getApplicationContext(), "startGetAllNotificationService ", Toast.LENGTH_LONG).show();
+		startService(service);
 	}
 
 	public String getAllRunningService() {
-		ActivityManager am = (ActivityManager) getApplicationContext()
-				.getSystemService(ACTIVITY_SERVICE);
-		List<ActivityManager.RunningServiceInfo> rs = am
-				.getRunningServices(100);
+		ActivityManager am = (ActivityManager) getApplicationContext().getSystemService(ACTIVITY_SERVICE);
+		List<ActivityManager.RunningServiceInfo> rs = am.getRunningServices(100);
 		String process = "";
 		for (int i = 0; i < rs.size(); i++) {
 			ActivityManager.RunningServiceInfo rsi = rs.get(i);
@@ -197,24 +191,19 @@ public class HomeActivity extends Activity implements OnClickListener {
 			startActivity(OtherTaskActivity.class);
 			break;
 		case R.id.exit:
-			
+
 			new logout().execute("");
-			
+
 			break;
 		}
 	}
 
 	void clearNotifyCount() {
-		Utils.saveInt(getApplicationContext(),
-				GetAllNotificationService.CVCP_KEY, 0);
-		Utils.saveInt(getApplicationContext(),
-				GetAllNotificationService.CVXL_KEY, 0);
-		Utils.saveInt(getApplicationContext(),
-				GetAllNotificationService.CL_KEY, 0);
-		Utils.saveInt(getApplicationContext(),
-				GetAllNotificationService.CV_KEY, 0);
-		Utils.saveInt(getApplicationContext(),
-				GetAllNotificationService.TOTAL_KEY, 0);
+		Utils.saveInt(getApplicationContext(), GetAllNotificationService.CVCP_KEY, 0);
+		Utils.saveInt(getApplicationContext(), GetAllNotificationService.CVXL_KEY, 0);
+		Utils.saveInt(getApplicationContext(), GetAllNotificationService.CL_KEY, 0);
+		Utils.saveInt(getApplicationContext(), GetAllNotificationService.CV_KEY, 0);
+		Utils.saveInt(getApplicationContext(), GetAllNotificationService.TOTAL_KEY, 0);
 		BadgeUtils.setBadge(getApplicationContext(), 0);
 	}
 
@@ -234,24 +223,21 @@ public class HomeActivity extends Activity implements OnClickListener {
 
 	private void showDialogConfirmExit() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(
-				new ContextThemeWrapper(HomeActivity.this,
-						android.R.style.Theme_Holo_Light));
+				new ContextThemeWrapper(HomeActivity.this, android.R.style.Theme_Holo_Light));
 		builder.setIcon(R.drawable.ic_launcher);
 		builder.setTitle(R.string.app_name);
 		builder.setMessage(R.string.confirm_exit);
 		builder.setCancelable(true);
-		builder.setPositiveButton(R.string.exit,
-				new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
-						exit();
-					}
-				});
-		builder.setNegativeButton(R.string.cancel,
-				new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
-						alertDialog.dismiss();
-					}
-				});
+		builder.setPositiveButton(R.string.exit, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+				exit();
+			}
+		});
+		builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+				alertDialog.dismiss();
+			}
+		});
 		alertDialog = builder.create();
 		alertDialog.show();
 	}
@@ -259,12 +245,9 @@ public class HomeActivity extends Activity implements OnClickListener {
 	TextView notify_cvcp, notify_cvxl, notify_cv;
 
 	private void setCountNotify() {
-		cvcp_count = Utils.getInt(getApplicationContext(),
-				GetAllNotificationService.CVCP_KEY, 0);
-		cvxl_count = Utils.getInt(getApplicationContext(),
-				GetAllNotificationService.CVXL_KEY, 0);
-		cv_count = Utils.getInt(getApplicationContext(),
-				GetAllNotificationService.CV_KEY, 0);
+		cvcp_count = Utils.getInt(getApplicationContext(), GetAllNotificationService.CVCP_KEY, 0);
+		cvxl_count = Utils.getInt(getApplicationContext(), GetAllNotificationService.CVXL_KEY, 0);
+		cv_count = Utils.getInt(getApplicationContext(), GetAllNotificationService.CV_KEY, 0);
 		notify_cvcp = (TextView) findViewById(R.id.activity_home_notify_canphe);
 		notify_cvxl = (TextView) findViewById(R.id.activity_home_notify_xuly);
 		notify_cv = (TextView) findViewById(R.id.activity_home_notify_danhsachviec);
@@ -290,24 +273,21 @@ public class HomeActivity extends Activity implements OnClickListener {
 		String notificationServiceStr = Context.NOTIFICATION_SERVICE;
 		NotificationManager mNotificationManager = (NotificationManager) context
 				.getSystemService(notificationServiceStr);
-		mNotificationManager
-				.cancel(MyNotificationManager.CONGVAN_NOTIFICATION_ID);
+		mNotificationManager.cancel(MyNotificationManager.CONGVAN_NOTIFICATION_ID);
 	}
 
 	void CongViecCancelNotification(Context context) {
 		String notificationServiceStr = Context.NOTIFICATION_SERVICE;
 		NotificationManager mNotificationManager = (NotificationManager) context
 				.getSystemService(notificationServiceStr);
-		mNotificationManager
-				.cancel(MyNotificationManager.CONGVIEC_NOTIFICATION_ID);
+		mNotificationManager.cancel(MyNotificationManager.CONGVIEC_NOTIFICATION_ID);
 	}
 
 	void LichBieuCancelNotification(Context context) {
 		String notificationServiceStr = Context.NOTIFICATION_SERVICE;
 		NotificationManager mNotificationManager = (NotificationManager) context
 				.getSystemService(notificationServiceStr);
-		mNotificationManager
-				.cancel(MyNotificationManager.LICHBIEU_NOTIFICATION_ID);
+		mNotificationManager.cancel(MyNotificationManager.LICHBIEU_NOTIFICATION_ID);
 	}
 
 	void cancelNotification(Context context, int id) {
@@ -331,63 +311,53 @@ public class HomeActivity extends Activity implements OnClickListener {
 
 		AsyncHttpClient client = new AsyncHttpClient();
 
-		client.post("http://office.sinco.pro.vn/api_distpatch/test.php",
-				new JsonHttpResponseHandler() {
+		client.post("http://office.sinco.pro.vn/api_distpatch/test.php", new JsonHttpResponseHandler() {
 
-					@Override
-					public void onFailure(int statusCode, Header[] headers,
-							Throwable throwable, JSONObject errorResponse) {
+			@Override
+			public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
 
-						super.onFailure(statusCode, headers, throwable,
-								errorResponse);
-					}
+				super.onFailure(statusCode, headers, throwable, errorResponse);
+			}
 
-					@Override
-					public void onSuccess(int statusCode, Header[] headers,
-							JSONObject response) {
-						String resutl = response.toString();
-						Log.d("NgaDV", "response : " + resutl);
-						if (!resutl.isEmpty()) {
-							try {
-								JSONObject jsonObject = new JSONObject(resutl);
+			@Override
+			public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+				String resutl = response.toString();
+				Log.d("NgaDV", "response : " + resutl);
+				if (!resutl.isEmpty()) {
+					try {
+						JSONObject jsonObject = new JSONObject(resutl);
 
-								String status = jsonObject.getString("status");
-								if (status.equals("0")) {
-									AlertDialog.Builder builder = new AlertDialog.Builder(
-											new ContextThemeWrapper(
-													context,
-													android.R.style.Theme_Holo_Light));
-									builder.setIcon(R.drawable.ic_launcher);
-									builder.setTitle(R.string.app_name);
-									builder.setMessage(R.string.confirm_exit);
-									builder.setCancelable(false);
-									builder.setPositiveButton(
-											"OK",
-											new DialogInterface.OnClickListener() {
-												public void onClick(
-														DialogInterface dialog,
-														int id) {
-													System.exit(0);
-												}
-											});
-									alertDialog = builder.create();
-									alertDialog.show();
-								} else {
-									// do something
+						String status = jsonObject.getString("status");
+						if (status.equals("0")) {
+							AlertDialog.Builder builder = new AlertDialog.Builder(
+									new ContextThemeWrapper(context, android.R.style.Theme_Holo_Light));
+							builder.setIcon(R.drawable.ic_launcher);
+							builder.setTitle(R.string.app_name);
+							builder.setMessage(R.string.confirm_exit);
+							builder.setCancelable(false);
+							builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog, int id) {
+									System.exit(0);
 								}
-							} catch (JSONException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
+							});
+							alertDialog = builder.create();
+							alertDialog.show();
+						} else {
+							// do something
 						}
-
-						super.onSuccess(statusCode, headers, response);
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
+				}
 
-				});
+				super.onSuccess(statusCode, headers, response);
+			}
+
+		});
 
 	}
-	
+
 	class logout extends AsyncTask<String, Void, String> {
 
 		protected void onPostExecute(Bitmap result) {
@@ -397,8 +367,7 @@ public class HomeActivity extends Activity implements OnClickListener {
 		protected String doInBackground(String... params) {
 			//
 			session.logoutUser();
-			NotificationDBController db = NotificationDBController
-					.getInstance(getApplicationContext());
+			NotificationDBController db = NotificationDBController.getInstance(getApplicationContext());
 			getTaskID(db);
 			db.deleteAllData();
 			Utils.saveBoolean(getApplicationContext(), "FIRSTRUN", true);
@@ -407,32 +376,28 @@ public class HomeActivity extends Activity implements OnClickListener {
 			cancelAllNotification(getApplicationContext());
 			clearNotifyCount();
 			// stopService
-			if(service != null) stopService(service);
+			if (service != null)
+				stopService(service);
 			finish();
 			//
 			return null;
 		}
 	}
-	
 
-	private void getTaskID(NotificationDBController db){
-		
+	private void getTaskID(NotificationDBController db) {
+
 		String sql = "Select * from " + NotificationDBController.TASK_TABLE_NAME + " where "
-				+ NotificationDBController.TASK_STATE + " = \"" + "active" + "\"" 
-				+ " or "
-				+ NotificationDBController.TASK_STATE + " = \"" + "cancel" + "\""
-				+ " or "
-				+ NotificationDBController.TASK_STATE + " = \"" + "inactive" + "\"" ;
-		
+				+ NotificationDBController.TASK_STATE + " = \"" + "active" + "\"" + " or "
+				+ NotificationDBController.TASK_STATE + " = \"" + "cancel" + "\"" + " or "
+				+ NotificationDBController.TASK_STATE + " = \"" + "inactive" + "\"";
+
 		Cursor cursor = db.rawQuery(sql, null);
 		Log.d("ToanNM", "getTaskID : ===== : " + sql);
 		if (cursor.moveToFirst()) {
 			do {
-				int id = cursor
-						.getInt(cursor
-								.getColumnIndexOrThrow(NotificationDBController.ID_COL));
+				int id = cursor.getInt(cursor.getColumnIndexOrThrow(NotificationDBController.ID_COL));
 				Log.d("ToanNM", "state id : ==== ===== : " + id);
-				cancelNotification(getApplicationContext() ,id);
+				cancelNotification(getApplicationContext(), id);
 			} while (cursor.moveToNext());
 		}
 	}

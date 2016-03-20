@@ -3,7 +3,18 @@ package com.sicco.erp.adapter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
+
+import com.sicco.erp.ConvertDispatchActivity;
+import com.sicco.erp.DetailDispatchActivity;
+import com.sicco.erp.R;
+import com.sicco.erp.SteerReportActivity;
+import com.sicco.erp.database.NotificationDBController;
+import com.sicco.erp.model.Department;
+import com.sicco.erp.model.Dispatch;
+import com.sicco.erp.model.ReportSteer;
+import com.sicco.erp.model.Status;
+import com.sicco.erp.model.User;
+import com.sicco.erp.util.DialogChooseUser;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,20 +31,6 @@ import android.widget.BaseAdapter;
 import android.widget.PopupMenu;
 import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.sicco.erp.ConvertDispatchActivity;
-import com.sicco.erp.DetailDispatchActivity;
-import com.sicco.erp.R;
-import com.sicco.erp.SteerReportActivity;
-import com.sicco.erp.database.NotificationDBController;
-import com.sicco.erp.manager.SessionManager;
-import com.sicco.erp.model.Department;
-import com.sicco.erp.model.Dispatch;
-import com.sicco.erp.model.ReportSteer;
-import com.sicco.erp.model.Status;
-import com.sicco.erp.model.User;
-import com.sicco.erp.util.DialogChooseUser;
 
 public class ActionAdapter extends BaseAdapter {
 	private Context context;
@@ -106,15 +103,15 @@ public class ActionAdapter extends BaseAdapter {
 		holder.title.setText(dispatch.getNumberDispatch());
 		holder.description.setText(dispatch.getDescription());
 		holder.date.setText(Html.fromHtml(d));
-
+		
 		String colorAction = context.getResources().getString(R.color.actionbar_color);
 		if (type == 1 && dispatch.getStatus().equals("2")) {
 			colorAction = context.getResources().getString(R.color.red);
 		}
-
+		
 		GradientDrawable drawable = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{0, 0});
-		drawable.setColor(Color.parseColor(colorAction));
-		drawable.setCornerRadius(context.getResources().getDimension(R.dimen.item_size));
+        drawable.setColor(Color.parseColor(colorAction));
+        drawable.setCornerRadius(context.getResources().getDimension(R.dimen.item_size));
 		holder.approval.setBackgroundDrawable(drawable);
 
 		holder.approval.setOnClickListener(new OnClickListener() {
@@ -136,8 +133,8 @@ public class ActionAdapter extends BaseAdapter {
 							&& isReceivedDispatch(dispatch.getId())) {
 						popupMenu.getMenuInflater().inflate(R.menu.menu_task,
 								popupMenu.getMenu());
-					} else if(activity_type == 1) {
-						popupMenu.getMenuInflater().inflate(R.menu.menu_task_without_receiver_cv,
+					} else{
+						popupMenu.getMenuInflater().inflate(R.menu.menu_dispatch_without_receiver_cv,
 								popupMenu.getMenu());
 					}
 					popupMenu.show();
@@ -148,39 +145,39 @@ public class ActionAdapter extends BaseAdapter {
 								public boolean onMenuItemClick(MenuItem item) {
 									Intent intent = new Intent();
 									switch (item.getItemId()) {
-										case R.id.receive_dispatch:
-											receiveDispatch(dispatch);
-											break;
-										case R.id.action_steer:
-											intent.setClass(context,
-													SteerReportActivity.class);
-											intent.putExtra("dispatch", dispatch);
-											context.startActivity(intent);
-											break;
-										case R.id.action_detail:
-											intent.setClass(context,
-													DetailDispatchActivity.class);
-											intent.putExtra("dispatch", dispatch);
-											context.startActivity(intent);
-											break;
-										case R.id.btnChuyenTiepXuLy:
-											ActionAdapter.flag = "handle";
+									case R.id.receive_dispatch:
+										receiveDispatch(dispatch);
+										break;
+									case R.id.action_steer:
+										intent.setClass(context,
+												SteerReportActivity.class);
+										intent.putExtra("dispatch", dispatch);
+										context.startActivity(intent);
+										break;
+									case R.id.action_detail:
+										intent.setClass(context,
+												DetailDispatchActivity.class);
+										intent.putExtra("dispatch", dispatch);
+										context.startActivity(intent);
+										break;
+									case R.id.btnChuyenTiepXuLy:
+										ActionAdapter.flag = "handle";
 
-											Department department = new Department();
-											ArrayList<User> listChecked = new ArrayList<User>();
-											ArrayList<Department> listDep = new ArrayList<Department>();
-											ArrayList<User> allUser = new ArrayList<User>();
-											listDep = department.getData(context.getResources().getString(R.string.api_get_deparment));
-											new DialogChooseUser(context, dispatch, listDep, allUser, listChecked);
-											break;
-										case R.id.btnChuyenCVThanhCongViec:
-											intent = new Intent();
-											intent.setClass(context, ConvertDispatchActivity.class);
-											intent.putExtra("dispatch", dispatch);
-											context.startActivity(intent);
-											break;
-										default:
-											break;
+										Department department = new Department();
+										ArrayList<User> listChecked = new ArrayList<User>();
+										ArrayList<Department> listDep = new ArrayList<Department>();
+										ArrayList<User> allUser = new ArrayList<User>();
+										listDep = department.getData(context.getResources().getString(R.string.api_get_deparment));
+										new DialogChooseUser(context, dispatch, listDep, allUser, listChecked);
+										break;
+									case R.id.btnChuyenCVThanhCongViec:
+										intent = new Intent();
+										intent.setClass(context, ConvertDispatchActivity.class);
+										intent.putExtra("dispatch", dispatch);
+										context.startActivity(intent);
+										break;
+									default:
+										break;
 									}
 									return false;
 								}

@@ -53,63 +53,103 @@
         android:layout_height="match_parent"
         android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/shCongVan"
+        <LinearLayout
+            android:id="@+id/file_attach"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="7dp"
-            android:text="SH cong van:"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/trichYeu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="7dp"
-            android:textColor="@android:color/black"
-            android:text="Trich yeu:"
-            android:textSize="16sp" />
+            <TextView
+                android:id="@+id/shCongVan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="7dp"
+                android:text="SH cong van:"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/nguoiPheDuyet"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:textColor="@android:color/black"
-            android:text="Nguoi phe duyet:"
-            android:textSize="15sp" />
+            <TextView
+                android:id="@+id/trichYeu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingBottom="7dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="Trich yeu:"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/nguoiXuLy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:textColor="@android:color/black"
-            android:text="Nguoi xu ly:"
-            android:textSize="15sp" />
+            <TextView
+                android:id="@+id/nguoiPheDuyet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="Nguoi phe duyet:"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
 
-        <TextView
-            android:id="@+id/nguoiXem"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="7dp"
-            android:textColor="@android:color/black"
-            android:text="Nguoi xem:"
-            android:textSize="15sp" />
+            <TextView
+                android:id="@+id/nguoiXuLy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="Nguoi xu ly:"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/nguoiXem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="Nguoi xem:"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
+            
+            <TextView
+                android:id="@+id/loaiCongVan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="Loại Công Văn:"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
+            
+            <TextView
+                android:id="@+id/ngayDen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="Ngày đến:"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/file_attach_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingBottom="7dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/file"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
+        </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"

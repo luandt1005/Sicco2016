@@ -84,7 +84,7 @@ public class ReportSteer {
 	public void setContent(String content) {
 		this.content = content;
 	}
-
+	
 	//sendReport
 	public void sendReportSteer(String url, String id_user, String id_dispatch, String content, String daxuly, OnLoadListener OnLoadListener){
 		this.onLoadListener = OnLoadListener;
@@ -95,23 +95,23 @@ public class ReportSteer {
 		params.add("id_dispatch", id_dispatch);
 		params.add("content", content);
 		params.add("daxuly", daxuly);
-
+		
 		Log.d("LuanDT", "params: " + params);
-
+		
 		AsyncHttpClient client = new AsyncHttpClient();
 		client.post(url, params, new JsonHttpResponseHandler() {
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
-								  JSONObject response) {
+					JSONObject response) {
 				onLoadListener.onSuccess();
 				String jsonRead = response.toString();
-
+				
 				super.onSuccess(statusCode, headers, response);
 			}
 
 			@Override
 			public void onFailure(int statusCode, Header[] headers,
-								  Throwable throwable, JSONObject errorResponse) {
+					Throwable throwable, JSONObject errorResponse) {
 				super.onFailure(statusCode, headers, throwable, errorResponse);
 				onLoadListener.onFalse();
 			}
@@ -121,48 +121,48 @@ public class ReportSteer {
 
 	//getData
 	public ArrayList<ReportSteer> getData(String url,String id_user,String id_dispatch,
-										  OnLoadListener OnLoadListener) {
+			OnLoadListener OnLoadListener) {
 		this.onLoadListener = OnLoadListener;
 		onLoadListener.onStart();
 		data = new ArrayList<ReportSteer>();
-
+		
 		RequestParams params = new RequestParams();
 		params.add("id_user", id_user);
 		params.add("id_dispatch", id_dispatch);
-
+		
 		AsyncHttpClient client = new AsyncHttpClient();
 		client.post(url, params, new JsonHttpResponseHandler() {
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
-								  JSONObject response) {
-
+					JSONObject response) {
+				
 				String jsonRead = response.toString();
-
+				
 				if (!jsonRead.isEmpty()) {
 					try {
 						JSONObject jsonObject = new JSONObject(jsonRead);
 						JSONArray jsonArray = jsonObject.getJSONArray("row");
 						if (jsonObject.getString("success").equals("1")) {
-
+							
 							if (Integer.parseInt(jsonObject.getString("total")) != 0) {
 								CHECK_TOTAL_DATA = 1;
 								for (int i = 0; i < jsonArray.length(); i++) {
 									JSONObject row = jsonArray.getJSONObject(i);
-
+		
 									String reporter = row.getString("reporter");
 									String dateCreated = Utils.convertDate(row.getString("date_created"));
 									String content = row.getString("content");
 									long id_cong_van = row.getLong("diploma_id");
-
+		
 									data.add(new ReportSteer(i, reporter, dateCreated, content, id_cong_van));
 
 								}
 							}else {
 								CHECK_TOTAL_DATA = 0;
 							}
-
+							
 						}
-
+						
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -173,7 +173,7 @@ public class ReportSteer {
 
 			@Override
 			public void onFailure(int statusCode, Header[] headers,
-								  Throwable throwable, JSONObject errorResponse) {
+					Throwable throwable, JSONObject errorResponse) {
 				super.onFailure(statusCode, headers, throwable, errorResponse);
 				onLoadListener.onFalse();
 			}
