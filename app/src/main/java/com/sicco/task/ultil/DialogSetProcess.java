@@ -113,6 +113,7 @@ public class DialogSetProcess {
                         + "<font color=\"#ff0000\">"
                         + task.getTen_cong_viec()
                         + "</font>\""));
+                dialogConfirmTask.setTitle(context.getResources().getString(R.string.app_name));
                 dialogConfirmTask.setOnButtonDialogConfirmListener(context.getResources().getString(R.string.cancel), context.getResources().getString(R.string.confirm), new DialogConfirmTask.OnButtonDialogConfirmListener() {
                     @Override
                     public void onClickBtnOk(View view) {

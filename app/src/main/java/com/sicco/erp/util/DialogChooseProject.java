@@ -28,6 +28,7 @@ import com.sicco.erp.model.Department;
 import com.sicco.erp.model.Project;
 import com.sicco.erp.model.Project.OnLoadListener;
 import com.sicco.task.erp.AssignTaskActivity;
+import com.sicco.task.erp.EditTaskActivity;
 
 public class DialogChooseProject {
 	/*
@@ -117,6 +118,9 @@ public class DialogChooseProject {
 					}else if (VIEW_CURRENT == 2) {
 						ConvertDispatchActivity.txtProject.setTextColor(Color.parseColor(context.getString(R.color.actionbar_color)));
 						ConvertDispatchActivity.txtProject.setText(project.getName());
+					}else if (VIEW_CURRENT == 3) {
+						EditTaskActivity.txtProject.setTextColor(Color.parseColor(context.getString(R.color.actionbar_color)));
+						EditTaskActivity.txtProject.setText(project.getName());
 					}
 					idProjectSelected = project.getId();
 					alertDialog.dismiss();

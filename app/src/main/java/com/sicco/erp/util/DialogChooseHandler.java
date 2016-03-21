@@ -31,6 +31,7 @@ import com.sicco.erp.model.Department;
 import com.sicco.erp.model.Department.OnLoadListener;
 import com.sicco.erp.model.User;
 import com.sicco.task.erp.AssignTaskActivity;
+import com.sicco.task.erp.EditTaskActivity;
 
 public class DialogChooseHandler {
 	/*
@@ -206,7 +207,11 @@ public class DialogChooseHandler {
 						}else if (VIEW_CURRENT == 2){
 							ConvertDispatchActivity.txtHandler.setText(strUsersHandl);
 							ConvertDispatchActivity.txtHandler.setTextColor(Color.parseColor(context.getString(R.color.actionbar_color)));
-							
+
+						}else if (VIEW_CURRENT == 3){
+							EditTaskActivity.txtHandler.setText(strUsersHandl);
+							EditTaskActivity.txtHandler.setTextColor(Color.parseColor(context.getString(R.color.actionbar_color)));
+
 						}
 					}
 					if (listChecked.isEmpty()) {
@@ -214,6 +219,8 @@ public class DialogChooseHandler {
 							AssignTaskActivity.txtHandler.setText(context.getResources().getString(R.string.handler1));
 						}else if(VIEW_CURRENT == 2) {
 							ConvertDispatchActivity.txtHandler.setText(context.getResources().getString(R.string.handler1));
+						}else if(VIEW_CURRENT == 3) {
+							EditTaskActivity.txtHandler.setText(context.getResources().getString(R.string.handler1));
 						}
 						
 					}

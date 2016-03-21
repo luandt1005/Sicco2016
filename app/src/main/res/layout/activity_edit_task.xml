@@ -33,7 +33,7 @@
                 android:lines="1"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:text="@string/giao_viec"
+                android:text="@string/chinh_sua_cong_viec"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
@@ -273,32 +273,6 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"/>
 
-            
-            <LinearLayout
-			    android:id="@+id/lnFile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="10dp" 
-                android:background="@drawable/item_convert_job_selector">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/choose_file"
-                    android:textColor="@color/label_item"
-                    android:textSize="18dp" />
-
-                <TextView
-                    android:id="@+id/txtFile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/file"
-                    android:layout_marginTop="7dp"
-                    android:textColor="@color/label_item"
-                    android:textSize="15dp"/>
-
-            </LinearLayout>
 			<TextView 
                 android:layout_width="match_parent"
                 android:layout_height="1px"
@@ -382,7 +356,7 @@
         android:layout_marginRight="24dp"
         android:layout_marginTop="7dp"
         android:background="@drawable/bg_btn_login_selector"
-        android:text="@string/giao_viec"
+        android:text="@string/luu_lai"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="18sp" />

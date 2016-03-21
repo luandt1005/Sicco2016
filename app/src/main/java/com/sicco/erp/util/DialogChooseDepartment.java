@@ -26,6 +26,7 @@ import com.sicco.erp.adapter.DepartmentAdapter;
 import com.sicco.erp.model.Department;
 import com.sicco.erp.model.Department.OnLoadListener;
 import com.sicco.task.erp.AssignTaskActivity;
+import com.sicco.task.erp.EditTaskActivity;
 
 public class DialogChooseDepartment {
 
@@ -115,6 +116,10 @@ public class DialogChooseDepartment {
 						ConvertDispatchActivity.txtDepartment.setTextColor(Color.parseColor(context.getString(R.color.actionbar_color)));
 						ConvertDispatchActivity.txtDepartment.setText(department
 							.getDepartmentName());
+					}else if (DialogChooseHandler.VIEW_CURRENT == 3) {
+						EditTaskActivity.txtDepartment.setTextColor(Color.parseColor(context.getString(R.color.actionbar_color)));
+						EditTaskActivity.txtDepartment.setText(department
+								.getDepartmentName());
 					}
 					idDepSelected = department.getId();
 					alertDialog.dismiss();

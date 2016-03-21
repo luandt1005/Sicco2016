@@ -315,7 +315,9 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
                                         context.startActivity(intent);
                                         break;
                                     case R.id.action_edit:
-                                        Toast.makeText(context, "Edit", Toast.LENGTH_SHORT).show();
+                                        intent = new Intent(context, EditTaskActivity.class);
+                                        intent.putExtra("TASK", task);
+                                        context.startActivity(intent);
                                         break;
                                     case R.id.action_delete:
                                         new DialogConfirmDeleteTask(context, task);

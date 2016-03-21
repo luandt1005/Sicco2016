@@ -34,6 +34,7 @@ import com.sicco.erp.model.Department.OnLoadListener;
 import com.sicco.erp.model.Dispatch;
 import com.sicco.erp.model.User;
 import com.sicco.task.erp.AssignTaskActivity;
+import com.sicco.task.erp.EditTaskActivity;
 
 public class DialogChooseUser {
 
@@ -246,6 +247,9 @@ public class DialogChooseUser {
 						}else if (DialogChooseHandler.VIEW_CURRENT == 2) {
 							ConvertDispatchActivity.txtViewer.setTextColor(Color.parseColor(context.getString(R.color.actionbar_color)));
 							ConvertDispatchActivity.txtViewer.setText(strUsersView);
+						}else if (DialogChooseHandler.VIEW_CURRENT == 3) {
+							EditTaskActivity.txtViewer.setTextColor(Color.parseColor(context.getString(R.color.actionbar_color)));
+							EditTaskActivity.txtViewer.setText(strUsersView);
 						}
 						
 					}
@@ -254,6 +258,8 @@ public class DialogChooseUser {
 							AssignTaskActivity.txtViewer.setText(context.getResources().getString(R.string.viewer));
 						}else if (DialogChooseHandler.VIEW_CURRENT == 2) {
 							ConvertDispatchActivity.txtViewer.setText(context.getResources().getString(R.string.viewer));
+						}else if (DialogChooseHandler.VIEW_CURRENT == 3) {
+							EditTaskActivity.txtViewer.setText(context.getResources().getString(R.string.viewer));
 						}
 						
 					}

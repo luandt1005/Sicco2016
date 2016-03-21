@@ -109,6 +109,7 @@
     <string name="confirm">Xác nhận</string>
     <string name="content_dialog_task_change_status">"Bạn có thực sự muốn thay đổi trạng thái công việc: \""</string>
     <string name="content_dialog_task_update_rate">"Bạn có thực sự cập nhật tiến độ công việc: \""</string>
+    <string name="content_dialog_task_update_task">"Bạn có muốn lưu thay đổi này?"</string>
     
     <string name="assign_task_new">Giao việc mới</string>
     <string name="detail_task">Chi tiết công việc</string>
@@ -131,6 +132,8 @@
     <string name="viec_da_giao">Việc đã giao</string>
     <string name="viec_duoc_giao">Việc được giao</string>
     <string name="giao_viec">Giao việc</string>
+    <string name="luu_lai">Lưu lại</string>
+    <string name="chinh_sua_cong_viec">Chỉnh sửa công việc</string>
     <string name="duoc_giao">Được giao</string>
     <string name="danh_sach_viec">Danh sách việc</string>
     <string name="nguoi_thuc_hien">Người thực hiên:</string>
@@ -203,7 +206,7 @@
     <string name="api_tatcabinhluan">http://office.sinco.pro.vn/api_distpatch/tatcabinhluan.php</string>
     <string name="api_xoacongviec">http://office.sinco.pro.vn/api_distpatch/xoacongviec.php</string>
 	<string name="api_get_infor_task_by_id">http://office.sinco.pro.vn/api_distpatch/infortaskbyid.php</string>
-    <string name="api_edit_task">http://office.sinco.pro.vn/api_distpatch/suacongviec.php</string>
+    <string name="api_edit_task">http://office.sinco.pro.vn/api_distpatch/chinhsuacongviec.php</string>
     
      <!-- ToanNM -->
     <string name="cong_van">công văn cần phê</string>
