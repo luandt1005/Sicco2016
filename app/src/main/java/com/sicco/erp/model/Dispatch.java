@@ -8,12 +8,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
-import android.util.Log;
-import android.widget.Toast;
-
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -22,6 +16,12 @@ import com.sicco.erp.database.NotificationDBController;
 import com.sicco.erp.manager.SessionManager;
 import com.sicco.erp.util.AccentRemover;
 import com.sicco.erp.util.Utils;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.util.Log;
+import android.widget.Toast;
 
 public class Dispatch implements Serializable {
 	/**
@@ -291,7 +291,7 @@ public class Dispatch implements Serializable {
 					JSONObject response) {
 				String jsonRead = response.toString();
 
-				// Log.d("LuanDT", "json: " + jsonRead);
+				 Log.d("LuanDT", "DISPATCH =>>> json: " + jsonRead);
 				if (!jsonRead.isEmpty()) {
 					try {
 						JSONObject object = new JSONObject(jsonRead);

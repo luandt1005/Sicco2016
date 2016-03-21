@@ -249,7 +249,7 @@ public class NotificationDBController extends SQLiteOpenHelper {
 	{
 	    SQLiteDatabase sdb= this.getWritableDatabase();
 	    sdb.delete(TABLE_NAME, null, null);
-	    sdb.delete(DISPATCH_TABLE_NAME, null, null);
+//	    sdb.delete(DISPATCH_TABLE_NAME, null, null);
 	    sdb.delete(TASK_TABLE_NAME, null, null);
 	    deleteReportData();
 		deleteReportCongVanData();

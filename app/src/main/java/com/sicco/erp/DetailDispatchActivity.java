@@ -5,11 +5,19 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import org.apache.http.Header;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
 import com.sicco.erp.adapter.ReportSteerAdapter;
 import com.sicco.erp.database.NotificationDBController;
 import com.sicco.erp.manager.SessionManager;
 import com.sicco.erp.model.Department;
 import com.sicco.erp.model.Dispatch;
+import com.sicco.erp.model.DispatchType;
 import com.sicco.erp.model.ReportSteer;
 import com.sicco.erp.model.ReportSteer.OnLoadListener;
 import com.sicco.erp.model.User;
@@ -44,6 +52,12 @@ public class DetailDispatchActivity extends Activity {
 	private ReportSteerAdapter baoCaoAdapter;
 	private ArrayList<ReportSteer> arrBaoCao;
 	private Button retry;
+	
+	//
+	private Department department;
+	private ArrayList<User> listChecked;
+	private ArrayList<Department> listDep;
+	private ArrayList<User> allUser;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +71,14 @@ public class DetailDispatchActivity extends Activity {
 	}
 
 	private void init() {
+		
+		dispatch.getData();
+
+		department = new Department();
+		listChecked = new ArrayList<User>();
+		listDep = new ArrayList<Department>();
+		allUser = new ArrayList<User>();
+		
 		// view
 		back = (ImageView) findViewById(R.id.back);
 		action = (ImageView) findViewById(R.id.action);
@@ -106,8 +128,8 @@ public class DetailDispatchActivity extends Activity {
 		nguoiXem.setText(Html.fromHtml("<font><b>" + getResources().getString(R.string.nguoi_xem) + "</b></font>" + " "
 				+ dispatch.getNguoiXem()));
 
-		loaiCongVan.setText(Html.fromHtml(
-				"<font><b>" + loaiCongVan.getText().toString() + "</b></font>" + " " + dispatch.getIdLoaicongvan()));
+		getDispatchType(dispatch.getIdLoaicongvan(), getString(R.string.api_get_dispatch_type));
+
 		ngayDen.setText(Html.fromHtml(
 				"<font><b>" + ngayDen.getText().toString() + "</b></font>" + " " + formatDate(dispatch.getDate())));
 
@@ -120,7 +142,7 @@ public class DetailDispatchActivity extends Activity {
 		} else {
 			File file = new File(dispatch.getContent());
 			file_attach_text.setText(Html.fromHtml(
-					"<font><b><u><i>" + getResources().getString(R.string.task_attach_file) + "</i></u></b></font>"
+					"<font><b><i>" + getResources().getString(R.string.task_attach_file) + "</i></b></font>"
 							+ " " + "<font color = '#358cd1'><u><i>" + file.getName() + "</i></u></font>"));
 		}
 		LinearLayout file_attach = (LinearLayout) findViewById(R.id.file_attach);
@@ -146,10 +168,12 @@ public class DetailDispatchActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				PopupMenu popupMenu = new PopupMenu(DetailDispatchActivity.this, action);
-				if (dispatch.da_xu_ly.contains(dispatch.getHandler()) && isReceivedDispatch(dispatch.getId())) {
+				if (dispatch.da_xu_ly.contains(dispatch.getHandler()) 
+						&& isReceivedDispatch(dispatch.getId())) {
 					popupMenu.getMenuInflater().inflate(R.menu.menu_dispatch_without_detail, popupMenu.getMenu());
 				} else {
-					popupMenu.getMenuInflater().inflate(R.menu.menu_dispatch_without_receiver_cv_detail, popupMenu.getMenu());
+					popupMenu.getMenuInflater().inflate(R.menu.menu_dispatch_without_receiver_cv_detail,
+							popupMenu.getMenu());
 				}
 				popupMenu.show();
 				popupMenu.setOnMenuItemClickListener(new OnMenuItemClickListener() {
@@ -168,10 +192,6 @@ public class DetailDispatchActivity extends Activity {
 							finish();
 							break;
 						case R.id.btnChuyenTiepXuLy:
-							Department department = new Department();
-							ArrayList<User> listChecked = new ArrayList<User>();
-							ArrayList<Department> listDep = new ArrayList<Department>();
-							ArrayList<User> allUser = new ArrayList<User>();
 							listDep = department.getData(getResources().getString(R.string.api_get_deparment));
 							new DialogChooseUser(DetailDispatchActivity.this, dispatch, listDep, allUser, listChecked);
 							break;
@@ -262,6 +282,44 @@ public class DetailDispatchActivity extends Activity {
 		}
 		SimpleDateFormat postFormater = new SimpleDateFormat("dd/MM/yyyy");
 		return postFormater.format(date);
+	}
+
+	public void getDispatchType(final String t_id, final String url) {
+		final ArrayList<DispatchType> arr = new ArrayList<DispatchType>();
+		AsyncHttpClient client = new AsyncHttpClient();
+		client.post(url, null, new JsonHttpResponseHandler() {
+			@Override
+			public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+				String jsonRead = response.toString();
+				if (!jsonRead.isEmpty()) {
+					try {
+						JSONObject object = new JSONObject(jsonRead);
+						JSONArray rows = object.getJSONArray("row");
+						for (int i = 0; i < rows.length(); i++) {
+							JSONObject row = rows.getJSONObject(i);
+							String id = row.getString("id");
+							String title = row.getString("title");
+
+							arr.add(new DispatchType(id, title));
+
+							if (t_id.equals(id))
+								loaiCongVan.setText(Html.fromHtml(
+										"<font><b>" + loaiCongVan.getText().toString() + "</b></font>" + " " + title));
+
+						}
+
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+				}
+				super.onSuccess(statusCode, headers, response);
+			}
+
+			@Override
+			public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+				super.onFailure(statusCode, headers, throwable, errorResponse);
+			}
+		});
 	}
 
 }

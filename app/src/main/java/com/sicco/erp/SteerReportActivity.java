@@ -43,8 +43,6 @@ public class SteerReportActivity extends Activity implements OnClickListener {
 	private EditText edtContent;
 	private Dispatch dispatch;
 	private TextView emptyView;
-	private Button btnChuyenTiepXuLy;
-	private Button btnChuyenCVThanhCongViec;
 	private String daxuly = "1";
 	private ArrayList<Department> listDep;
 	private ArrayList<User> allUser;
@@ -85,16 +83,11 @@ public class SteerReportActivity extends Activity implements OnClickListener {
 		reportSteer = new ReportSteer(SteerReportActivity.this);
 		edtContent = (EditText) findViewById(R.id.edtReportOrSteer);
 		emptyView = (TextView) findViewById(R.id.empty_view);
-		btnChuyenCVThanhCongViec = (Button) findViewById(R.id.btnChuyenCVThanhCongViec);
-		btnChuyenTiepXuLy = (Button) findViewById(R.id.btnChuyenTiepXuLy);
 		
 		// click
 		back.setOnClickListener(this);
 		retry.setOnClickListener(this);
 		imgSendReportSteer.setOnClickListener(this);
-		btnChuyenCVThanhCongViec.setOnClickListener(this);
-		btnChuyenTiepXuLy.setOnClickListener(this);
-		// set adapter
 
 	}
 

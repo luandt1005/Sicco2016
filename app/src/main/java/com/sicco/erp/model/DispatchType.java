@@ -11,8 +11,14 @@ import org.json.JSONObject;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
+import android.util.Log;
+
 public class DispatchType implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private String title;
 	private ArrayList<DispatchType> arr;
@@ -52,7 +58,7 @@ public class DispatchType implements Serializable {
 			public void onSuccess(int statusCode, Header[] headers,
 					JSONObject response) {
 				String jsonRead = response.toString();
-//				Log.d("LuanDT", "jsonRead DispatchType: " + jsonRead);
+				Log.d("Debug", "jsonRead DispatchType: " + jsonRead);
 				if (!jsonRead.isEmpty()) {
 					try {
 						JSONObject object = new JSONObject(jsonRead);
