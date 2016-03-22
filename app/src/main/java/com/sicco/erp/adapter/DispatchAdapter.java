@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -57,6 +58,7 @@ public class DispatchAdapter extends BaseAdapter {
 			holder = new ViewHolder();
 			holder.title = (TextView) view.findViewById(R.id.title);
 			holder.description = (TextView) view.findViewById(R.id.description);
+			holder.date = (TextView) view.findViewById(R.id.date);
 			holder.approval = (TextView) view.findViewById(R.id.approval);
 			if(dispatch.getNguoi_phe_duyet().equals(Utils.getString(context, "name"))){
 				holder.approval.setVisibility(View.VISIBLE);
@@ -70,6 +72,8 @@ public class DispatchAdapter extends BaseAdapter {
 		
 		holder.title.setText(dispatch.getNumberDispatch());
 		holder.description.setText(dispatch.getDescription());
+		String d = "<font weigth='bold'><b><i>" + Utils.formatDate(dispatch.getDate()) + "</i></b></font>";
+		holder.date.setText(Html.fromHtml(d));
 		
 		GradientDrawable drawable = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{0, 0});
         drawable.setColor(Color.parseColor(context.getResources().getString(R.color.actionbar_color)));
@@ -92,5 +96,6 @@ public class DispatchAdapter extends BaseAdapter {
 		TextView title;
 		TextView description;
 		TextView approval;
+		TextView date;
 	}
 }

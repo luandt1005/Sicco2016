@@ -145,6 +145,24 @@ public class Utils {
 		return null;
 	}
 
+	public static String formatDate(String input){
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			if(input != null) {
+				if (input != "") {
+					Date date = formatter.parse(input);
+					DateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy");
+					return formatter1.format(date);
+				} else {
+					return "";
+				}
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	public static String convertDate1(String input){
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		try {
