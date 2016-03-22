@@ -126,15 +126,27 @@ public class ActionAdapter extends BaseAdapter {
 					// popupMenu
 					PopupMenu popupMenu = new PopupMenu(context,
 							holder.approval);
-
-					if(activity_type == 0
-							&& !dispatch.da_xu_ly.contains(Utils.getString(context, "name"))
-							&& isReceivedDispatch(dispatch.getId())) {
-						popupMenu.getMenuInflater().inflate(R.menu.menu_task,
-								popupMenu.getMenu());
+					boolean checkIsXuly = false;
+					boolean checkDaXuly = false;
+					final String userName = Utils.getString(context, "name");
+					String[] nguoixuly = dispatch.getHandler().split(",");
+					String[] daxuly = dispatch.getDa_xu_ly().split(",");
+					for (int i = 0; i < nguoixuly.length; i++){
+						if(nguoixuly[i].equals(userName)){
+							checkIsXuly = true;
+							break;
+						}
+					}
+					for (int i = 0; i < daxuly.length; i++){
+						if(daxuly[i].equals(userName)){
+							checkDaXuly = true;
+							break;
+						}
+					}
+					if(activity_type == 1 && checkIsXuly && !checkDaXuly) {
+						popupMenu.getMenuInflater().inflate(R.menu.menu_task, popupMenu.getMenu());
 					} else{
-						popupMenu.getMenuInflater().inflate(R.menu.menu_dispatch_without_receiver_cv,
-								popupMenu.getMenu());
+						popupMenu.getMenuInflater().inflate(R.menu.menu_dispatch_without_receiver_cv, popupMenu.getMenu());
 					}
 					popupMenu.show();
 					popupMenu
@@ -146,6 +158,7 @@ public class ActionAdapter extends BaseAdapter {
 									switch (item.getItemId()) {
 									case R.id.receive_dispatch:
 										receiveDispatch(dispatch);
+										dispatch.setDa_xu_ly(userName);
 										break;
 									case R.id.action_steer:
 										intent.setClass(context,

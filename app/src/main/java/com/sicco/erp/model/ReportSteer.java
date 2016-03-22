@@ -185,7 +185,7 @@ public class ReportSteer {
 	// toannm
 	public void sendReportSteer(final Dispatch dispatch) {
 
-		final NotificationDBController db = NotificationDBController.getInstance(context);
+		//final NotificationDBController db = NotificationDBController.getInstance(context);
 
 		final ProgressDialog progressDialog = new ProgressDialog(
 				context);
@@ -207,7 +207,7 @@ public class ReportSteer {
 										R.string.sent_received_dispatch),
 								Toast.LENGTH_SHORT).show();
 						//
-						db.changeReceiveDispatch(dispatch.getId(), "receive");
+						//db.changeReceiveDispatch(dispatch.getId(), "receive");
 						progressDialog.dismiss();
 					}
 

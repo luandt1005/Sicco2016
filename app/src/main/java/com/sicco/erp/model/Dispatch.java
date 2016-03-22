@@ -40,7 +40,7 @@ public class Dispatch implements Serializable {
 	private String pheduyet;
 	private String nguoi_phe_duyet;
 	private String nguoiXem;
-	public String da_xu_ly;
+	private String da_xu_ly;
 
 	private ArrayList<Dispatch> data;
 	private ArrayList<DispatchType> dataDispatchType;
@@ -222,6 +222,14 @@ public class Dispatch implements Serializable {
 
 	public void setNguoi_phe_duyet(String nguoi_phe_duyet) {
 		this.nguoi_phe_duyet = nguoi_phe_duyet;
+	}
+
+	public String getDa_xu_ly() {
+		return da_xu_ly;
+	}
+
+	public void setDa_xu_ly(String da_xu_ly) {
+		this.da_xu_ly = da_xu_ly;
 	}
 
 	public void changeStatusDispatch(String url, String id_dispatch,

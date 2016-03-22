@@ -158,8 +158,24 @@ public class DetailDispatchActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				PopupMenu popupMenu = new PopupMenu(DetailDispatchActivity.this, action);
-				if (!dispatch.da_xu_ly.contains(Utils.getString(DetailDispatchActivity.this, "name"))
-						&& isReceivedDispatch(dispatch.getId())) {
+				boolean checkIsXuly = false;
+				boolean checkDaXuly = false;
+				final String userName = Utils.getString(DetailDispatchActivity.this, "name");
+				String[] nguoixuly = dispatch.getHandler().split(",");
+				String[] daxuly = dispatch.getDa_xu_ly().split(",");
+				for (int i = 0; i < nguoixuly.length; i++){
+					if(nguoixuly[i].equals(userName)){
+						checkIsXuly = true;
+						break;
+					}
+				}
+				for (int i = 0; i < daxuly.length; i++){
+					if(daxuly[i].equals(userName)){
+						checkDaXuly = true;
+						break;
+					}
+				}
+				if (checkIsXuly && !checkDaXuly) {
 					popupMenu.getMenuInflater().inflate(R.menu.menu_dispatch_without_detail, popupMenu.getMenu());
 				} else {
 					popupMenu.getMenuInflater().inflate(R.menu.menu_dispatch_without_receiver_cv_detail,
@@ -174,6 +190,7 @@ public class DetailDispatchActivity extends Activity {
 						switch (item.getItemId()) {
 						case R.id.receive_dispatch:
 							receiveDispatch();
+							dispatch.setDa_xu_ly(userName);
 							break;
 						case R.id.action_steer:
 							intent.setClass(DetailDispatchActivity.this, SteerReportActivity.class);

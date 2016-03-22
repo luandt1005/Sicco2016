@@ -153,7 +153,7 @@ public class DealtWithActivity extends Activity implements OnClickListener,
 				if (!arrDispatch.isEmpty()) {
 					adapter = new ActionAdapter(DealtWithActivity.this,
 							dispatch.filterDispatch(type.getId(),
-									arrDispatch), 1);
+									arrDispatch), 1, 1);
 					listDispatch.setAdapter(adapter);
 				}
 			}
@@ -314,7 +314,7 @@ public class DealtWithActivity extends Activity implements OnClickListener,
 						connectError.setVisibility(View.VISIBLE);
 					}
 				}, 0);
-		adapter = new ActionAdapter(DealtWithActivity.this, arrDispatch, 1);
+		adapter = new ActionAdapter(DealtWithActivity.this, arrDispatch, 1, 1);
 		listDispatch.setAdapter(adapter);
 		super.onResume();
 	}
