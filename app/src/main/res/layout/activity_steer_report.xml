@@ -71,27 +71,6 @@
                 android:background="@color/white" >
             </ListView>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <Button 
-                    android:id="@+id/btnChuyenTiepXuLy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/handle"
-                    android:textSize="11sp"
-                    android:layout_weight="1" />
-                
-                <Button 
-                    android:id="@+id/btnChuyenCVThanhCongViec"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/job_transfer"
-                    android:textSize="11sp"
-                    android:layout_weight="1" />
-            </LinearLayout>
 
             <TextView
                 android:id="@+id/textView1"

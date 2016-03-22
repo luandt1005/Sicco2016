@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Rect;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -34,7 +35,6 @@ import com.sicco.erp.model.Department.OnLoadListener;
 import com.sicco.erp.model.Dispatch;
 import com.sicco.erp.model.User;
 import com.sicco.task.erp.AssignTaskActivity;
-import com.sicco.task.erp.EditTaskActivity;
 
 public class DialogChooseUser {
 
@@ -79,18 +79,32 @@ public class DialogChooseUser {
 	public DialogChooseUser(Context context, Dispatch dispatch, ArrayList<Department> listDep,
 			ArrayList<User> allUser, ArrayList<User> listChecked) {
 		this.context = context;
-		this.dispatch = dispatch;
+//		this.dispatch = dispatch;
 		this.listDep = listDep;
 		this.allUser = allUser;
 		this.listChecked = listChecked;
 
 		department = new Department();
 		user = new User();
-
+		listUser = getData(listDep, allUser);
+		showDialog();
+	}
+	
+	public DialogChooseUser(Context context, Dispatch dispatch) {
+		this.context = context;
+		this.dispatch = dispatch;
+		
+		department = new Department();
+		listChecked = new ArrayList<User>();
+		listDep = new ArrayList<Department>();
+		allUser = new ArrayList<User>();
+		listDep = department.getData(context.getResources().getString(R.string.api_get_deparment));
+		user = new User();
 		
 		listUser = getData(listDep, allUser);
 		showDialog();
 	}
+
 
 	private void showDialog() {
 		Rect rect = new Rect();
@@ -120,8 +134,8 @@ public class DialogChooseUser {
 		connectError = (LinearLayout) layout.findViewById(R.id.connect_error);
 		if (!Department.getJsonDep && !User.getJsonUser) {
 			btnDone.setVisibility(View.GONE);
-			getData();
 		}
+		getData();
 
 		adapter = new ExpandableListUserAdapter(context, listDep, listUser,
 				listChecked);
@@ -247,9 +261,6 @@ public class DialogChooseUser {
 						}else if (DialogChooseHandler.VIEW_CURRENT == 2) {
 							ConvertDispatchActivity.txtViewer.setTextColor(Color.parseColor(context.getString(R.color.actionbar_color)));
 							ConvertDispatchActivity.txtViewer.setText(strUsersView);
-						}else if (DialogChooseHandler.VIEW_CURRENT == 3) {
-							EditTaskActivity.txtViewer.setTextColor(Color.parseColor(context.getString(R.color.actionbar_color)));
-							EditTaskActivity.txtViewer.setText(strUsersView);
 						}
 						
 					}
@@ -258,8 +269,6 @@ public class DialogChooseUser {
 							AssignTaskActivity.txtViewer.setText(context.getResources().getString(R.string.viewer));
 						}else if (DialogChooseHandler.VIEW_CURRENT == 2) {
 							ConvertDispatchActivity.txtViewer.setText(context.getResources().getString(R.string.viewer));
-						}else if (DialogChooseHandler.VIEW_CURRENT == 3) {
-							EditTaskActivity.txtViewer.setText(context.getResources().getString(R.string.viewer));
 						}
 						
 					}
@@ -277,7 +286,7 @@ public class DialogChooseUser {
 			}
 		});
 	}
-
+	
 	public HashMap<String, ArrayList<User>> getData(
 			ArrayList<Department> listDep, final ArrayList<User> users) {
 		listUser = new HashMap<String, ArrayList<User>>();
@@ -293,6 +302,7 @@ public class DialogChooseUser {
 			}
 			listUser.put(listDep.get(i).getDepartmentName(), data);
 		}
+		Log.d("Debug", "" + listUser.size() + "\n" + listUser.toString());
 		return listUser;
 	}
 	

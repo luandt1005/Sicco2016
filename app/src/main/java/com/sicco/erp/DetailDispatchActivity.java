@@ -22,6 +22,7 @@ import com.sicco.erp.model.ReportSteer;
 import com.sicco.erp.model.ReportSteer.OnLoadListener;
 import com.sicco.erp.model.User;
 import com.sicco.erp.util.DialogChooseUser;
+import com.sicco.erp.util.Utils;
 import com.sicco.erp.util.ViewDispatch;
 
 import android.app.Activity;
@@ -52,12 +53,6 @@ public class DetailDispatchActivity extends Activity {
 	private ReportSteerAdapter baoCaoAdapter;
 	private ArrayList<ReportSteer> arrBaoCao;
 	private Button retry;
-	
-	//
-	private Department department;
-	private ArrayList<User> listChecked;
-	private ArrayList<Department> listDep;
-	private ArrayList<User> allUser;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -73,11 +68,6 @@ public class DetailDispatchActivity extends Activity {
 	private void init() {
 		
 		dispatch.getData();
-
-		department = new Department();
-		listChecked = new ArrayList<User>();
-		listDep = new ArrayList<Department>();
-		allUser = new ArrayList<User>();
 		
 		// view
 		back = (ImageView) findViewById(R.id.back);
@@ -168,7 +158,7 @@ public class DetailDispatchActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				PopupMenu popupMenu = new PopupMenu(DetailDispatchActivity.this, action);
-				if (dispatch.da_xu_ly.contains(dispatch.getHandler()) 
+				if (!dispatch.da_xu_ly.contains(Utils.getString(DetailDispatchActivity.this, "name"))
 						&& isReceivedDispatch(dispatch.getId())) {
 					popupMenu.getMenuInflater().inflate(R.menu.menu_dispatch_without_detail, popupMenu.getMenu());
 				} else {
@@ -192,8 +182,7 @@ public class DetailDispatchActivity extends Activity {
 							finish();
 							break;
 						case R.id.btnChuyenTiepXuLy:
-							listDep = department.getData(getResources().getString(R.string.api_get_deparment));
-							new DialogChooseUser(DetailDispatchActivity.this, dispatch, listDep, allUser, listChecked);
+							new DialogChooseUser(DetailDispatchActivity.this, dispatch);
 							break;
 						case R.id.btnChuyenCVThanhCongViec:
 							intent = new Intent();

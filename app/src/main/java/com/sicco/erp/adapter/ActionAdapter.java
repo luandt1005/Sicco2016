@@ -9,12 +9,11 @@ import com.sicco.erp.DetailDispatchActivity;
 import com.sicco.erp.R;
 import com.sicco.erp.SteerReportActivity;
 import com.sicco.erp.database.NotificationDBController;
-import com.sicco.erp.model.Department;
 import com.sicco.erp.model.Dispatch;
 import com.sicco.erp.model.ReportSteer;
 import com.sicco.erp.model.Status;
-import com.sicco.erp.model.User;
 import com.sicco.erp.util.DialogChooseUser;
+import com.sicco.erp.util.Utils;
 
 import android.content.Context;
 import android.content.Intent;
@@ -129,7 +128,7 @@ public class ActionAdapter extends BaseAdapter {
 							holder.approval);
 
 					if(activity_type == 0
-							&& dispatch.da_xu_ly.contains(dispatch.getHandler())
+							&& !dispatch.da_xu_ly.contains(Utils.getString(context, "name"))
 							&& isReceivedDispatch(dispatch.getId())) {
 						popupMenu.getMenuInflater().inflate(R.menu.menu_task,
 								popupMenu.getMenu());
@@ -163,12 +162,7 @@ public class ActionAdapter extends BaseAdapter {
 									case R.id.btnChuyenTiepXuLy:
 										ActionAdapter.flag = "handle";
 
-										Department department = new Department();
-										ArrayList<User> listChecked = new ArrayList<User>();
-										ArrayList<Department> listDep = new ArrayList<Department>();
-										ArrayList<User> allUser = new ArrayList<User>();
-										listDep = department.getData(context.getResources().getString(R.string.api_get_deparment));
-										new DialogChooseUser(context, dispatch, listDep, allUser, listChecked);
+										new DialogChooseUser(context, dispatch);
 										break;
 									case R.id.btnChuyenCVThanhCongViec:
 										intent = new Intent();
