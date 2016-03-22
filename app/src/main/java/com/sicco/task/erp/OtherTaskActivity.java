@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -19,9 +20,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sicco.erp.R;
 import com.sicco.erp.adapter.SpinnerStatusAdapter;
@@ -29,7 +32,11 @@ import com.sicco.erp.model.Status;
 import com.sicco.erp.util.Keyboard;
 import com.sicco.erp.util.ViewDispatch;
 import com.sicco.task.adapter.TaskAdapter;
+import com.sicco.task.callback.OnSuccess;
 import com.sicco.task.model.Task;
+import com.sicco.task.ultil.DialogChangeStatusTask;
+import com.sicco.task.ultil.DialogConfirmDeleteTask;
+import com.sicco.task.ultil.DialogSetProcess;
 
 public class OtherTaskActivity extends Activity implements OnClickListener,
 		OnItemClickListener {
@@ -164,6 +171,103 @@ public class OtherTaskActivity extends Activity implements OnClickListener,
 					}
 				});
 		adapter = new TaskAdapter(context, arrTask, 3);
+		adapter.setOnActionClickLisstener(new TaskAdapter.OnActionClickLisstener() {
+			@Override
+			public void onClick(View view, final ArrayList<Status> listStatus, final ArrayList<Status> listProcess, int type, final Task task, final boolean isUpdateStatusAndRate) {
+				final Context context = OtherTaskActivity.this;
+				PopupMenu popupMenu = new PopupMenu(context, view);
+				if (type == 1) {
+					popupMenu.getMenuInflater().inflate(R.menu.assigned_task,
+							popupMenu.getMenu());
+				} else {
+					popupMenu.getMenuInflater()
+							.inflate(R.menu.assigned_task1,
+									popupMenu.getMenu());
+				}
+
+				popupMenu.show();
+				popupMenu
+						.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+
+							@Override
+							public boolean onMenuItemClick(MenuItem item) {
+								Intent intent = new Intent();
+								switch (item.getItemId()) {
+									case R.id.action_report:
+										intent.setClass(context,
+												SteerReportTaskActivity.class);
+										intent.putExtra("task", task);
+										context.startActivity(intent);
+										break;
+									case R.id.action_detail:
+										intent.setClass(context,
+												DetailTaskActivity.class);
+										intent.putExtra("task", task);
+										context.startActivity(intent);
+										break;
+									case R.id.action_edit:
+										intent = new Intent(context, EditTaskActivity.class);
+										intent.putExtra("TASK", task);
+										context.startActivity(intent);
+										break;
+									case R.id.action_delete:
+										new DialogConfirmDeleteTask(context, task);
+										break;
+									case R.id.action_change_status:
+										if (task.getTrang_thai().equals("complete")) {
+											Toast.makeText(context,
+													context.getResources().getString(R.string.not_update_status),
+													Toast.LENGTH_SHORT).show();
+										} else {
+											if (isUpdateStatusAndRate) {
+												DialogChangeStatusTask dialogChangeStatusTask = new DialogChangeStatusTask(context,
+														listStatus, task);
+												dialogChangeStatusTask.setOnSuccess(new OnSuccess() {
+													@Override
+													public void onSuccess() {
+														onResume();
+													}
+												});
+											} else {
+												Toast.makeText(
+														context,
+														context.getResources().getString(
+																R.string.info_update_status),
+														Toast.LENGTH_SHORT).show();
+											}
+										}
+										break;
+									case R.id.action_update_rate:
+										if (task.getTrang_thai().equals("complete")) {
+											Toast.makeText(context,
+													context.getResources().getString(R.string.not_update_rate),
+													Toast.LENGTH_SHORT).show();
+										} else {
+											if (isUpdateStatusAndRate) {
+												DialogSetProcess dialog = new DialogSetProcess(
+														context, listProcess, task);
+												dialog.setOnSuccess(new OnSuccess() {
+													@Override
+													public void onSuccess() {
+														onResume();
+													}
+												});
+												dialog.showDialog();
+											} else {
+												Toast.makeText(
+														context,
+														context.getResources().getString(R.string.info_update_rate),
+														Toast.LENGTH_SHORT).show();
+											}
+										}
+										break;
+
+								}
+								return false;
+							}
+						});
+			}
+		});
 		listTask.setAdapter(adapter);
 	}
 

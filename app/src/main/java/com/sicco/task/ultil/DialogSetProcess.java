@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.sicco.erp.R;
 import com.sicco.erp.adapter.StatusAdapter;
 import com.sicco.erp.model.Status;
+import com.sicco.task.callback.OnSuccess;
 import com.sicco.task.model.Task;
 import com.sicco.task.model.Task.OnLoadListener;
 
@@ -40,6 +41,11 @@ public class DialogSetProcess {
     private Status status;
 
     int type;
+
+    private OnSuccess onSuccess;
+    public void setOnSuccess(OnSuccess onSuccess){
+        this.onSuccess = onSuccess;
+    }
 
     public DialogSetProcess(Context context, ArrayList<Status> listStatus,
                             Task task) {
@@ -146,6 +152,9 @@ public class DialogSetProcess {
                                         if (status.getsKey().equals("100")) {
                                             task.setTrang_thai("complete");
                                         }
+
+                                        if(onSuccess != null)
+                                            onSuccess.onSuccess();
                                     }
 
                                     @Override

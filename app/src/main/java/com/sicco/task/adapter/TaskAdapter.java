@@ -171,86 +171,89 @@ public class TaskAdapter extends BaseAdapter {
 
             @Override
             public void onClick(View v) {
+                if(onActionClickLisstener!=null){
+                    onActionClickLisstener.onClick(v, listStatus, listProcess, type, task, isUpdateStatusAndRate(task.getNguoi_thuc_hien()));
+                }else {
+                    PopupMenu popupMenu = new PopupMenu(context, holder.action);
+                    if (type == 1) {
+                        popupMenu.getMenuInflater().inflate(R.menu.assigned_task,
+                                popupMenu.getMenu());
+                    } else {
+                        popupMenu.getMenuInflater()
+                                .inflate(R.menu.assigned_task1,
+                                        popupMenu.getMenu());
+                    }
 
-                PopupMenu popupMenu = new PopupMenu(context, holder.action);
-                if (type == 1) {
-                    popupMenu.getMenuInflater().inflate(R.menu.assigned_task,
-                            popupMenu.getMenu());
-                } else {
-                    popupMenu.getMenuInflater()
-                            .inflate(R.menu.assigned_task1,
-                                    popupMenu.getMenu());
-                }
+                    popupMenu.show();
+                    popupMenu
+                            .setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                popupMenu.show();
-                popupMenu
-                        .setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                Intent intent = new Intent();
-                                switch (item.getItemId()) {
-                                    case R.id.action_report:
-                                        intent.setClass(context,
-                                                SteerReportTaskActivity.class);
-                                        intent.putExtra("task", task);
-                                        context.startActivity(intent);
-                                        break;
-                                    case R.id.action_detail:
-                                        intent.setClass(context,
-                                                DetailTaskActivity.class);
-                                        intent.putExtra("task", task);
-                                        context.startActivity(intent);
-                                        break;
-                                    case R.id.action_edit:
-                                        intent = new Intent(context, EditTaskActivity.class);
-                                        intent.putExtra("TASK", task);
-                                        context.startActivity(intent);
-                                        break;
-                                    case R.id.action_delete:
-                                        new DialogConfirmDeleteTask(context, task);
-                                        break;
-                                    case R.id.action_change_status:
-                                        if (task.getTrang_thai().equals("complete")) {
-                                            Toast.makeText(context,
-                                                    context.getResources().getString(R.string.not_update_status),
-                                                    Toast.LENGTH_SHORT).show();
-                                        } else {
-                                            if (isUpdateStatusAndRate(task.getNguoi_thuc_hien())) {
-                                                new DialogChangeStatusTask(context,
-                                                        listStatus, task);
-                                            } else {
-                                                Toast.makeText(
-                                                        context,
-                                                        context.getResources().getString(
-                                                                R.string.info_update_status),
+                                @Override
+                                public boolean onMenuItemClick(MenuItem item) {
+                                    Intent intent = new Intent();
+                                    switch (item.getItemId()) {
+                                        case R.id.action_report:
+                                            intent.setClass(context,
+                                                    SteerReportTaskActivity.class);
+                                            intent.putExtra("task", task);
+                                            context.startActivity(intent);
+                                            break;
+                                        case R.id.action_detail:
+                                            intent.setClass(context,
+                                                    DetailTaskActivity.class);
+                                            intent.putExtra("task", task);
+                                            context.startActivity(intent);
+                                            break;
+                                        case R.id.action_edit:
+                                            intent = new Intent(context, EditTaskActivity.class);
+                                            intent.putExtra("TASK", task);
+                                            context.startActivity(intent);
+                                            break;
+                                        case R.id.action_delete:
+                                            new DialogConfirmDeleteTask(context, task);
+                                            break;
+                                        case R.id.action_change_status:
+                                            if (task.getTrang_thai().equals("complete")) {
+                                                Toast.makeText(context,
+                                                        context.getResources().getString(R.string.not_update_status),
                                                         Toast.LENGTH_SHORT).show();
-                                            }
-                                        }
-                                        break;
-                                    case  R.id.action_update_rate:
-                                        if (task.getTrang_thai().equals("complete")) {
-                                            Toast.makeText(context,
-                                                    context.getResources().getString(R.string.not_update_rate),
-                                                    Toast.LENGTH_SHORT).show();
-                                        } else {
-                                            if (isUpdateStatusAndRate(task.getNguoi_thuc_hien())) {
-                                                DialogSetProcess dialog = new DialogSetProcess(
-                                                        context, listProcess, task);
-                                                dialog.showDialog();
                                             } else {
-                                                Toast.makeText(
-                                                        context,
-                                                        context.getResources().getString(R.string.info_update_rate),
-                                                        Toast.LENGTH_SHORT).show();
+                                                if (isUpdateStatusAndRate(task.getNguoi_thuc_hien())) {
+                                                    new DialogChangeStatusTask(context,
+                                                            listStatus, task);
+                                                } else {
+                                                    Toast.makeText(
+                                                            context,
+                                                            context.getResources().getString(
+                                                                    R.string.info_update_status),
+                                                            Toast.LENGTH_SHORT).show();
+                                                }
                                             }
-                                        }
-                                        break;
+                                            break;
+                                        case R.id.action_update_rate:
+                                            if (task.getTrang_thai().equals("complete")) {
+                                                Toast.makeText(context,
+                                                        context.getResources().getString(R.string.not_update_rate),
+                                                        Toast.LENGTH_SHORT).show();
+                                            } else {
+                                                if (isUpdateStatusAndRate(task.getNguoi_thuc_hien())) {
+                                                    DialogSetProcess dialog = new DialogSetProcess(
+                                                            context, listProcess, task);
+                                                    dialog.showDialog();
+                                                } else {
+                                                    Toast.makeText(
+                                                            context,
+                                                            context.getResources().getString(R.string.info_update_rate),
+                                                            Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                            break;
 
+                                    }
+                                    return false;
                                 }
-                                return false;
-                            }
-                        });
+                            });
+                }
             }
         });
 
@@ -296,4 +299,12 @@ public class TaskAdapter extends BaseAdapter {
         return state;
     }
 
+    public interface OnActionClickLisstener{
+        void onClick(View view,ArrayList<Status> listStatus, ArrayList<Status> listProcess, int type, Task task, boolean isUpdateStatusAndRate);
+    }
+
+    private OnActionClickLisstener onActionClickLisstener;
+    public void setOnActionClickLisstener(OnActionClickLisstener onActionClickLisstener){
+        this.onActionClickLisstener = onActionClickLisstener;
+    }
 }

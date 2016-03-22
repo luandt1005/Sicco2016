@@ -26,6 +26,7 @@ import com.sicco.erp.R;
 import com.sicco.erp.adapter.StatusAdapter;
 import com.sicco.erp.database.NotificationDBController;
 import com.sicco.erp.model.Status;
+import com.sicco.task.callback.OnSuccess;
 import com.sicco.task.model.Task;
 
 public class DialogChangeStatusTask {
@@ -37,6 +38,10 @@ public class DialogChangeStatusTask {
     private ListView lvStatus;
     private Status status;
     private Task task;
+    private OnSuccess onSuccess;
+    public void setOnSuccess(OnSuccess onSuccess){
+        this.onSuccess = onSuccess;
+    }
 
     public DialogChangeStatusTask(Context context, ArrayList<Status> listStatus, Task task) {
         super();
@@ -145,7 +150,8 @@ public class DialogChangeStatusTask {
                                 if (status.getsKey().equals("complete")) {
                                     task.setTien_do("100");
                                 }
-
+                                if(onSuccess != null)
+                                    onSuccess.onSuccess();
                             }
 
                             @Override
