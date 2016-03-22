@@ -80,9 +80,9 @@ public class ReportSteerAdapter extends BaseAdapter {
                     R.color.item_color));
         }
 
-        String date = context.getResources().getString(R.string.time) + "  " + reportSteer.getDate();
-        String handler = context.getResources().getString(R.string.dang_boi) + " " + "<font><b>" + reportSteer.getHandler() + "</b></font>";
-        String contentReport =  context.getResources().getString(R.string.noi_dung) + "  " + reportSteer.getContent();
+        String date = "<font><b>" + context.getResources().getString(R.string.time) + "</b></font>" + "  " + reportSteer.getDate();
+        String handler = "<font><b>" + context.getResources().getString(R.string.dang_boi) + "</b></font>" + " " + "<font><b>" + reportSteer.getHandler() + "</b></font>";
+        String contentReport =  "<font><b>" + context.getResources().getString(R.string.noi_dung) + "</b></font>" + "  " + reportSteer.getContent();
         viewHolder.handler.setText(Html.fromHtml(handler));
         viewHolder.date.setText(Html.fromHtml(date));
         viewHolder.contentReport.setText(Html.fromHtml(contentReport));

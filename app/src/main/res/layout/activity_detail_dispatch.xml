@@ -34,7 +34,7 @@
                 android:lines="1"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:text="unknown"
+                android:text="@string/chi_tiet_cong_van"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
@@ -123,7 +123,7 @@
                 android:background="@color/white"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="Loại Công Văn:"
+                android:text="Loại công văn:"
                 android:textColor="@android:color/black"
                 android:textSize="15sp" />
             

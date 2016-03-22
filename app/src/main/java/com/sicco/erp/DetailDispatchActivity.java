@@ -105,7 +105,7 @@ public class DetailDispatchActivity extends Activity {
 			}
 		});
 		//
-		title.setText(dispatch.getNumberDispatch());
+		//title.setText(dispatch.getNumberDispatch());
 		// shCongVan.setText(Html.fromHtml("<font><b><u><i>" +
 		// getResources().getString(R.string.sh_cong_van) +
 		// "</i></u></b></font>" + " " + dispatch.getNumberDispatch()));
@@ -127,12 +127,12 @@ public class DetailDispatchActivity extends Activity {
 
 		if (dispatch.getContent().equals("")) {
 			file_attach_text
-					.setText(Html.fromHtml("<font><b><u><i>" + getResources().getString(R.string.task_attach_file)
-							+ "</i></u></b></font>" + " " + getResources().getString(R.string.no_attach)));
+					.setText(Html.fromHtml("<font><b>" + getResources().getString(R.string.task_attach_file)
+							+ "</b></font>" + " " + getResources().getString(R.string.no_attach)));
 		} else {
 			File file = new File(dispatch.getContent());
 			file_attach_text.setText(Html.fromHtml(
-					"<font><b><i>" + getResources().getString(R.string.task_attach_file) + "</i></b></font>"
+					"<font><b>" + getResources().getString(R.string.task_attach_file) + "</b></font>"
 							+ " " + "<font color = '#358cd1'><u><i>" + file.getName() + "</i></u></font>"));
 		}
 		LinearLayout file_attach = (LinearLayout) findViewById(R.id.file_attach);

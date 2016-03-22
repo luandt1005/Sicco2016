@@ -85,17 +85,17 @@ public class ReportSteerTaskAdapter extends BaseAdapter {
 					R.color.white));
 		}
 		
-		String handler = context.getResources().getString(R.string.dang_boi) + "<font><b>"
+		String handler = "<font><b>" + context.getResources().getString(R.string.dang_boi) + "</b></font>" + "<font><b>"
 				+ reportSteer.getHandler()
 				+ "</b></font>";
-		String date = context.getResources().getString(R.string.time) + " " + reportSteer.getDate();
-		String contentReport = context.getResources().getString(R.string.noi_dung) + " " + reportSteer.getContent();
+		String date = "<font><b>" + context.getResources().getString(R.string.time) + "</b></font>" + " " + reportSteer.getDate();
+		String contentReport = "<font><b>" + context.getResources().getString(R.string.noi_dung) + "</b></font>" + " " + reportSteer.getContent();
 		String attachments;
 		if (!reportSteer.getFile().equals("")) {
 			File file = new File(reportSteer.getFile());
-			attachments = context.getResources().getString(R.string.attach) + "  " + "<font color = '#358cd1'><u><i>" + file.getName() + "</i></u></font>";
+			attachments = "<font><b>" + context.getResources().getString(R.string.attach) + "</b></font>" + "  " + "<font color = '#358cd1'><u><i>" + file.getName() + "</i></u></font>";
 		} else {
-			attachments = context.getResources().getString(R.string.attach) + "  "
+			attachments = "<font><b>" + context.getResources().getString(R.string.attach) + "</b></font>" + "  "
 					+ context.getResources().getString(R.string.no_attach);
 		}
 
