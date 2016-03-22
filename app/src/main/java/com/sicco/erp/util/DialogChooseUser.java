@@ -96,12 +96,9 @@ public class DialogChooseUser {
 		
 		department = new Department();
 		listChecked = new ArrayList<User>();
-		listDep = new ArrayList<Department>();
 		allUser = new ArrayList<User>();
-		listDep = department.getData(context.getResources().getString(R.string.api_get_deparment));
 		user = new User();
 		
-		listUser = getData(listDep, allUser);
 		showDialog();
 	}
 
@@ -307,6 +304,7 @@ public class DialogChooseUser {
 	}
 	
 	public void getData(){
+		listDep = new ArrayList<Department>();
 		listDep = department.getData(
 				context.getResources().getString(R.string.api_get_deparment),
 				new OnLoadListener() {
