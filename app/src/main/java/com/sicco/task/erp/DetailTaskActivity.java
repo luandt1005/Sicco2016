@@ -399,7 +399,9 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
                                 @Override
                                 public void onSuccess() {
                                     progressDialog.dismiss();
-                                    finish();
+                                    //finish();
+                                    btnReceiveTask.setVisibility(View.GONE);
+                                    task.setTien_do("10");
                                     Toast.makeText(context, getResources().getString(R.string.received_task_success), Toast.LENGTH_SHORT).show();
                                 }
 

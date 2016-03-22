@@ -77,7 +77,7 @@ public class DialogSetProcess {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 status = (Status) parent.getAdapter().getItem(position);
-
+                btnDone.setVisibility(View.VISIBLE);
             }
         });
 
