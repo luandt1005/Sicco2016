@@ -191,7 +191,18 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
             process.setVisibility(View.GONE);
         }
 
-        if (taskType == 2 && task.getDaxuly().equals("0")) {
+        //check view nhan cong viec
+        boolean checkIsXuly = false;
+        final String userName = Utils.getString(DetailTaskActivity.this, "name");
+        String[] nguoixuly = task.getNguoi_thuc_hien().split(",");
+        for (int i = 0; i < nguoixuly.length; i++){
+            if(nguoixuly[i].equals(userName)){
+                checkIsXuly = true;
+                break;
+            }
+        }
+
+        if (taskType == 2 && checkIsXuly && task.getDaxuly().equals("0")) {
             btnReceiveTask.setVisibility(View.VISIBLE);
             btnReceiveTask.setOnClickListener(this);
         }
@@ -399,7 +410,7 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
                                 @Override
                                 public void onSuccess() {
                                     progressDialog.dismiss();
-                                    //finish();
+                                    finish();
                                     btnReceiveTask.setVisibility(View.GONE);
                                     task.setTien_do("10");
                                     Toast.makeText(context, getResources().getString(R.string.received_task_success), Toast.LENGTH_SHORT).show();

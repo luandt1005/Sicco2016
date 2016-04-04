@@ -435,6 +435,7 @@ public class Task implements Serializable {
 								da_qua_han = true;
 							String muc_uu_tien = row.getString("muc_uu_tien");
 							String ngay_httt = row.getString("ngay_httt");
+							String daxuly = row.getString("daxuly");
 
 							dinh_kem = dinh_kem.replace(" ", "%20");
 
@@ -458,6 +459,7 @@ public class Task implements Serializable {
 							task.setDa_qua_han(da_qua_han);
 							task.setMuc_uu_tien(muc_uu_tien);
 							task.setNgay_httt(ngay_httt);
+							task.setDaxuly(daxuly);
 							
 						}
 					} catch (JSONException e) {
