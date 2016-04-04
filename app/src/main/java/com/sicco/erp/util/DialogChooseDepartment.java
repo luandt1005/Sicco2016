@@ -86,6 +86,7 @@ public class DialogChooseDepartment {
 					long arg3) {
 				clickItem = true;
 				department = (Department) arg0.getAdapter().getItem(arg2);
+				btnDone.setVisibility(View.VISIBLE);
 			}
 		});
 
