@@ -41,17 +41,22 @@ public class ActionAdapter extends BaseAdapter {
 	private NotificationDBController db;
 	int type, activity_type = 0;
 
+	private ActionAdapter adapter;
+
 	public ActionAdapter(Context context, ArrayList<Dispatch> data, int type) {
 		this.context = context;
 		this.data = data;
 		this.type = type;
+		adapter = this;
 	}
 
 	public ActionAdapter(Context context, ArrayList<Dispatch> data, int type, int activity_type) {
 		this.context = context;
 		this.data = data;
 		this.type = type;
-		this.activity_type = activity_type; // 0 show receiver_congvan, 1 disable
+		adapter = this;
+		this.activity_type = activity_type; // 0 show receiver_congvan, 1
+		// disable
 	}
 
 	public void setData(ArrayList<Dispatch> data) {
@@ -249,6 +254,10 @@ public class ActionAdapter extends BaseAdapter {
 	private void receiveDispatch(Dispatch dispatch){
 		ReportSteer reportSteer = new ReportSteer(context);
 		reportSteer.sendReportSteer(dispatch);
+		if (activity_type == 1) {
+			data.remove(dispatch);
+			adapter.notifyDataSetChanged();
+		}
 	}
 
 }
