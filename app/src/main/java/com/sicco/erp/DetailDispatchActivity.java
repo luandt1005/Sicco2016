@@ -177,8 +177,11 @@ public class DetailDispatchActivity extends Activity {
 				}
 				if (checkIsXuly && !checkDaXuly) {
 					popupMenu.getMenuInflater().inflate(R.menu.menu_dispatch_without_detail, popupMenu.getMenu());
-				} else {
+				} else if(checkIsXuly) {
 					popupMenu.getMenuInflater().inflate(R.menu.menu_dispatch_without_receiver_cv_detail,
+							popupMenu.getMenu());
+				} else {
+					popupMenu.getMenuInflater().inflate(R.menu.menu_report_dispatch,
 							popupMenu.getMenu());
 				}
 				popupMenu.show();

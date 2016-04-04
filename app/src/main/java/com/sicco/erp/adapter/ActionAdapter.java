@@ -145,8 +145,10 @@ public class ActionAdapter extends BaseAdapter {
 					}
 					if(activity_type == 1 && checkIsXuly && !checkDaXuly) {
 						popupMenu.getMenuInflater().inflate(R.menu.menu_task, popupMenu.getMenu());
-					} else{
+					} else if(checkIsXuly){
 						popupMenu.getMenuInflater().inflate(R.menu.menu_dispatch_without_receiver_cv, popupMenu.getMenu());
+					} else {
+						popupMenu.getMenuInflater().inflate(R.menu.menu_report_detail_dispatch, popupMenu.getMenu());
 					}
 					popupMenu.show();
 					popupMenu

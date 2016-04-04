@@ -5,11 +5,5 @@
     <item
         android:id="@+id/action_steer"
         android:title="@string/steer_report"/>
-    <item
-        android:id="@+id/btnChuyenTiepXuLy"
-        android:title="@string/handle"/>
-    <item
-        android:id="@+id/btnChuyenCVThanhCongViec"
-        android:title="@string/job_transfer"/>
 
 </menu>
