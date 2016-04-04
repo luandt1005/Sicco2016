@@ -135,13 +135,13 @@ public class TaskAdapter extends BaseAdapter {
             	colorAction = "#aa0000";
             }
             if (!task.isCo_binh_luan() && task.getMuc_uu_tien().equals("2")) {
-            	colorAction = "#ff0000";
+            	colorAction = "#E20ED2";
             }
             if (task.isCo_binh_luan()) {
             	colorAction = "#5E7AF8";
             }
             if (task.isDa_qua_han() && task.isCo_binh_luan()) {
-            	colorAction = "#DF06D2";
+            	colorAction = "#5C085D";
             }
             if (task.getTrang_thai().equals("complete")) {
                 colorAction = "#01C853";
@@ -160,13 +160,13 @@ public class TaskAdapter extends BaseAdapter {
                 colorAction = "#aa0000";
             }
             if (!task.isCo_binh_luan() && task.getMuc_uu_tien().equals("2")) {
-                colorAction = "#ff0000";
+                colorAction = "#E20ED2";
             }
             if (task.isCo_binh_luan()) {
                 colorAction = "#5E7AF8";
             }
             if (task.isDa_qua_han() && task.isCo_binh_luan()) {
-                colorAction = "#DF06D2";
+                colorAction = "#5C085D";
             }
             if (task.getDaxuly().equals("0")) {
                 colorAction = "#aa0000";
