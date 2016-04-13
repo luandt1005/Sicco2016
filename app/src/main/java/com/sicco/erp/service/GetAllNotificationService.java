@@ -122,7 +122,9 @@ public class GetAllNotificationService extends Service {
 
 		RequestParams params = new RequestParams();
 		String username = Utils.getString(getApplicationContext(), SessionManager.KEY_NAME);
+		String userId = Utils.getString(getApplicationContext(), SessionManager.KEY_USER_ID);
 		params.add("username", username);
+		params.add("userId", userId);
 
 		handler.post(getApplicationContext(), url_get_notification, params, new JsonHttpResponseHandler() {
 			@Override
@@ -176,7 +178,9 @@ public class GetAllNotificationService extends Service {
 
 		RequestParams params = new RequestParams();
 		String username = Utils.getString(getApplicationContext(), SessionManager.KEY_NAME);
+		String userId = Utils.getString(getApplicationContext(), SessionManager.KEY_USER_ID);
 		params.add("username", username);
+		params.add("userId", userId);
 
 		handler.post(getApplicationContext(), url_get_notification, params, new JsonHttpResponseHandler() {
 			@Override

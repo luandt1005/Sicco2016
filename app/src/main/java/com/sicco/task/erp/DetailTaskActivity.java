@@ -202,7 +202,7 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
             }
         }
 
-        if (taskType == 2 && checkIsXuly && task.getDaxuly().equals("0")) {
+        if (taskType == 2 && checkIsXuly && task.getIsXuLy().equals("0")) {
             btnReceiveTask.setVisibility(View.VISIBLE);
             btnReceiveTask.setOnClickListener(this);
         }

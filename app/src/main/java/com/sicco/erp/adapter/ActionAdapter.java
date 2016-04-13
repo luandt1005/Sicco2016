@@ -132,23 +132,23 @@ public class ActionAdapter extends BaseAdapter {
 					PopupMenu popupMenu = new PopupMenu(context,
 							holder.approval);
 					boolean checkIsXuly = false;
-					boolean checkDaXuly = false;
+//					boolean checkDaXuly = false;
 					final String userName = Utils.getString(context, "name");
 					String[] nguoixuly = dispatch.getHandler().split(",");
-					String[] daxuly = dispatch.getDa_xu_ly().split(",");
+//					String[] daxuly = dispatch.getDa_xu_ly().split(",");
 					for (int i = 0; i < nguoixuly.length; i++){
 						if(nguoixuly[i].equals(userName)){
 							checkIsXuly = true;
 							break;
 						}
 					}
-					for (int i = 0; i < daxuly.length; i++){
-						if(daxuly[i].equals(userName)){
-							checkDaXuly = true;
-							break;
-						}
-					}
-					if(activity_type == 1 && checkIsXuly && !checkDaXuly) {
+//					for (int i = 0; i < daxuly.length; i++){
+//						if(daxuly[i].equals(userName)){
+//							checkDaXuly = true;
+//							break;
+//						}
+//					}
+					if(activity_type == 1 && checkIsXuly && dispatch.getIsXuLy().equals("0")) {
 						popupMenu.getMenuInflater().inflate(R.menu.menu_task, popupMenu.getMenu());
 					} else if(checkIsXuly){
 						popupMenu.getMenuInflater().inflate(R.menu.menu_dispatch_without_receiver_cv, popupMenu.getMenu());

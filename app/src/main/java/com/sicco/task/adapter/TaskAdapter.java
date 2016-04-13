@@ -131,16 +131,16 @@ public class TaskAdapter extends BaseAdapter {
         String colorAction = context.getResources().getString(R.color.actionbar_color);
         //mh danh sach viec
         if (type == 3) {
-            if (task.getDaxuly().equals("0") && task.getMuc_uu_tien().equals("2")) {
+            if (task.getIsXuLy().equals("0") && task.getMuc_uu_tien().equals("2")) {
                 colorAction = "#E20ED2";
             }
-            if (task.getDaxuly().equals("1")) {
+            if (!task.getIsXuLy().equals("0")) {
                 colorAction = "#5E7AF8";
             }
-            if (task.isDa_qua_han() && task.getDaxuly().equals("1")) {
+            if (task.isDa_qua_han() && !task.getIsXuLy().equals("0")) {
                 colorAction = "#5C085D";
             }
-            if (task.getDaxuly().equals("0")) {
+            if (task.getIsXuLy().equals("0")) {
                 colorAction = "#aa0000";
             }
 
@@ -157,16 +157,16 @@ public class TaskAdapter extends BaseAdapter {
 
         //mh duoc giao
         if (type == 2) {
-            if (task.getDaxuly().equals("0") && task.getMuc_uu_tien().equals("2")) {
+            if (task.getIsXuLy().equals("0") && task.getMuc_uu_tien().equals("2")) {
                 colorAction = "#E20ED2";
             }
-            if (task.getDaxuly().equals("1")) {
+            if (!task.getIsXuLy().equals("0")) {
                 colorAction = "#5E7AF8";
             }
-            if (task.isDa_qua_han() && task.getDaxuly().equals("1")) {
+            if (task.isDa_qua_han() && !task.getIsXuLy().equals("0")) {
                 colorAction = "#5C085D";
             }
-            if (task.getDaxuly().equals("0")) {
+            if (task.getIsXuLy().equals("0")) {
                 colorAction = "#aa0000";
             } else {
                 colorAction = colorAction;

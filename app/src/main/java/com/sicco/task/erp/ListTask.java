@@ -150,6 +150,7 @@ public class ListTask extends Activity implements OnClickListener,
 										intent.setClass(context,
 												DetailTaskActivity.class);
 										intent.putExtra("task", task);
+										intent.putExtra("TASK_TYPE", 2);
 										context.startActivity(intent);
 										break;
 									case R.id.action_edit:

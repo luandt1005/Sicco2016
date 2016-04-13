@@ -43,6 +43,7 @@ public class Task implements Serializable {
 	private String muc_uu_tien;
 	private String ngay_httt;
 	private String daxuly;
+	private String isXuLy;
 	private Context context;
 
 	private ArrayList<Task> data;
@@ -102,7 +103,7 @@ public class Task implements Serializable {
 			String dinh_kem, String phong_ban, String mo_ta, String code,
 			String id_du_an, String id_phong_ban, String trang_thai,
 			boolean co_binh_luan, boolean da_qua_han, String muc_uu_tien,
-			String ngay_httt, String daxuly) {
+			String ngay_httt, String daxuly, String isXuLy) {
 		super();
 		this.id = id;
 		this.ten_cong_viec = ten_cong_viec;
@@ -125,6 +126,7 @@ public class Task implements Serializable {
 		this.muc_uu_tien = muc_uu_tien;
 		this.ngay_httt = ngay_httt;
 		this.daxuly = daxuly;
+		this.isXuLy = isXuLy;
 	}
 
 	public long getId() {
@@ -303,6 +305,14 @@ public class Task implements Serializable {
 		this.daxuly = daxuly;
 	}
 
+	public String getIsXuLy() {
+		return isXuLy;
+	}
+
+	public void setIsXuLy(String isXuLy) {
+		this.isXuLy = isXuLy;
+	}
+
 	// get data
 	public ArrayList<Task> getData(final Context context, String url,
 			OnLoadListener OnLoadListener) {
@@ -355,6 +365,7 @@ public class Task implements Serializable {
 							String muc_uu_tien = row.getString("muc_uu_tien");
 							String ngay_httt = Utils.convertDate1(row.getString("ngay_httt"));
 							String daxuly = row.getString("daxuly");
+							String isXuLy = row.getString("isXuLy");
 
 							dinh_kem = dinh_kem.replace(" ", "%20");
 
@@ -364,7 +375,7 @@ public class Task implements Serializable {
 									ngay_ket_thuc, nguoi_giao, dinh_kem,
 									phong_ban, mo_ta, code, id_du_an,
 									id_phong_ban, trang_thai, co_binh_luan,
-									da_qua_han, muc_uu_tien, ngay_httt, daxuly));
+									da_qua_han, muc_uu_tien, ngay_httt, daxuly, isXuLy));
 						}
 					} catch (JSONException e) {
 						e.printStackTrace();
@@ -392,6 +403,7 @@ public class Task implements Serializable {
 		AsyncHttpClient client = new AsyncHttpClient();
 		RequestParams params = new RequestParams();
 		params.add("task_id", id);
+		params.add("user_id", Utils.getString(context, "user_id"));
 
 		Log.d("LuanDT", "params: " + params);
 		client.post(url, params, new JsonHttpResponseHandler() {
@@ -436,6 +448,7 @@ public class Task implements Serializable {
 							String muc_uu_tien = row.getString("muc_uu_tien");
 							String ngay_httt = row.getString("ngay_httt");
 							String daxuly = row.getString("daxuly");
+							String isXuLy = row.getString("isXuLy");
 
 							dinh_kem = dinh_kem.replace(" ", "%20");
 
@@ -460,7 +473,7 @@ public class Task implements Serializable {
 							task.setMuc_uu_tien(muc_uu_tien);
 							task.setNgay_httt(ngay_httt);
 							task.setDaxuly(daxuly);
-							
+							task.setIsXuLy(isXuLy);
 						}
 					} catch (JSONException e) {
 						e.printStackTrace();
@@ -488,6 +501,7 @@ public class Task implements Serializable {
 			AsyncHttpClient client = new AsyncHttpClient();
 			RequestParams params = new RequestParams();
 			params.add("task_id", id);
+			params.add("user_id", Utils.getString(context, "user_id"));
 
 			Log.d("LuanDT", "params: " + params);
 			client.post(url, params, new JsonHttpResponseHandler() {
@@ -531,6 +545,8 @@ public class Task implements Serializable {
 									da_qua_han = true;
 								String muc_uu_tien = row.getString("muc_uu_tien");
 								String ngay_httt = row.getString("ngay_httt");
+								String daxuly = row.getString("daxuly");
+								String isXuLy = row.getString("isXuLy");
 
 								dinh_kem = dinh_kem.replace(" ", "%20");
 
@@ -554,6 +570,8 @@ public class Task implements Serializable {
 								task.setDa_qua_han(da_qua_han);
 								task.setMuc_uu_tien(muc_uu_tien);
 								task.setNgay_httt(ngay_httt);
+								task.setDaxuly(daxuly);
+								task.setIsXuLy(isXuLy);
 								
 							}
 						} catch (JSONException e) {
