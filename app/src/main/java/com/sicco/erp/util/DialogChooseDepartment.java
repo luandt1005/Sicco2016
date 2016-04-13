@@ -30,6 +30,7 @@ import com.sicco.task.erp.EditTaskActivity;
 
 public class DialogChooseDepartment {
 
+	public static int VIEW_CURRENT = 0;
 	private Context context;
 	private ArrayList<Department> listDep;
 	private DepartmentAdapter adapter;
@@ -110,14 +111,14 @@ public class DialogChooseDepartment {
 			@Override
 			public void onClick(View arg0) {
 				if (clickItem) {
-					if (DialogChooseHandler.VIEW_CURRENT == 1) {
+					if (VIEW_CURRENT == 1) {
 						AssignTaskActivity.txtDepartment.setTextColor(Color.parseColor(context.getString(R.color.actionbar_color)));
 						AssignTaskActivity.txtDepartment.setText(department.getDepartmentName());
-					}else if (DialogChooseHandler.VIEW_CURRENT == 2) {
+					}else if (VIEW_CURRENT == 2) {
 						ConvertDispatchActivity.txtDepartment.setTextColor(Color.parseColor(context.getString(R.color.actionbar_color)));
 						ConvertDispatchActivity.txtDepartment.setText(department
 							.getDepartmentName());
-					}else if (DialogChooseHandler.VIEW_CURRENT == 3) {
+					}else if (VIEW_CURRENT == 3) {
 						EditTaskActivity.txtDepartment.setTextColor(Color.parseColor(context.getString(R.color.actionbar_color)));
 						EditTaskActivity.txtDepartment.setText(department
 								.getDepartmentName());

@@ -121,6 +121,7 @@ public class EditTaskActivity extends ChooseFileActivity implements
 
         DialogChooseHandler.VIEW_CURRENT = 3;
         DialogChooseProject.VIEW_CURRENT = 3;
+        DialogChooseDepartment.VIEW_CURRENT = 3;
 
         init();
     }
@@ -288,7 +289,8 @@ public class EditTaskActivity extends ChooseFileActivity implements
         txtDepartment.setText(taskIntent.getPhong_ban());
         txtProject.setText(taskIntent.getDu_an());
         spnPriority.setSelection(Integer.parseInt(taskIntent.getMuc_uu_tien()));
-        DialogChooseDepartment.idDepSelected = Long.parseLong(taskIntent.getId_du_an());
+        DialogChooseDepartment.idDepSelected = Long.parseLong(taskIntent.getId_phong_ban());
+        DialogChooseProject.idProjectSelected = Long.parseLong(taskIntent.getId_du_an());
         keyPriority = taskIntent.getMuc_uu_tien();
         Log.d("TuNT", "task id: " + taskIntent.getId());
     }
