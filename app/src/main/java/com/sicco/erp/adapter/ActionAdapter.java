@@ -109,9 +109,9 @@ public class ActionAdapter extends BaseAdapter {
 		holder.date.setText(Html.fromHtml(d));
 		
 		String colorAction = context.getResources().getString(R.color.actionbar_color);
-		if (type == 1 && dispatch.getStatus().equals("2")) {
-			colorAction = context.getResources().getString(R.color.red);
-		}
+		//if (type == 1 && dispatch.getStatus().equals("2")) {
+		//	colorAction = context.getResources().getString(R.color.red);
+		//}
 		
 		GradientDrawable drawable = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{0, 0});
         drawable.setColor(Color.parseColor(colorAction));
