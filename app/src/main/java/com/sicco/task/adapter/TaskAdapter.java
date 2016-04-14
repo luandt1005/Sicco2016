@@ -109,17 +109,17 @@ public class TaskAdapter extends BaseAdapter {
             holder = (ViewHolder) view.getTag();
         }
 
-        if (type == 2) {
-            long id = task.getId();
-            String state = querryFromDB(context, id);
-            if (state
-                    .equalsIgnoreCase(NotificationDBController.NOTIFICATION_STATE_NEW)) {
-                view.setBackgroundColor(context.getResources().getColor(
-                        R.color.item_color));
-            } else {
-                view.setBackgroundColor(Color.WHITE);
-            }
-        }
+//        if (type == 2) {
+//            long id = task.getId();
+//            String state = querryFromDB(context, id);
+//            if (state
+//                    .equalsIgnoreCase(NotificationDBController.NOTIFICATION_STATE_NEW)) {
+//                view.setBackgroundColor(context.getResources().getColor(
+//                        R.color.item_color));
+//            } else {
+//                view.setBackgroundColor(Color.WHITE);
+//            }
+//        }
 
 //        String date_handle = "<font weigth='bold'><b>" + context.getResources().getString(R.string.ngaygiao)
 //                + "</b></font>" + ":  " + task.getNgay_bat_dau();
@@ -128,21 +128,31 @@ public class TaskAdapter extends BaseAdapter {
         //holder.date_handle.setText(Html.fromHtml(date_handle));
         holder.date_handle.setText("" + task.getNgay_bat_dau());
 
+        boolean checkIsNguoiXem = false;
+        final String userName = Utils.getString(context, "name");
+        String[] nguoixem = task.getNguoi_xem().split(",");
+        for (int i = 0; i < nguoixem.length; i++) {
+            if (nguoixem[i].equals(userName)) {
+                checkIsNguoiXem = true;
+                break;
+            }
+        }
+
         String colorAction = context.getResources().getString(R.color.actionbar_color);
         //mh danh sach viec
         if (type == 3) {
-            if (task.getIsXuLy().equals("0") && task.getMuc_uu_tien().equals("2")) {
-                colorAction = "#E20ED2";
-            }
-            if (!task.getIsXuLy().equals("0")) {
-                colorAction = "#5E7AF8";
-            }
-            if (task.isDa_qua_han() && !task.getIsXuLy().equals("0")) {
-                colorAction = "#5C085D";
-            }
-            if (task.getIsXuLy().equals("0")) {
-                colorAction = "#aa0000";
-            }
+//            if (task.getIsXuLy().equals("0") && task.getMuc_uu_tien().equals("2")) {
+//                colorAction = "#E20ED2";
+//            }
+//            if (!task.getIsXuLy().equals("0")) {
+//                colorAction = "#5E7AF8";
+//            }
+//            if (task.isDa_qua_han() && !task.getIsXuLy().equals("0")) {
+//                colorAction = "#5C085D";
+//            }
+//            if (task.getIsXuLy().equals("0")) {
+//                colorAction = "#aa0000";
+//            }
 
             if (task.getTrang_thai().equals("complete")) {
                 colorAction = "#01C853";
@@ -168,6 +178,10 @@ public class TaskAdapter extends BaseAdapter {
             }
             if (task.getIsXuLy().equals("0")) {
                 colorAction = "#aa0000";
+            }
+
+            if (!task.getIsXuLy().equals("0") || (task.isCo_binh_luan() && checkIsNguoiXem)) {
+                colorAction = "#5E7AF8";
             } else {
                 colorAction = colorAction;
             }
@@ -181,9 +195,9 @@ public class TaskAdapter extends BaseAdapter {
 
             @Override
             public void onClick(View v) {
-                if(onActionClickLisstener!=null){
+                if (onActionClickLisstener != null) {
                     onActionClickLisstener.onClick(v, listStatus, listProcess, type, task, isUpdateStatusAndRate(task.getNguoi_thuc_hien()));
-                }else {
+                } else {
                     PopupMenu popupMenu = new PopupMenu(context, holder.action);
                     if (type == 1) {
                         popupMenu.getMenuInflater().inflate(R.menu.assigned_task,
@@ -309,12 +323,13 @@ public class TaskAdapter extends BaseAdapter {
         return state;
     }
 
-    public interface OnActionClickLisstener{
-        void onClick(View view,ArrayList<Status> listStatus, ArrayList<Status> listProcess, int type, Task task, boolean isUpdateStatusAndRate);
+    public interface OnActionClickLisstener {
+        void onClick(View view, ArrayList<Status> listStatus, ArrayList<Status> listProcess, int type, Task task, boolean isUpdateStatusAndRate);
     }
 
     private OnActionClickLisstener onActionClickLisstener;
-    public void setOnActionClickLisstener(OnActionClickLisstener onActionClickLisstener){
+
+    public void setOnActionClickLisstener(OnActionClickLisstener onActionClickLisstener) {
         this.onActionClickLisstener = onActionClickLisstener;
     }
 }

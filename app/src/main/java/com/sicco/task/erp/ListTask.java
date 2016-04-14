@@ -336,19 +336,19 @@ public class ListTask extends Activity implements OnClickListener,
 		intent.putExtra("TASK_TYPE", 2);
 		startActivity(intent);
 
-		String state = querryFromDB(getApplicationContext(), arg2);
-		if (state
-				.equalsIgnoreCase(NotificationDBController.NOTIFICATION_STATE_NEW)) {
-			int count = querryFromDB(getApplicationContext());
-			setCount(count);
-		}
-		// startGetAllNotificationService();
-		db.checkedTask(arrTask.get(arg2), arrTask.get(arg2).getId());
-		adapter = new TaskAdapter(ListTask.this, arrTask, 2);
-		listTask.setAdapter(adapter);
-		listTask.setSelection(arg2);
-		CongViec(Utils.getString(getApplicationContext(),
-				SessionManager.KEY_NAME));
+//		String state = querryFromDB(getApplicationContext(), arg2);
+//		if (state
+//				.equalsIgnoreCase(NotificationDBController.NOTIFICATION_STATE_NEW)) {
+//			int count = querryFromDB(getApplicationContext());
+//			setCount(count);
+//		}
+//		// startGetAllNotificationService();
+//		db.checkedTask(arrTask.get(arg2), arrTask.get(arg2).getId());
+//		adapter = new TaskAdapter(ListTask.this, arrTask, 2);
+//		listTask.setAdapter(adapter);
+//		listTask.setSelection(arg2);
+//		CongViec(Utils.getString(getApplicationContext(),
+//				SessionManager.KEY_NAME));
 	}
 
 	@Override

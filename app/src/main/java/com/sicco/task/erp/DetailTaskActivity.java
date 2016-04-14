@@ -32,6 +32,8 @@ import android.widget.Toast;
 
 import com.sicco.erp.R;
 import com.sicco.erp.model.Status;
+import com.sicco.erp.service.GetAllNotificationService;
+import com.sicco.erp.util.BadgeUtils;
 import com.sicco.erp.util.Utils;
 import com.sicco.erp.util.ViewDispatch;
 import com.sicco.task.adapter.ReportSteerTaskAdapter;
@@ -414,6 +416,8 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
                                     btnReceiveTask.setVisibility(View.GONE);
                                     task.setTien_do("10");
                                     Toast.makeText(context, getResources().getString(R.string.received_task_success), Toast.LENGTH_SHORT).show();
+                                    //cập nhật số cv chưa xử lý
+                                    saveCVInt();
                                 }
 
                                 @Override
@@ -435,6 +439,33 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
                 });
                 break;
         }
+    }
+
+    private void saveCVInt() {
+        int cv_total = Utils.getInt(getApplicationContext(),
+                GetAllNotificationService.CV_KEY, 0);
+        if(cv_total > 0) {
+            Utils.saveInt(getApplicationContext(),
+                    GetAllNotificationService.CV_KEY, cv_total - 1);
+        } else {
+            Utils.saveInt(getApplicationContext(),
+                    GetAllNotificationService.CV_KEY, 0);
+        }
+        getTotalNotification();
+    }
+
+    private void getTotalNotification() {
+        int cvcp_total = Utils.getInt(getApplicationContext(),
+                GetAllNotificationService.CVCP_KEY, 0);
+        int cvxl_total = Utils.getInt(getApplicationContext(),
+                GetAllNotificationService.CVXL_KEY, 0);
+        int cv_total = Utils.getInt(getApplicationContext(),
+                GetAllNotificationService.CV_KEY, 0);
+        int total = cvcp_total + cvxl_total + cv_total;
+        Utils.saveInt(getApplicationContext(),
+                GetAllNotificationService.TOTAL_KEY, total);
+        BadgeUtils.setBadge(getApplicationContext(), total);
+
     }
 
     private boolean isUpdateStatusAndRate(String stNguoiThucHien) {
