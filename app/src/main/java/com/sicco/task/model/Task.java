@@ -847,19 +847,37 @@ public class Task implements Serializable {
 			} else if (type == FILTER_CXL_TYPE) {
 				for (int i = 0; i < data.size(); i++) {
 					Task task = data.get(i);
-					if(task.getIsXuLy().equals("0"))
+					if(task.getIsXuLy().equals("0") && !task.isCo_binh_luan())
 						dataFilter.add(task);
 				}
 			} else if (type == FILTER_DXLTH_TYPE) {
 				for (int i = 0; i < data.size(); i++) {
 					Task task = data.get(i);
-					if(!task.getIsXuLy().equals("0") && !task.isDa_qua_han())
+					boolean checkIsNguoiXem = false;
+					final String userName = Utils.getString(context, "name");
+					String[] nguoixem = task.getNguoi_xem().split(",");
+					for (int j = 0; j < nguoixem.length; j++) {
+						if (nguoixem[j].equals(userName)) {
+							checkIsNguoiXem = true;
+							break;
+						}
+					}
+					if((!task.getIsXuLy().equals("0") && !task.isDa_qua_han()) || (checkIsNguoiXem && task.isCo_binh_luan() && !task.isDa_qua_han()))
 						dataFilter.add(task);
 				}
 			} else if (type == FILTER_DXLQH_TYPE) {
 				for (int i = 0; i < data.size(); i++) {
 					Task task = data.get(i);
-					if(!task.getIsXuLy().equals("0")  && task.isDa_qua_han())
+					boolean checkIsNguoiXem = false;
+					final String userName = Utils.getString(context, "name");
+					String[] nguoixem = task.getNguoi_xem().split(",");
+					for (int j = 0; j < nguoixem.length; j++) {
+						if (nguoixem[j].equals(userName)) {
+							checkIsNguoiXem = true;
+							break;
+						}
+					}
+					if((!task.getIsXuLy().equals("0")  && task.isDa_qua_han()) || (checkIsNguoiXem && task.isCo_binh_luan() && task.isDa_qua_han()))
 						dataFilter.add(task);
 				}
 			}

@@ -92,7 +92,7 @@ public class AssignTaskActivity extends ChooseFileActivity implements
 
 		DialogChooseHandler.VIEW_CURRENT = 1;
 		DialogChooseProject.VIEW_CURRENT = 1;
-
+		DialogChooseDepartment.VIEW_CURRENT = 1;
 		init();	
 	}
 
