@@ -847,22 +847,19 @@ public class Task implements Serializable {
 			} else if (type == FILTER_CXL_TYPE) {
 				for (int i = 0; i < data.size(); i++) {
 					Task task = data.get(i);
-//					if (!task.isCo_binh_luan())
-					if(task.daxuly.equals("0"))
+					if(task.getIsXuLy().equals("0"))
 						dataFilter.add(task);
 				}
 			} else if (type == FILTER_DXLTH_TYPE) {
 				for (int i = 0; i < data.size(); i++) {
 					Task task = data.get(i);
-//					if (task.isCo_binh_luan() && !task.isDa_qua_han())
-					if(task.daxuly.equals("1") && !task.isDa_qua_han())
+					if(!task.getIsXuLy().equals("0") && !task.isDa_qua_han())
 						dataFilter.add(task);
 				}
 			} else if (type == FILTER_DXLQH_TYPE) {
 				for (int i = 0; i < data.size(); i++) {
 					Task task = data.get(i);
-//					if (task.isCo_binh_luan() && task.isDa_qua_han())
-					if(task.daxuly.equals("1")  && task.isDa_qua_han())
+					if(!task.getIsXuLy().equals("0")  && task.isDa_qua_han())
 						dataFilter.add(task);
 				}
 			}
