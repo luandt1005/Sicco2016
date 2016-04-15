@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -91,6 +92,7 @@ public class SendApprovalActivity extends Activity implements OnClickListener {
 					listChecked);
 			break;
 		case R.id.btnApproval:
+			if(validate()){
 			for (int i = 0; i < listChecked.size(); i++) {
 				if (i == listChecked.size() - 1) {
 					nameHandler += listChecked.get(i).getUsername();
@@ -152,12 +154,29 @@ public class SendApprovalActivity extends Activity implements OnClickListener {
 							listChecked.removeAll(listChecked);
 
 						}
-					});
+					});}
 
 			break;
 
 		default:
 			break;
+		}
+
+	}
+
+	private boolean validate() {
+		String comment = document.getText().toString().trim();
+
+		if (comment.equals("")) {
+			Toast.makeText(SendApprovalActivity.this,
+					getResources().getString(R.string.approval_null),
+					Toast.LENGTH_SHORT).show();
+			document.startAnimation(AnimationUtils.loadAnimation(
+					getApplicationContext(), R.anim.shake));
+			document.requestFocus();
+			return false;
+		}else{
+			return true;
 		}
 	}
 

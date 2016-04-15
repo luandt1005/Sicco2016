@@ -89,6 +89,7 @@
     <string name="path_file">Đường dẫn file: "</string>
     
     <string name="title_null">Bạn chưa nhập tiêu đề</string>
+    <string name="approval_null">Bạn chưa nhập nội dung</string>
     <string name="description_null">Bạn chưa nhập mô tả</string>
     <string name="date_handle_null">Bạn chưa nhập chọn ngày thực hiện</string>
     <string name="date_finish_null">Bạn chưa nhập chọn ngày kết thúc</string>
@@ -177,36 +178,36 @@
     <string name="update_rate">Cập nhật tiến độ</string>
 
     <!-- link api -->
-    <string name="api_get_dispatch_approval">http://office.sinco.pro.vn/api_distpatch/approval_dispatch.php</string>
-    <string name="api_get_dispatch_handle">http://office.sinco.pro.vn/api_distpatch/handl_dispatch.php</string>
-    <string name="api_get_dispatch_other">http://office.sinco.pro.vn/api_distpatch/other_dispatch.php</string>
-    <string name="api_get_all_user">http://office.sinco.pro.vn/api_distpatch/list_users.php</string>
-    <string name="api_get_deparment">http://office.sinco.pro.vn/api_distpatch/departments.php</string>
-    <string name="api_get_steer_report">http://office.sinco.pro.vn/api_distpatch/get_report_steer.php</string>
-    <string name="api_get_steer_congvan_report">http://office.sinco.pro.vn/api_distpatch/binhluancongvan.php</string>
+    <string name="api_get_dispatch_approval">http://office.sicco.vn/api_distpatch/approval_dispatch.php</string>
+    <string name="api_get_dispatch_handle">http://office.sicco.vn/api_distpatch/handl_dispatch.php</string>
+    <string name="api_get_dispatch_other">http://office.sicco.vn/api_distpatch/other_dispatch.php</string>
+    <string name="api_get_all_user">http://office.sicco.vn/api_distpatch/list_users.php</string>
+    <string name="api_get_deparment">http://office.sicco.vn/api_distpatch/departments.php</string>
+    <string name="api_get_steer_report">http://office.sicco.vn/api_distpatch/get_report_steer.php</string>
+    <string name="api_get_steer_congvan_report">http://office.sicco.vn/api_distpatch/binhluancongvan.php</string>
 
-    <string name="api_chuyencongvan">http://office.sinco.pro.vn/api_distpatch/chuyencongvan.php</string>
-    <string name="api_phecongvan">http://office.sinco.pro.vn/api_distpatch/phecongvan.php</string>
-    <string name="api_send_report">http://office.sinco.pro.vn/api_distpatch/send_report.php</string>
-    <string name="api_send_handl_forward">http://office.sinco.pro.vn/api_distpatch/guixuly.php</string>
-    <string name="api_change_status">http://office.sinco.pro.vn/api_distpatch/change_status.php</string>
-    <string name="api_get_one_user">http://office.sinco.pro.vn/api_distpatch/get_one_user.php</string>
-    <string name="api_get_dispatch_type">http://office.sinco.pro.vn/api_distpatch/dispatch_type.php</string>
-    <string name="api_get_project">http://office.sinco.pro.vn/api_distpatch/duan.php</string>
+    <string name="api_chuyencongvan">http://office.sicco.vn/api_distpatch/chuyencongvan.php</string>
+    <string name="api_phecongvan">http://office.sicco.vn/api_distpatch/phecongvan.php</string>
+    <string name="api_send_report">http://office.sicco.vn/api_distpatch/send_report.php</string>
+    <string name="api_send_handl_forward">http://office.sicco.vn/api_distpatch/guixuly.php</string>
+    <string name="api_change_status">http://office.sicco.vn/api_distpatch/change_status.php</string>
+    <string name="api_get_one_user">http://office.sicco.vn/api_distpatch/get_one_user.php</string>
+    <string name="api_get_dispatch_type">http://office.sicco.vn/api_distpatch/dispatch_type.php</string>
+    <string name="api_get_project">http://office.sicco.vn/api_distpatch/duan.php</string>
     
-    <string name="api_get_assigned_task">http://office.sinco.pro.vn/api_distpatch/danhsachviecdagiao.php</string>
-    <string name="api_get_task">http://office.sinco.pro.vn/api_distpatch/danhsachcongviec.php</string>
-    <string name="api_get_cv_duoc_giao">http://office.sinco.pro.vn/api_distpatch/dscongviecduocgiao.php</string>
-    <string name="api_get_steer_report_task">http://office.sinco.pro.vn/api_distpatch/binhluan.php</string>
-    <string name="api_get_state">http://office.sinco.pro.vn/api_distpatch/danhsachviecdagiao2.php</string>
-    <string name="api_add_task">http://office.sinco.pro.vn/api_distpatch/giaoviec.php</string>
-    <string name="api_send_comment_task">http://office.sinco.pro.vn/api_distpatch/gblcongviec.php</string>
-    <string name="api_update_status">http://office.sinco.pro.vn/api_distpatch/tdttcongviec.php</string>
-    <string name="api_update_rate">http://office.sinco.pro.vn/api_distpatch/capnhattiendo.php</string>
-    <string name="api_tatcabinhluan">http://office.sinco.pro.vn/api_distpatch/tatcabinhluan.php</string>
-    <string name="api_xoacongviec">http://office.sinco.pro.vn/api_distpatch/xoacongviec.php</string>
-	<string name="api_get_infor_task_by_id">http://office.sinco.pro.vn/api_distpatch/infortaskbyid.php</string>
-    <string name="api_edit_task">http://office.sinco.pro.vn/api_distpatch/chinhsuacongviec.php</string>
+    <string name="api_get_assigned_task">http://office.sicco.vn/api_distpatch/danhsachviecdagiao.php</string>
+    <string name="api_get_task">http://office.sicco.vn/api_distpatch/danhsachcongviec.php</string>
+    <string name="api_get_cv_duoc_giao">http://office.sicco.vn/api_distpatch/dscongviecduocgiao.php</string>
+    <string name="api_get_steer_report_task">http://office.sicco.vn/api_distpatch/binhluan.php</string>
+    <string name="api_get_state">http://office.sicco.vn/api_distpatch/danhsachviecdagiao2.php</string>
+    <string name="api_add_task">http://office.sicco.vn/api_distpatch/giaoviec.php</string>
+    <string name="api_send_comment_task">http://office.sicco.vn/api_distpatch/gblcongviec.php</string>
+    <string name="api_update_status">http://office.sicco.vn/api_distpatch/tdttcongviec.php</string>
+    <string name="api_update_rate">http://office.sicco.vn/api_distpatch/capnhattiendo.php</string>
+    <string name="api_tatcabinhluan">http://office.sicco.vn/api_distpatch/tatcabinhluan.php</string>
+    <string name="api_xoacongviec">http://office.sicco.vn/api_distpatch/xoacongviec.php</string>
+	<string name="api_get_infor_task_by_id">http://office.sicco.vn/api_distpatch/infortaskbyid.php</string>
+    <string name="api_edit_task">http://office.sicco.vn/api_distpatch/chinhsuacongviec.php</string>
     
      <!-- ToanNM -->
     <string name="cong_van">công văn cần phê</string>
