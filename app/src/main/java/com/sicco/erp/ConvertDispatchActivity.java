@@ -93,6 +93,7 @@ public class ConvertDispatchActivity extends Activity implements
 
 		DialogChooseHandler.VIEW_CURRENT = 2;
 		DialogChooseProject.VIEW_CURRENT = 2;
+		DialogChooseDepartment.VIEW_CURRENT = 2;
 
 		Intent intent = getIntent();
 		dispatch = (Dispatch) intent.getSerializableExtra("dispatch");
