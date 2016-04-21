@@ -115,8 +115,12 @@ public class DetailDispatchActivity extends Activity {
 				+ "</b></font>" + " " + dispatch.getNguoi_phe_duyet()));
 		nguoiXuLy.setText(Html.fromHtml("<font><b>" + getResources().getString(R.string.nguoi_xu_ly) + "</b></font>"
 				+ " " + dispatch.getHandler()));
-		nguoiXem.setText(Html.fromHtml("<font><b>" + getResources().getString(R.string.nguoi_xem) + "</b></font>" + " "
-				+ dispatch.getNguoiXem()));
+		if(dispatch.getNguoiXem() != null) {
+			nguoiXem.setText(Html.fromHtml("<font><b>" + getResources().getString(R.string.nguoi_xem) + "</b></font>" + " "
+					+ dispatch.getNguoiXem()));
+		}else{
+			nguoiXem.setText(Html.fromHtml("<font><b>" + getResources().getString(R.string.nguoi_xem) + "</b></font>"));
+		}
 
 		getDispatchType(dispatch.getIdLoaicongvan(), getString(R.string.api_get_dispatch_type));
 
@@ -311,10 +315,13 @@ public class DetailDispatchActivity extends Activity {
 
 							arr.add(new DispatchType(id, title));
 
-							if (t_id.equals(id))
+							if (t_id != null && t_id.equals(id)) {
 								loaiCongVan.setText(Html.fromHtml(
 										"<font><b>" + loaiCongVan.getText().toString() + "</b></font>" + " " + title));
-
+							} else {
+								loaiCongVan.setText(Html.fromHtml(
+										"<font><b>" + loaiCongVan.getText().toString() + "</b></font>"));
+							}
 						}
 
 					} catch (JSONException e) {

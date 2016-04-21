@@ -393,50 +393,34 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
             case R.id.receive_task:
                 final ProgressDialog progressDialog = new ProgressDialog(context);
                 progressDialog.setMessage(getResources().getString(R.string.waiting));
-                task.changeProcess(context.getResources().getString(R.string.api_update_rate), "" + task.getId(), "10", new Task.OnLoadListener() {
-                    @Override
-                    public void onStart() {
-                        progressDialog.show();
-                    }
-
-                    @Override
-                    public void onSuccess() {
-                        ReportSteerTask reportSteerTask = new ReportSteerTask(context);
-                        try {
-                            reportSteerTask.sendReport(context, task.getId(), context.getResources().getString(R.string.received_task), null, new ReportSteerTask.OnLoadListener() {
-                                @Override
-                                public void onStart() {
-
-                                }
-
-                                @Override
-                                public void onSuccess() {
-                                    progressDialog.dismiss();
-                                    finish();
-                                    btnReceiveTask.setVisibility(View.GONE);
-                                    task.setTien_do("10");
-                                    Toast.makeText(context, getResources().getString(R.string.received_task_success), Toast.LENGTH_SHORT).show();
-                                    //cập nhật số cv chưa xử lý
-                                    saveCVInt();
-                                }
-
-                                @Override
-                                public void onFailure() {
-
-                                }
-                            });
-                        } catch (Exception e) {
-                            progressDialog.dismiss();
-                            Toast.makeText(context, "Error!", Toast.LENGTH_SHORT).show();
-                            e.printStackTrace();
+                ReportSteerTask reportSteerTask = new ReportSteerTask(context);
+                try {
+                    reportSteerTask.sendReport(context, task.getId(), context.getResources().getString(R.string.received_task), null, new ReportSteerTask.OnLoadListener() {
+                        @Override
+                        public void onStart() {
+                            progressDialog.show();
                         }
-                    }
 
-                    @Override
-                    public void onFalse() {
+                        @Override
+                        public void onSuccess() {
+                            progressDialog.dismiss();
+                            finish();
+                            btnReceiveTask.setVisibility(View.GONE);
+                            Toast.makeText(context, getResources().getString(R.string.received_task_success), Toast.LENGTH_SHORT).show();
+                            //cập nhật số cv chưa xử lý
+                            saveCVInt();
+                        }
 
-                    }
-                });
+                        @Override
+                        public void onFailure() {
+
+                        }
+                    });
+                } catch (Exception e) {
+                    progressDialog.dismiss();
+                    Toast.makeText(context, "Error!", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
                 break;
         }
     }

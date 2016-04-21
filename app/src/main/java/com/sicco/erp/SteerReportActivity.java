@@ -45,6 +45,7 @@ public class SteerReportActivity extends Activity implements OnClickListener {
 	private TextView emptyView;
 	private String daxuly = "1";
 	private ArrayList<Department> listDep;
+	private ArrayList<Department> listDepUser;
 	private ArrayList<User> allUser;
 	private ArrayList<User> listChecked;
 	private User user;
@@ -65,9 +66,12 @@ public class SteerReportActivity extends Activity implements OnClickListener {
 		department = new Department();
 		user = new User();
 		listDep = new ArrayList<Department>();
+		listDepUser = new ArrayList<Department>();
 		allUser = new ArrayList<User>();
 		listDep = department.getData(getResources().getString(
 				R.string.api_get_deparment));
+		listDepUser = department.getData(getResources().getString(
+				R.string.api_get_deparment_users));
 		allUser = user.getData(getResources().getString(
 				R.string.api_get_all_user));
 
@@ -143,7 +147,7 @@ public class SteerReportActivity extends Activity implements OnClickListener {
 		case R.id.btnChuyenTiepXuLy:
 			ActionAdapter.flag = "handle";
 			new DialogChooseUser(SteerReportActivity.this, dispatch,
-					listDep, allUser, listChecked);
+					listDepUser, allUser, listChecked);
 			break;
 		case R.id.btnChuyenCVThanhCongViec:
 			Intent intent = new Intent();

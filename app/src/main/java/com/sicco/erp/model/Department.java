@@ -19,17 +19,26 @@ public class Department implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String departmentName;
 	private long id;
-	private ArrayList<Department> listDep;
+	private String departmentName;
+	private int numUser;
 	public static boolean getJsonDep = false;
 
 	public Department() {
 	}
-	
-	public Department(long id, String departmentName) {
+
+	public Department(long id, String departmentName, int numUser) {
 		this.id = id;
 		this.departmentName = departmentName;
+		this.numUser = numUser;
+	}
+
+	public int getNumUser() {
+		return numUser;
+	}
+
+	public void setNumUser(int numUser) {
+		this.numUser = numUser;
 	}
 
 	public long getId() {
@@ -49,7 +58,7 @@ public class Department implements Serializable {
 	}
 	
 	public ArrayList<Department> getData( final String url) {
-		listDep = new ArrayList<Department>();
+		final ArrayList<Department> listDep = new ArrayList<Department>();
 		AsyncHttpClient client = new AsyncHttpClient();
 		client.post(url, null, new JsonHttpResponseHandler() {
 			@Override
@@ -65,8 +74,9 @@ public class Department implements Serializable {
 							JSONObject row = rows.getJSONObject(i);
 							String id = row.getString("id_phong_ban");
 							String depName = row.getString("ten_phong_ban");
-							
-							listDep.add(new Department(Long.parseLong(id), depName));
+							String numUser = row.getString("numUser");
+
+							listDep.add(new Department(Long.parseLong(id), depName, Integer.parseInt(numUser)));
 							
 						}
 
@@ -93,7 +103,7 @@ public class Department implements Serializable {
 	public ArrayList<Department> getData(final String url, OnLoadListener OnLoadListener) {
 		this.onLoadListener = OnLoadListener;
 		onLoadListener.onStart();
-		listDep = new ArrayList<Department>();
+		final ArrayList<Department> listDep = new ArrayList<Department>();
 		AsyncHttpClient client = new AsyncHttpClient();
 		client.post(url, null, new JsonHttpResponseHandler() {
 			@Override
@@ -109,8 +119,9 @@ public class Department implements Serializable {
 							JSONObject row = rows.getJSONObject(i);
 							String id = row.getString("id_phong_ban");
 							String depName = row.getString("ten_phong_ban");
+							String numUser = row.getString("numUser");
 							
-							listDep.add(new Department(Long.parseLong(id), depName));
+							listDep.add(new Department(Long.parseLong(id), depName, Integer.parseInt(numUser)));
 							
 						}
 

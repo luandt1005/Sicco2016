@@ -77,6 +77,7 @@ public class EditTaskActivity extends ChooseFileActivity implements
     private Button btnAssign;
 
     private ArrayList<Department> listDep;
+    private ArrayList<Department> listDepUser;
     private ArrayList<Project> listProject;
     private ArrayList<User> allUser;
     private ArrayList<User> listChecked, listCheckedHandler;
@@ -204,11 +205,14 @@ public class EditTaskActivity extends ChooseFileActivity implements
         project = new Project();
         user = new User();
         listDep = new ArrayList<Department>();
+        listDepUser = new ArrayList<Department>();
         listProject = new ArrayList<Project>();
         allUser = new ArrayList<User>();
 
         listDep = department.getData(getResources().getString(
                 R.string.api_get_deparment));
+        listDepUser = department.getData(getResources().getString(
+                R.string.api_get_deparment_users));
         listProject = project.getData(getResources().getString(
                 R.string.api_get_project));
         allUser = user.getData(getResources().getString(
@@ -368,12 +372,12 @@ public class EditTaskActivity extends ChooseFileActivity implements
                 showDialog(DATE_DIALOG_ID);
                 break;
             case R.id.lnHandler:
-                new DialogChooseHandler(activityContext, listDep, allUser,
+                new DialogChooseHandler(activityContext, listDepUser, allUser,
                         listCheckedHandler);
                 break;
             case R.id.lnViewer:
                 ActionAdapter.flag = "chooseViewer";
-                new DialogChooseUser(activityContext, listDep, allUser,
+                new DialogChooseUser(activityContext, listDepUser, allUser,
                         listChecked);
                 break;
             case R.id.lnDepartment:

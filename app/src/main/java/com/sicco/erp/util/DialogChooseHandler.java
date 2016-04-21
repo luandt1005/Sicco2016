@@ -258,7 +258,7 @@ public class DialogChooseHandler {
 	
 	public void getData(){
 		listDep = department.getData(
-				context.getResources().getString(R.string.api_get_deparment),
+				context.getResources().getString(R.string.api_get_deparment_users),
 				new OnLoadListener() {
 
 					@Override

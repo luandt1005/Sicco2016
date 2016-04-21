@@ -11,6 +11,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,11 +29,13 @@ import com.sicco.erp.util.Utils;
 public class SendApprovalActivity extends Activity implements OnClickListener {
 	private ImageView back;
 	private EditText document;
+	private CheckBox checkBox;
 	private Button btnChoseHandler, btnApproval;
 	public static TextView txtHandler;
 	private Department department;
 	private User user;
 	private ArrayList<Department> listDep;
+	private ArrayList<Department> listDepUser;
 	private ArrayList<User> allUser;
 	private ArrayList<User> listChecked;
 	private String nameHandler = "";
@@ -55,19 +58,24 @@ public class SendApprovalActivity extends Activity implements OnClickListener {
 		btnApproval = (Button) findViewById(R.id.btnApproval);
 		txtHandler = (TextView) findViewById(R.id.txt_handler);
 		document = (EditText) findViewById(R.id.document);
+		checkBox = (CheckBox) findViewById(R.id.check);
 		// click
 		back.setOnClickListener(this);
 		btnApproval.setOnClickListener(this);
 		btnChoseHandler.setOnClickListener(this);
+		checkBox.setOnClickListener(this);
 
 		listChecked = new ArrayList<User>();
 
 		department = new Department();
 		user = new User();
 		listDep = new ArrayList<Department>();
+		listDepUser = new ArrayList<Department>();
 		allUser = new ArrayList<User>();
 		listDep = department.getData(getResources().getString(
 				R.string.api_get_deparment));
+		listDepUser = department.getData(getResources().getString(
+				R.string.api_get_deparment_users));
 		allUser = user.getData(getResources().getString(
 				R.string.api_get_all_user));
 	}
@@ -88,7 +96,7 @@ public class SendApprovalActivity extends Activity implements OnClickListener {
 			break;
 		case R.id.btnChoseHandler:
 			ActionAdapter.flag = "";
-			new DialogChooseUser(SendApprovalActivity.this, listDep, allUser,
+			new DialogChooseUser(SendApprovalActivity.this, listDepUser, allUser,
 					listChecked);
 			break;
 		case R.id.btnApproval:
@@ -100,6 +108,10 @@ public class SendApprovalActivity extends Activity implements OnClickListener {
 					nameHandler += listChecked.get(i).getUsername() + ",";
 				}
 			}
+			String approvalContent = document.getText().toString();
+			if(checkBox.isChecked()){
+				approvalContent = approvalContent + ". " + getResources().getString(R.string.convert_dispatch);
+			}
 
 			final ProgressDialog progressDialog = new ProgressDialog(
 					SendApprovalActivity.this);
@@ -107,10 +119,11 @@ public class SendApprovalActivity extends Activity implements OnClickListener {
 					.getString(R.string.waiting));
 
 			Dispatch dispatch = new Dispatch(SendApprovalActivity.this);
+
 			dispatch.approvalDispatch(
 					getResources().getString(R.string.api_phecongvan),
 					Utils.getString(SendApprovalActivity.this, "user_id"), ""
-							+ dispat.getId(), document.getText().toString(),
+							+ dispat.getId(), approvalContent,
 					nameHandler, new OnRequestListener() {
 
 						@Override
@@ -154,7 +167,8 @@ public class SendApprovalActivity extends Activity implements OnClickListener {
 							listChecked.removeAll(listChecked);
 
 						}
-					});}
+					});
+			}
 
 			break;
 

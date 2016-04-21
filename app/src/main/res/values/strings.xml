@@ -25,6 +25,7 @@
     <string name="retry">Thử lại</string>
     <string name="send">Gửi</string>
     <string name="insert_text">Nhập văn bản</string>
+    <string name="convert_dispatch">Chuyển công văn thành công việc xử lý.</string>
     <string name="data_empty">Không có dữ liệu.</string>
     <string name="nguoi_xu_ly">Người xử lý:</string>
     <string name="nguoi_phe_duyet">Người phê duyệt:</string>
@@ -183,6 +184,7 @@
     <string name="api_get_dispatch_other">http://office.sicco.vn/api_distpatch/other_dispatch.php</string>
     <string name="api_get_all_user">http://office.sicco.vn/api_distpatch/list_users.php</string>
     <string name="api_get_deparment">http://office.sicco.vn/api_distpatch/departments.php</string>
+    <string name="api_get_deparment_users">http://office.sicco.vn/api_distpatch/departments_users.php</string>
     <string name="api_get_steer_report">http://office.sicco.vn/api_distpatch/get_report_steer.php</string>
     <string name="api_get_steer_congvan_report">http://office.sicco.vn/api_distpatch/binhluancongvan.php</string>
 

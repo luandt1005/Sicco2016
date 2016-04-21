@@ -64,6 +64,7 @@ public class ConvertDispatchActivity extends Activity implements
 	public static TextView txtHandler, txtViewer;
 
 	private ArrayList<Department> listDep;
+	private ArrayList<Department> listDepUser;
 	private ArrayList<User> allUser;
 	private ArrayList<User> listChecked, listCheckedHandler;
 	private Dispatch dispatch;
@@ -191,10 +192,11 @@ public class ConvertDispatchActivity extends Activity implements
 		project = new Project();
 		user = new User();
 		listDep = new ArrayList<Department>();
+		listDepUser = new ArrayList<Department>();
 		allUser = new ArrayList<User>();
-		listDep = department.getData(getResources().getString(
-				R.string.api_get_deparment));
-		
+		listDep = department.getData(getResources().getString(R.string.api_get_deparment));
+		listDepUser = department.getData(getResources().getString(R.string.api_get_deparment_users));
+
 		listProject = project.getData(getResources().getString(
 						R.string.api_get_project));
 		allUser = user.getData(getResources().getString(
@@ -297,14 +299,14 @@ public class ConvertDispatchActivity extends Activity implements
 //			break;
 		case R.id.lnHandler:
 
-			new DialogChooseHandler(ConvertDispatchActivity.this, listDep,
+			new DialogChooseHandler(ConvertDispatchActivity.this, listDepUser,
 					allUser, listCheckedHandler);
 
 			break;
 		case R.id.lnViewer:
 
 			ActionAdapter.flag = "chooseViewer";
-			new DialogChooseUser(ConvertDispatchActivity.this, listDep, allUser,
+			new DialogChooseUser(ConvertDispatchActivity.this, listDepUser, allUser,
 					listChecked);
 
 			break;
