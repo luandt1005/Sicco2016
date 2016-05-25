@@ -79,7 +79,11 @@ public class GetAllNotificationService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(notifyBR);
+        try {
+            unregisterReceiver(notifyBR);
+        } catch (Exception ex){
+
+        }
     }
 
     @SuppressWarnings("null")
@@ -289,7 +293,7 @@ public class GetAllNotificationService extends Service {
                             // add to db
 //							db = NotificationDBController.getInstance(getApplicationContext());
 //							username = Utils.getString(getApplicationContext(), SessionManager.KEY_NAME);
-
+//
 //							if (!id.equals("")) {
 //								String sql = "Select * from " + NotificationDBController.TASK_TABLE_NAME + " where "
 //										+ NotificationDBController.TRANGTHAI_COL + " = \"new\"" + " and "

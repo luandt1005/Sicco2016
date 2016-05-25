@@ -298,13 +298,10 @@ public class HomeActivity extends Activity implements OnClickListener {
 	}
 
 	void cancelAllNotification(Context context) {
-		CongVanCancelNotification(context);
-		CongViecCancelNotification(context);
-		LichBieuCancelNotification(context);
-		cancelNotification(context, 4);
-		cancelNotification(context, 5);
-		cancelNotification(context, 6);
-		cancelNotification(context, 7);
+		String notificationServiceStr = Context.NOTIFICATION_SERVICE;
+		NotificationManager mNotificationManager = (NotificationManager) context
+				.getSystemService(notificationServiceStr);
+		mNotificationManager.cancelAll();
 	}
 
 	public static void checkDate(final Context context) {

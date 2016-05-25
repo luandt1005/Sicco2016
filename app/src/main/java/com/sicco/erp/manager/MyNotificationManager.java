@@ -10,6 +10,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -35,6 +36,9 @@ import com.sicco.task.model.ReportSteerTask;
 import com.sicco.task.model.Task;
 
 public class MyNotificationManager {
+
+	private static final String KEY_NOTIFICATION_ID = "key_notification_id";
+
 	Context mContext;
 	public static int CONGVAN_NOTIFICATION_ID = 1;
 	public static int CONGVIEC_NOTIFICATION_ID = 2;
@@ -130,28 +134,33 @@ public class MyNotificationManager {
 			String nguoi_xem = data.get(i).getNguoi_xem();
 			String mo_ta = data.get(i).getMo_ta();
 			String nguoi_thuc_hien = data.get(i).getNguoi_thuc_hien();
+			taskCode = "" + data.get(i).getId();
+			Log.d("ToanNM", "String taskcode => " + taskCode);
 
-			if (notification_count == 1) {
-				message = context.getResources().getString(R.string.new_noti_mess) + " " + notification_count + " "
-						+ noti + " " + "\n";
+			//if (notification_count == 1) {
+				//message = context.getResources().getString(R.string.new_noti_mess) + " " + "1" + " "
+				//		+ noti + " " + "\n";
 
 				String ten_cv = context.getResources().getString(R.string.ten_cv);
+
+			message = ten;
+
 				String nguoi_xem_cv = context.getResources().getString(R.string.nguoi_xem_cv);
 				String nguoi_thuc_hien_cv = context.getResources().getString(R.string.nguoi_thuc_hien_cv);
 				String mota = context.getResources().getString(R.string.mota);
-
-				contentText = "" + ten_cv + " " + ten + "\n" + nguoi_xem_cv + " " + nguoi_xem + "\n"
+			//"" + ten_cv + " " + ten + "\n" +
+					contentText = nguoi_xem_cv + " " + nguoi_xem + "\n"
 						+ nguoi_thuc_hien_cv + " " + nguoi_thuc_hien + "\n";
 
-			} else if (notification_count > 1) {
-				message = context.getResources().getString(R.string.new_noti_mess) + " " + notification_count + " "
-						+ " " + noti + " " + "\n";
-				name += "" + ten + "\n";
-				contentText = name;
-			}
+			//} else if (notification_count > 1) {
+			//	message = context.getResources().getString(R.string.new_noti_mess) + " " + notification_count + " "
+			//			+ " " + noti + " " + "\n";
+			//	name += "" + ten + "\n";
+			//	contentText = name;
+			//}
 
+			notify(context, getNotificationID(context), 5, taskCode);
 		}
-		notify(context, 4, 4);
 	}
 
 	public void notifyBinhLuan(Context context, ArrayList<ReportSteerTask> data) {
@@ -162,7 +171,7 @@ public class MyNotificationManager {
 			String content = data.get(i).getContent();
 			taskCode = data.get(i).getIdCV();
 
-			if (notification_count == 1) {
+			//if (notification_count == 1) {
 				String username = Utils.getString(context, SessionManager.KEY_NAME);
 				String in = context.getResources().getString(R.string.in);
 				String ten_cong_vec = getTaskData(context, taskCode, username);
@@ -172,18 +181,18 @@ public class MyNotificationManager {
 						+ in + " " + context.getResources().getString(R.string.congviec) + ": " + ten_cong_vec + ".\n"
 						+ content + "\n";
 
-			} else if (notification_count > 1) {
-				message = context.getResources().getString(R.string.new_noti_mess) + " " + notification_count + " "
-						+ noti + " " + "\n";
-				String cv_handler_new_comment = context.getResources().getString(R.string.cv_handler_new_comment);
-
-				name += handler + "\n";
-				contentText = "" + cv_handler_new_comment + "\n" + name;
-			}
-
+			//} else if (notification_count > 1) {
+			//	message = context.getResources().getString(R.string.new_noti_mess) + " " + notification_count + " "
+			//			+ noti + " " + "\n";
+			//	String cv_handler_new_comment = context.getResources().getString(R.string.cv_handler_new_comment);
+//
+			//	name += handler + "\n";
+			//	contentText = "" + cv_handler_new_comment + "\n" + name;
+			//}
+			//Utils.saveInt(context, "STEER_ACTION", Integer.parseInt(taskCode));
+			notify(context, getNotificationID(context), 5, taskCode);
 		}
-		Utils.saveInt(context, "STEER_ACTION", Integer.parseInt(taskCode));
-		notify(context, 5, 5);
+
 	}
 
 	public void notifyBinhLuanCongVan(Context context, ArrayList<ReportSteer> data, Dispatch dispatch) {
@@ -219,10 +228,10 @@ public class MyNotificationManager {
 				contentText = "" + cv_handler_new_comment + "\n" + name;
 			}*/
 
+			Log.d("ToanNMMMMMMMMMM", contentText);
+			//Utils.saveInt(context, "STEER_ACTION", Integer.parseInt(dispatch_id));
+			notify(context, getNotificationID(context), 7, taskCode);
 		}
-		Log.d("ToanNMMMMMMMMMM", contentText);
-		//Utils.saveInt(context, "STEER_ACTION", Integer.parseInt(dispatch_id));
-		notify(context, 7, 7);
 	}
 
 	public void notifyCacLoai(Context context, ArrayList<Dispatch> arrayList, int notification_count) {
@@ -386,7 +395,6 @@ public class MyNotificationManager {
 		} else if(notify_type == 7){
 			notIntent = new Intent(context, DetailDispatchActivity.class);
 			notIntent.putExtra("dispatch", dispatch);
-			Log.d("ToanNM_dispatch", "" + dispatch);
 		}
 
 		notIntent.addFlags(flags);
@@ -420,6 +428,74 @@ public class MyNotificationManager {
 		builder.setVibrate(pattern);
 		builder.setLights(0xFFFFFFFF, 500, 500);
 		Notification notification = builder.getNotification();
+		notification.flags |= Notification.FLAG_SHOW_LIGHTS;
+
+		NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+		//manager.cancel(notification_id);
+		manager.notify(notification_id, notification);
+
+	}
+
+	@SuppressLint("InlinedApi")
+	@SuppressWarnings("deprecation")
+	public void notify(Context context, int notification_id, int notify_type, String task_id) {
+
+		NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
+		Intent notIntent = null;
+		if (notify_type == 1) {
+			notIntent = new Intent(context, ApprovalActivity.class);
+		} else if (notify_type == 2) {
+			notIntent = new Intent(context, DealtWithActivity.class);
+		} else if (notify_type == 3) {
+			notIntent = new Intent(context, OtherActivity.class);
+		} else if (notify_type == 4) {
+			notIntent = new Intent(context, ListTask.class);
+		} else if (notify_type == 5) {
+//			notIntent = new Intent(context, SteerReportTaskActivity.class);
+			notIntent = new Intent(context, DetailTaskActivity.class);
+			Log.d("ToanNM" , "" + Long.parseLong(taskCode));
+			notIntent.putExtra("id_task", Long.parseLong(task_id));
+			//notIntent.putExtra("com.sicco.erp.manager.insertdb", true);
+		} else if (notify_type == 6) {
+			notIntent = new Intent(context, OtherTaskActivity.class);
+		} else if(notify_type == 7){
+			notIntent = new Intent(context, DetailDispatchActivity.class);
+			notIntent.putExtra("dispatch", dispatch);
+			Log.d("ToanNM_dispatch", "" + dispatch);
+		}
+
+		//notIntent.addFlags(flags);
+		// notIntent.putExtra("com.sicco.erp", 1);
+		PendingIntent pendInt = PendingIntent.getActivity(context, notification_id, notIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+		Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+		builder.setContentIntent(pendInt).setOngoing(false).setAutoCancel(true)
+				// .setPriority(Notification.PRIORITY_HIGH)
+				.setSound(alarmSound);
+
+		/*int build_version = android.os.Build.VERSION.SDK_INT;
+		if (build_version >= 16) {
+			builder.setPriority(Notification.PRIORITY_HIGH);
+		} */
+		NotificationCompat.BigTextStyle style = new NotificationCompat.BigTextStyle();
+		style.bigText(contentText);
+		// style.setSummaryText("Swipe Left or Right to dismiss this
+		// Notification.");
+		style.build();
+
+		// ==============================
+
+		builder.setSmallIcon(R.drawable.ic_launcher);
+		builder.setContentTitle(message);
+		builder.setContentText(contentText);
+		builder.setStyle(style);
+
+		// mo rong
+		long[] pattern = { (long) 100, (long) 100, (long) 100, (long) 100, (long) 100 };
+		builder.setVibrate(pattern);
+		builder.setLights(0xFFFFFFFF, 500, 500);
+		Notification notification = builder.getNotification();
+		notification.setLatestEventInfo(context, message, contentText, pendInt);
 		notification.flags |= Notification.FLAG_SHOW_LIGHTS;
 
 		NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -467,6 +543,13 @@ public class MyNotificationManager {
 		}
 		Log.d("ToanNM", "ten cong van la day : " + ten_cong_van);
 		return ten_cong_van;
+	}
+
+	private int getNotificationID(Context context){
+		int notification_id = Utils.getInt(context, KEY_NOTIFICATION_ID, 0);
+		notification_id++;
+		Utils.saveInt(context, KEY_NOTIFICATION_ID, notification_id);
+		return notification_id;
 	}
 
 }

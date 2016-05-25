@@ -31,6 +31,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sicco.erp.R;
+import com.sicco.erp.database.NotificationDBController;
 import com.sicco.erp.model.Status;
 import com.sicco.erp.service.GetAllNotificationService;
 import com.sicco.erp.util.BadgeUtils;
@@ -71,6 +72,9 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
     private ArrayList<Status> listStatus;
     private ArrayList<Status> listProcess;
 
+    //
+    //private boolean insertToDB;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +86,8 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
         // get id notifi
         id_task = intent.getLongExtra("id_task", -1);
         taskType = intent.getIntExtra("TASK_TYPE", -1);
-        Log.d("LuanDT", "id_task: " + id_task);
+        //insertToDB = intent.getBooleanExtra("com.sicco.erp.manager.insertdb", false);
+        Log.d("Debug", "id_task: " + id_task);
 
         // set id cong viec
         if (id_task != -1) {
@@ -284,6 +289,9 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
 
                             }
                         });
+       // if(insertToDB){
+            // ToanNM
+        //}
     }
 
     @Override
@@ -477,5 +485,4 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
                     Toast.LENGTH_SHORT).show();
         }
     }
-
 }

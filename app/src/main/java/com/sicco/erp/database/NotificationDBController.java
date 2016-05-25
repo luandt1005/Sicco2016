@@ -211,15 +211,7 @@ public class NotificationDBController extends SQLiteOpenHelper {
 		String where = NotificationDBController.DISPATCH_COL + " = " + id;
 		update(DISPATCH_TABLE_NAME, values, where, null);
 	}
-	
-	public void checkedTask(Task item, long id){
-		ContentValues values = new ContentValues();
-		values.put(TRANGTHAI_COL, NOTIFICATION_STATE_CHECKED);
-		
-		String where = NotificationDBController.ID_COL + " = " + id;
-		update(TASK_TABLE_NAME, values, where, null);
-	}
-	
+
 	public void changeStateDisPatch(Dispatch item, long id, int state, String sstate){
 		ContentValues values = new ContentValues();
 		values.put(D_TYPE_COL, state);
