@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="0dp"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical" >
@@ -24,10 +24,11 @@
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="40dp"
+                android:layout_marginBottom="20dp"
                 android:adjustViewBounds="true"
                 android:src="@drawable/logo" />
 
+            <!--row 1-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -36,7 +37,6 @@
                 android:orientation="horizontal" >
 
                 <!-- Item 1 -->
-
                 <LinearLayout
                     android:id="@+id/canphe"
                     android:layout_width="0dp"
@@ -45,7 +45,7 @@
                     android:background="@drawable/home_item_selector"
                     android:clickable="true"
                     android:orientation="vertical"
-                    android:padding="5dp" >
+                    android:padding="8dp" >
 
                     <FrameLayout
                         android:layout_width="match_parent"
@@ -59,7 +59,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="10dp"
                             android:adjustViewBounds="true"
-                            android:padding="5dp"
+                            android:padding="8dp"
                             android:src="@drawable/ic_canduyet" />
 
                         <TextView
@@ -82,7 +82,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginLeft="-5dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="5dp"
                         android:text="@string/can_phe"
                         android:textColor="@color/text_color"
                         android:textSize="16sp" />
@@ -91,10 +91,9 @@
                 <FrameLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" >
-
                 </FrameLayout>
-                <!-- Item 2 -->
 
+                <!-- Item 2 -->
                 <LinearLayout
                     android:id="@+id/xuly"
                     android:layout_width="0dp"
@@ -103,7 +102,7 @@
                     android:background="@drawable/home_item_selector"
                     android:clickable="true"
                     android:orientation="vertical"
-                    android:padding="5dp" >
+                    android:padding="8dp" >
 
                     <FrameLayout
                         android:layout_width="match_parent"
@@ -117,7 +116,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="10dp"
                             android:adjustViewBounds="true"
-                            android:padding="5dp"
+                            android:padding="8dp"
                             android:src="@drawable/ic_xuly" />
 
                         <TextView
@@ -140,13 +139,13 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginLeft="-5dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="5dp"
                         android:text="@string/xu_ly"
                         android:textColor="@color/text_color"
                         android:textSize="16sp" />
                 </LinearLayout>
-                <!-- Item 3 -->
 
+                <!-- Item 3 -->
                 <LinearLayout
                     android:id="@+id/cacloai"
                     android:layout_width="0dp"
@@ -169,7 +168,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="10dp"
                             android:adjustViewBounds="true"
-                            android:padding="5dp"
+                            android:padding="8dp"
                             android:src="@drawable/ic_cacloai" />
 
                         <!-- <TextView
@@ -192,18 +191,14 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginLeft="-5dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="5dp"
                         android:text="@string/cac_loai"
                         android:textColor="@color/text_color"
                         android:textSize="16sp" />
                 </LinearLayout>
-                
-                
-                <!-- MainItemLayout -->
-
             </LinearLayout>
-            <!-- Row 2 -->
 
+            <!-- Row 2 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -220,7 +215,7 @@
                     android:background="@drawable/home_item_selector"
                     android:clickable="true"
                     android:orientation="vertical"
-                    android:padding="5dp" >
+                    android:padding="8dp" >
 
                     <FrameLayout
                         android:layout_width="match_parent"
@@ -234,8 +229,8 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="10dp"
                             android:adjustViewBounds="true"
-                            android:padding="5dp"
-                            android:src="@drawable/ic_cv_add" />
+                            android:padding="8dp"
+                            android:src="@drawable/ic_cv_list_added" />
 
                         <TextView
                             android:id="@+id/activity_home_notify_danhsachviec"
@@ -257,12 +252,13 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginLeft="-5dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="5dp"
                         android:text="@string/duoc_giao"
                         android:textColor="@color/text_color"
                         android:textSize="16sp" />
                 </LinearLayout>
 
+                <!-- Item 2 -->
                 <LinearLayout
                     android:id="@+id/duoc_xem"
                     android:layout_width="0dp"
@@ -271,7 +267,7 @@
                     android:background="@drawable/home_item_selector"
                     android:clickable="true"
                     android:orientation="vertical"
-                    android:padding="5dp" >
+                    android:padding="8dp" >
 
                     <FrameLayout
                         android:layout_width="match_parent"
@@ -285,8 +281,8 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="10dp"
                             android:adjustViewBounds="true"
-                            android:padding="5dp"
-                            android:src="@drawable/ic_cv_list_added" />
+                            android:padding="8dp"
+                            android:src="@drawable/ic_cv_list" />
 
                         <TextView
                             android:id="@+id/activity_home_notify_giaoviec"
@@ -309,7 +305,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginLeft="-5dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="5dp"
                         android:text="@string/duoc_xem"
                         android:textColor="@color/text_color"
                         android:textSize="16sp" />
@@ -320,8 +316,8 @@
                     android:layout_height="wrap_content" >
 
                 </FrameLayout>
-                <!-- Item 3 -->
 
+                <!-- Item 3 -->
                 <LinearLayout
                     android:id="@+id/danhsachviec"
                     android:layout_width="0dp"
@@ -344,8 +340,8 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="10dp"
                             android:adjustViewBounds="true"
-                            android:padding="5dp"
-                            android:src="@drawable/ic_cv_list" />
+                            android:padding="8dp"
+                            android:src="@drawable/ic_cv_list_added" />
 
                         <TextView
                             android:layout_width="35dp"
@@ -366,47 +362,105 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="5dp"
                         android:text="@string/danh_sach_viec"
                         android:gravity="center"
                         android:textColor="@color/text_color"
                         android:textSize="16sp" />
                 </LinearLayout>
-
-
-                <!-- MainItemLayout -->
-
             </LinearLayout>
-            <!-- Main -->
-            <!-- Bottom -->
 
-        </LinearLayout>
-
-        <FrameLayout
-            android:id="@+id/giao_viec"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_gravity="bottom"
-            android:background="@drawable/option_selector"
-            android:clickable="true"
-            android:gravity="bottom"
-            android:orientation="horizontal" >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:padding="8dp"
-                android:src="@drawable/file" />
-
-            <TextView
+            <!--row 3-->
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/giao_viec"
-                android:textColor="@color/white"
-                android:textSize="18dp" />
-        </FrameLayout>
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:orientation="horizontal" >
+
+                <!-- Item 1 -->
+                <LinearLayout
+                    android:id="@+id/duocgiao1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/home_item_selector"
+                    android:clickable="true"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" >
+                    </FrameLayout>
+                </LinearLayout>
+
+                <!-- Item 2 -->
+                <LinearLayout
+                    android:id="@+id/giao_viec"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/home_item_selector"
+                    android:clickable="true"
+                    android:orientation="vertical"
+                    android:padding="8dp" >
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" >
+
+                        <ImageView
+                            android:id="@+id/image7"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:adjustViewBounds="true"
+                            android:padding="8dp"
+                            android:src="@drawable/ic_cv_add" />
+
+                        <TextView
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_gravity="top|right"
+                            android:layout_marginBottom="-10dp"
+                            android:layout_marginLeft="-10dp"
+                            android:background="@xml/bg_notify"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:visibility="gone" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginLeft="-5dp"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/giao_viec"
+                        android:textColor="@color/text_color"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Item 3 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:padding="8dp" >
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" >
+                    </FrameLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
 
         <FrameLayout
             android:id="@+id/exit"
@@ -434,7 +488,5 @@
                 android:textSize="18dp" />
         </FrameLayout>
         <!-- End of Bottom -->
-
     </LinearLayout>
-
 </ScrollView>

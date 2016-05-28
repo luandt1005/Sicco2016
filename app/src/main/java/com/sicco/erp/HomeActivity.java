@@ -46,8 +46,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class HomeActivity extends Activity implements OnClickListener {
-    private LinearLayout canphe, xuly, cacloai, llDuocXem, dagiao, danhsachviec;
-    private FrameLayout exit, flGiaoViec;
+    private LinearLayout canphe, xuly, cacloai, llDuocXem, dagiao, danhsachviec, giaoviec;
+    private FrameLayout exit;
     private static AlertDialog alertDialog;
     public static ArrayList<Department> listDep;
     public static ArrayList<User> allUser;
@@ -150,7 +150,7 @@ public class HomeActivity extends Activity implements OnClickListener {
         llDuocXem = (LinearLayout) findViewById(R.id.duoc_xem);
         dagiao = (LinearLayout) findViewById(R.id.duocgiao);
         danhsachviec = (LinearLayout) findViewById(R.id.danhsachviec);
-        flGiaoViec = (FrameLayout) findViewById(R.id.giao_viec);
+        giaoviec = (LinearLayout) findViewById(R.id.giao_viec);
         exit = (FrameLayout) findViewById(R.id.exit);
         // click
         canphe.setOnClickListener(this);
@@ -165,7 +165,7 @@ public class HomeActivity extends Activity implements OnClickListener {
         // danhsachviec.setVisibility(View.GONE);
 
         // option.setOnClickListener(this);
-        flGiaoViec.setOnClickListener(this);
+        giaoviec.setOnClickListener(this);
         exit.setOnClickListener(this);
     }
 
