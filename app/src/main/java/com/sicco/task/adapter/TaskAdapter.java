@@ -166,7 +166,7 @@ public class TaskAdapter extends BaseAdapter {
         }
 
         //mh duoc giao
-        if (type == 2) {
+        if (type == 2 || type == 4) {
             if (!task.getIsXuLy().equals("0")) {
                 colorAction = "#5E7AF8";
             }
@@ -204,7 +204,11 @@ public class TaskAdapter extends BaseAdapter {
                     if (type == 1) {
                         popupMenu.getMenuInflater().inflate(R.menu.assigned_task,
                                 popupMenu.getMenu());
-                    } else {
+                    } else if (type == 4){
+                        popupMenu.getMenuInflater()
+                                .inflate(R.menu.assigned_task2,
+                                        popupMenu.getMenu());
+                    }else {
                         popupMenu.getMenuInflater()
                                 .inflate(R.menu.assigned_task1,
                                         popupMenu.getMenu());

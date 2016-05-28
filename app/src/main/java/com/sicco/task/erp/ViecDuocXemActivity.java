@@ -68,19 +68,14 @@ public class ViecDuocXemActivity extends Activity implements View.OnClickListene
         initView();
         arrTask = new ArrayList<>();
         task = new Task(context);
-        adapter = new TaskAdapter(context, arrTask, 2);
+        adapter = new TaskAdapter(context, arrTask, 4);
         adapter.setOnActionClickLisstener(new TaskAdapter.OnActionClickLisstener() {
             @Override
             public void onClick(View view, final ArrayList<Status> listStatus, final ArrayList<Status> listProcess, int type, final Task task, final boolean isUpdateStatusAndRate) {
                 PopupMenu popupMenu = new PopupMenu(context, view);
-                if (type == 1) {
-                    popupMenu.getMenuInflater().inflate(R.menu.assigned_task,
-                            popupMenu.getMenu());
-                } else {
                     popupMenu.getMenuInflater()
-                            .inflate(R.menu.assigned_task1,
+                            .inflate(R.menu.assigned_task2,
                                     popupMenu.getMenu());
-                }
 
                 popupMenu.show();
                 popupMenu
@@ -100,7 +95,7 @@ public class ViecDuocXemActivity extends Activity implements View.OnClickListene
                                         intent.setClass(context,
                                                 DetailTaskActivity.class);
                                         intent.putExtra("task", task);
-                                        intent.putExtra("TASK_TYPE", 2);
+                                        intent.putExtra("TASK_TYPE", 4);
                                         context.startActivity(intent);
                                         break;
                                     case R.id.action_edit:
@@ -267,7 +262,7 @@ public class ViecDuocXemActivity extends Activity implements View.OnClickListene
         Task task = (Task) arg0.getAdapter().getItem(arg2);
         Intent intent = new Intent(this, DetailTaskActivity.class);
         intent.putExtra("task", task);
-        intent.putExtra("TASK_TYPE", 2);
+        intent.putExtra("TASK_TYPE", 4);
         startActivity(intent);
     }
 
