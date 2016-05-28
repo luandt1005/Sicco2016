@@ -42,6 +42,8 @@
     <string name="receive_task">Nhận công việc</string>
     <string name="received_task">Đã nhận công việc</string>
     <string name="received_task_success">Nhận công việc thành công</string>
+    <string name="duoc_xem">Được xem</string>
+    <string name="viec_duoc_xem">Việc được xem</string>
     <!-- End TuNT -->
 
 
@@ -187,6 +189,7 @@
     <string name="api_get_deparment_users">http://office.sicco.vn/api_distpatch/departments_users.php</string>
     <string name="api_get_steer_report">http://office.sicco.vn/api_distpatch/get_report_steer.php</string>
     <string name="api_get_steer_congvan_report">http://office.sicco.vn/api_distpatch/binhluancongvan.php</string>
+    <string name="api_get_cv_duoc_xem">http://office.sicco.vn/api_distpatch/viecduocxem.php</string>
 
     <string name="api_chuyencongvan">http://office.sicco.vn/api_distpatch/chuyencongvan.php</string>
     <string name="api_phecongvan">http://office.sicco.vn/api_distpatch/phecongvan.php</string>
