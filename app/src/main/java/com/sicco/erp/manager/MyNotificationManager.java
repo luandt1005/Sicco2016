@@ -129,6 +129,9 @@ public class MyNotificationManager {
 	public void notifyCongViec(Context context, ArrayList<Task> data) {
 		int notification_count = data.size();
 		noti = context.getResources().getString(R.string.notify_new_congviec);
+
+		Log.d("Debug", "notification_count => " + notification_count);
+
 		for (int i = 0; i < notification_count; i++) {
 			String ten = data.get(i).getTen_cong_viec();
 			String nguoi_xem = data.get(i).getNguoi_xem();
@@ -138,12 +141,10 @@ public class MyNotificationManager {
 			Log.d("ToanNM", "String taskcode => " + taskCode);
 
 			//if (notification_count == 1) {
-				//message = context.getResources().getString(R.string.new_noti_mess) + " " + "1" + " "
-				//		+ noti + " " + "\n";
+				message = context.getResources().getString(R.string.new_noti_mess) + " "
+						+ noti + " " + "\n";
 
 				String ten_cv = context.getResources().getString(R.string.ten_cv);
-
-			message = ten;
 
 				String nguoi_xem_cv = context.getResources().getString(R.string.nguoi_xem_cv);
 				String nguoi_thuc_hien_cv = context.getResources().getString(R.string.nguoi_thuc_hien_cv);
@@ -158,8 +159,13 @@ public class MyNotificationManager {
 			//	name += "" + ten + "\n";
 			//	contentText = name;
 			//}
+			int notify_id = 0;
+			try {
+				notify_id = Integer.parseInt(taskCode);
+			} catch (Exception e){
 
-			notify(context, getNotificationID(context), 5, taskCode);
+			}
+			notify(context, notify_id, 5, taskCode);
 		}
 	}
 
@@ -190,7 +196,13 @@ public class MyNotificationManager {
 			//	contentText = "" + cv_handler_new_comment + "\n" + name;
 			//}
 			//Utils.saveInt(context, "STEER_ACTION", Integer.parseInt(taskCode));
-			notify(context, getNotificationID(context), 5, taskCode);
+			int notify_id = 0;
+			try {
+				notify_id = Integer.parseInt(taskCode);
+			} catch (Exception e){
+
+			}
+			notify(context, notify_id, 5, taskCode);
 		}
 
 	}
@@ -230,7 +242,13 @@ public class MyNotificationManager {
 
 			Log.d("ToanNMMMMMMMMMM", contentText);
 			//Utils.saveInt(context, "STEER_ACTION", Integer.parseInt(dispatch_id));
-			notify(context, getNotificationID(context), 7, taskCode);
+			int notify_id = 0;
+			try {
+				notify_id = (int)dispatch.getId();
+			} catch (Exception e){
+
+			}
+			notify(context, notify_id, 7, taskCode);
 		}
 	}
 
@@ -455,7 +473,7 @@ public class MyNotificationManager {
 			notIntent = new Intent(context, DetailTaskActivity.class);
 			Log.d("ToanNM" , "" + Long.parseLong(taskCode));
 			notIntent.putExtra("id_task", Long.parseLong(task_id));
-			//notIntent.putExtra("com.sicco.erp.manager.insertdb", true);
+			notIntent.putExtra("com.sicco.erp.manager.insertdb", true);
 		} else if (notify_type == 6) {
 			notIntent = new Intent(context, OtherTaskActivity.class);
 		} else if(notify_type == 7){
@@ -506,6 +524,26 @@ public class MyNotificationManager {
 
 	NotificationDBController db;
 	Cursor cursor;
+
+	String getTaskID(Context context) {
+		String id = "";
+		String username = Utils.getString(context, "user_id");
+		db = NotificationDBController.getInstance(context);
+		cursor = db.query(NotificationDBController.TASK_TABLE_NAME, null, null, null, null, null, null);
+		String sql = "Select * from " + NotificationDBController.TASK_TABLE_NAME + " where "
+				+ NotificationDBController.ID_COL + " = \"" + taskCode + "\"" + " and "
+				+ NotificationDBController.USERNAME_COL + " = \"" + username + "\"";
+		Log.d("ToanNM", "getTaskData sql : " + sql);
+		cursor = db.rawQuery(sql, null);
+		if (cursor.moveToFirst()) {
+			do {
+				id = cursor
+						.getString(cursor.getColumnIndexOrThrow(NotificationDBController.ID_COL));
+			} while (cursor.moveToNext());
+		}
+		Log.d("ToanNM", "id la day : " + id);
+		return id;
+	}
 
 	String getTaskData(Context context, String taskCode, String username) {
 		String ten_cong_vec = "";

@@ -592,6 +592,54 @@ public class Task implements Serializable {
 			return task;
 		}
 
+	public void changeDaDoc(String user_id, String id_cv,
+							  OnLoadListener OnLoadListener) {
+		this.onLoadListener = OnLoadListener;
+		onLoadListener.onStart();
+
+		RequestParams params = new RequestParams();
+		params.add("task_id", id_cv);
+		params.add("user_id", user_id);
+
+		Log.d("LuanDT", "changeDaDoc => params: " + params);
+		AsyncHttpClient client = new AsyncHttpClient();
+		String url = "";
+		client.post(url, params, new JsonHttpResponseHandler() {
+
+			@Override
+			public void onFailure(int statusCode, Header[] headers,
+								  Throwable throwable, JSONObject errorResponse) {
+				onLoadListener.onFalse();
+				super.onFailure(statusCode, headers, throwable, errorResponse);
+			}
+
+			@Override
+			public void onSuccess(int statusCode, Header[] headers,
+								  JSONObject response) {
+				String jsonRead = response.toString();
+
+				Log.d("LuanDT", "changeDaDoc =>  jsonRead: " + jsonRead);
+				if (!jsonRead.isEmpty()) {
+					try {
+						JSONObject object = new JSONObject(jsonRead);
+						int success = object.getInt("success");
+						if (success == 1) {
+							onLoadListener.onSuccess();
+						} else {
+							onLoadListener.onFalse();
+						}
+
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+				}
+
+				super.onSuccess(statusCode, headers, response);
+			}
+
+		});
+	}
+
 	// changeProcess
 	public void changeProcess(String url, String id_cv, String process,
 			OnLoadListener OnLoadListener) {

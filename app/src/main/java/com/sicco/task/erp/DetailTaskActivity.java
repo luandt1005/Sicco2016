@@ -73,7 +73,7 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
     private ArrayList<Status> listProcess;
 
     //
-    //private boolean insertToDB;
+    private boolean insertToDB = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +86,7 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
         // get id notifi
         id_task = intent.getLongExtra("id_task", -1);
         taskType = intent.getIntExtra("TASK_TYPE", -1);
-        //insertToDB = intent.getBooleanExtra("com.sicco.erp.manager.insertdb", false);
+        insertToDB = intent.getBooleanExtra("com.sicco.erp.manager.insertdb", false);
         Log.d("Debug", "id_task: " + id_task);
 
         // set id cong viec
@@ -291,6 +291,21 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
                         });
        // if(insertToDB){
             // ToanNM
+        task.changeDaDoc(Utils.getString(context, "user_id") , id_task, new Task.OnLoadListener() {
+
+            @Override
+            public void onSuccess() {
+                Log.d("LuanDT", "dadooooooooooooooooooooooooc is succcceeeeeessss");
+            }
+
+            @Override
+            public void onStart() {
+            }
+
+            @Override
+            public void onFalse() {
+            }
+        });
         //}
     }
 
@@ -337,8 +352,11 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
                                     case R.id.action_report:
                                         intent.setClass(context,
                                                 SteerReportTaskActivity.class);
-                                        intent.putExtra("task", task);
-                                        context.startActivity(intent);
+                                        if(!insertToDB)
+                                            intent.putExtra("task", task);
+                                        else
+                                            intent.putExtra("id_task", id_task);
+                                        startActivity(intent);
                                         break;
                                     case R.id.action_detail:
                                         intent.setClass(context,
