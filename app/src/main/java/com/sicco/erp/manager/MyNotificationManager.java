@@ -149,9 +149,9 @@ public class MyNotificationManager {
 				String nguoi_xem_cv = context.getResources().getString(R.string.nguoi_xem_cv);
 				String nguoi_thuc_hien_cv = context.getResources().getString(R.string.nguoi_thuc_hien_cv);
 				String mota = context.getResources().getString(R.string.mota);
-			//"" + ten_cv + " " + ten + "\n" +
-					contentText = nguoi_xem_cv + " " + nguoi_xem + "\n"
-						+ nguoi_thuc_hien_cv + " " + nguoi_thuc_hien + "\n";
+
+					contentText = "" + ten_cv + " " + ten + "\n" + nguoi_xem_cv + " " + nguoi_xem + "\n"
+						+ nguoi_thuc_hien_cv + " " + nguoi_thuc_hien + "\n" + mo_ta;
 
 			//} else if (notification_count > 1) {
 			//	message = context.getResources().getString(R.string.new_noti_mess) + " " + notification_count + " "
@@ -196,13 +196,8 @@ public class MyNotificationManager {
 			//	contentText = "" + cv_handler_new_comment + "\n" + name;
 			//}
 			//Utils.saveInt(context, "STEER_ACTION", Integer.parseInt(taskCode));
-			int notify_id = 0;
-			try {
-				notify_id = Integer.parseInt(taskCode);
-			} catch (Exception e){
 
-			}
-			notify(context, notify_id, 5, taskCode);
+			notify(context, getNotificationID(context), 5, taskCode);
 		}
 
 	}
@@ -242,13 +237,8 @@ public class MyNotificationManager {
 
 			Log.d("ToanNMMMMMMMMMM", contentText);
 			//Utils.saveInt(context, "STEER_ACTION", Integer.parseInt(dispatch_id));
-			int notify_id = 0;
-			try {
-				notify_id = (int)dispatch.getId();
-			} catch (Exception e){
 
-			}
-			notify(context, notify_id, 7, taskCode);
+			notify(context, getNotificationID(context), 7, taskCode);
 		}
 	}
 
@@ -517,7 +507,7 @@ public class MyNotificationManager {
 		notification.flags |= Notification.FLAG_SHOW_LIGHTS;
 
 		NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-		manager.cancel(notification_id);
+		//manager.cancel(notification_id);
 		manager.notify(notification_id, notification);
 
 	}

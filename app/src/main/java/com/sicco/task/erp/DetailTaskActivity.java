@@ -291,7 +291,8 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
                         });
        // if(insertToDB){
             // ToanNM
-        task.changeDaDoc(Utils.getString(context, "user_id") , id_task, new Task.OnLoadListener() {
+        String username = Utils.getString(context, "name");
+        task.changeDaDoc(username , id_task, new Task.OnLoadListener() {
 
             @Override
             public void onSuccess() {

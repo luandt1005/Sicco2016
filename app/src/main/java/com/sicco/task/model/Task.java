@@ -592,24 +592,34 @@ public class Task implements Serializable {
 			return task;
 		}
 
-	public void changeDaDoc(String user_id, String id_cv,
+	public void changeDaDoc(String username, String id_cv,
 							  OnLoadListener OnLoadListener) {
 		this.onLoadListener = OnLoadListener;
 		onLoadListener.onStart();
 
 		RequestParams params = new RequestParams();
 		params.add("task_id", id_cv);
-		params.add("user_id", user_id);
+		params.add("username", username);
 
 		Log.d("LuanDT", "changeDaDoc => params: " + params);
 		AsyncHttpClient client = new AsyncHttpClient();
-		String url = "";
+		String url = "http://office.sicco.vn/api_distpatch/dadoccongviec.php";
 		client.post(url, params, new JsonHttpResponseHandler() {
 
 			@Override
 			public void onFailure(int statusCode, Header[] headers,
 								  Throwable throwable, JSONObject errorResponse) {
 				onLoadListener.onFalse();
+				super.onFailure(statusCode, headers, throwable, errorResponse);
+			}
+
+			@Override
+			public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+				super.onFailure(statusCode, headers, responseString, throwable);
+			}
+
+			@Override
+			public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
 				super.onFailure(statusCode, headers, throwable, errorResponse);
 			}
 
