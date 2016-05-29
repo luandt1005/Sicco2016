@@ -44,6 +44,7 @@ public class Task implements Serializable {
 	private String ngay_httt;
 	private String daxuly;
 	private String isXuLy;
+	private String isNguoiXem;
 	private Context context;
 
 	private ArrayList<Task> data;
@@ -53,25 +54,16 @@ public class Task implements Serializable {
 	}
 	
 	public Task(long id, String ten_cong_viec, String nguoi_thuc_hien,
-			String nguoi_xem, String mo_ta) {
+			String nguoi_xem, String mo_ta, String isNguoiXem) {
 		super();
 		this.id = id;
 		this.ten_cong_viec = ten_cong_viec;
 		this.nguoi_thuc_hien = nguoi_thuc_hien;
 		this.nguoi_xem = nguoi_xem;
 		this.mo_ta = mo_ta;
+		this.isNguoiXem = isNguoiXem;
 	}
 
-	public Task(long id, String ten_cong_viec, String nguoi_thuc_hien,
-			String nguoi_xem, String mo_ta, String trang_thai) {
-		super();
-		this.id = id;
-		this.ten_cong_viec = ten_cong_viec;
-		this.nguoi_thuc_hien = nguoi_thuc_hien;
-		this.nguoi_xem = nguoi_xem;
-		this.mo_ta = mo_ta;
-		this.trang_thai = trang_thai;
-	}
 
 	public Task(long id, String ten_cong_viec, String nguoi_thuc_hien,
 			String nguoi_xem, String du_an, String tien_do,
@@ -311,6 +303,14 @@ public class Task implements Serializable {
 
 	public void setIsXuLy(String isXuLy) {
 		this.isXuLy = isXuLy;
+	}
+
+	public String getIsNguoiXem() {
+		return isNguoiXem;
+	}
+
+	public void setIsNguoiXem(String isNguoiXem) {
+		this.isNguoiXem = isNguoiXem;
 	}
 
 	// get data

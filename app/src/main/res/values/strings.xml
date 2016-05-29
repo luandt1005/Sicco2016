@@ -225,6 +225,7 @@
     <string name="new_noti">Cảnh báo mới</string>
     <string name="new_noti_mess">Bạn có </string>
     <string name="notify_new_congviec">công việc mới</string>
+    <string name="notify_new_congviec_duoc_xem">công việc được xem mới</string>
     <string name="notify_new_congvan">công văn mới</string>
     <string name="notify_new_comment">bình luận mới</string>
     <string name="notify_new_comment_msg">đã bình luận</string> 

@@ -125,11 +125,14 @@ public class MyNotificationManager {
 
 	public void notifyCongViec(Context context, ArrayList<Task> data) {
 		int notification_count = data.size();
-		noti = context.getResources().getString(R.string.notify_new_congviec);
-
 		Log.d("Debug", "notification_count => " + notification_count);
 
 		for (int i = 0; i < notification_count; i++) {
+			if(data.get(i).getIsNguoiXem().equals("1")){
+				noti = context.getResources().getString(R.string.notify_new_congviec_duoc_xem);
+			}else{
+				noti = context.getResources().getString(R.string.notify_new_congviec);
+			}
 			String ten = data.get(i).getTen_cong_viec();
 			String nguoi_xem = data.get(i).getNguoi_xem();
 			String mo_ta = data.get(i).getMo_ta();
