@@ -297,6 +297,13 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
             @Override
             public void onSuccess() {
                 Log.d("LuanDT", "dadooooooooooooooooooooooooc is succcceeeeeessss");
+                int cv_count = Utils.getInt(getApplicationContext(), GetAllNotificationService.CV_KEY, 0);
+                int total_count = Utils.getInt(getApplicationContext(), GetAllNotificationService.TOTAL_KEY, 0);
+                cv_count--;
+                total_count--;
+                Utils.saveInt(DetailTaskActivity.this, GetAllNotificationService.CV_KEY, cv_count);
+                Utils.saveInt(DetailTaskActivity.this, GetAllNotificationService.TOTAL_KEY, total_count);
+                BadgeUtils.setBadge(getApplicationContext(), total_count);
             }
 
             @Override
