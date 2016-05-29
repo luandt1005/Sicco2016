@@ -915,7 +915,8 @@ public class Task implements Serializable {
 			} else if (type == FILTER_CXL_TYPE) {
 				for (int i = 0; i < data.size(); i++) {
 					Task task = data.get(i);
-					if(task.getIsXuLy().equals("0") && !task.isCo_binh_luan())
+//					if(task.getIsXuLy().equals("0") && !task.isCo_binh_luan())
+					if(task.getIsXuLy().equals("0"))
 						dataFilter.add(task);
 				}
 			} else if (type == FILTER_DXLTH_TYPE) {

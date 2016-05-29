@@ -1,7 +1,5 @@
 package com.sicco.task.erp;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -27,9 +25,10 @@ import com.sicco.erp.R;
 import com.sicco.erp.adapter.SpinnerStatusAdapter;
 import com.sicco.erp.model.Status;
 import com.sicco.erp.util.Keyboard;
-import com.sicco.erp.util.ViewDispatch;
 import com.sicco.task.adapter.TaskAdapter;
 import com.sicco.task.model.Task;
+
+import java.util.ArrayList;
 
 public class AssignedTaskActivity extends Activity implements OnClickListener,
 		OnItemClickListener {
@@ -52,6 +51,7 @@ public class AssignedTaskActivity extends Activity implements OnClickListener,
 	private Button btnAssignNewTask;
 	private Spinner spnFilter;
 	private SpinnerStatusAdapter spinnerStatusAdapter;
+	private static long keyFilter = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +119,7 @@ public class AssignedTaskActivity extends Activity implements OnClickListener,
 				if (!arrTask.isEmpty()) {
 					// Log.d("TuNT", "data size: "+task.filter(arrTask,
 					// status.getKey()).size());
+					keyFilter = status.getKey();
 					adapter.setData(task.filter(arrTask, status.getKey()));
 					adapter.notifyDataSetChanged();
 				}
@@ -148,6 +149,7 @@ public class AssignedTaskActivity extends Activity implements OnClickListener,
 					@Override
 					public void onSuccess() {
 						loading.setVisibility(View.GONE);
+						adapter.setData(task.filter(arrTask, keyFilter));
 						adapter.notifyDataSetChanged();
 						if (adapter.getCount() <= 0) {
 							listTask.setEmptyView(emptyView);
@@ -273,7 +275,7 @@ public class AssignedTaskActivity extends Activity implements OnClickListener,
 
 	@Override
 	protected void onResume() {
-		spnFilter.setSelection(0);
+		//spnFilter.setSelection(0);
 		displayLisview();
 		super.onResume();
 	}

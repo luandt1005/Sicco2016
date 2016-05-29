@@ -80,7 +80,7 @@ public class Dispatch implements Serializable {
 	public Dispatch(long id, String numberDispatch, String description,
 			String content, String date, String handler, String status,
 			String coQuanBanHanh, String loaicongvan,
-			String nguoithaydoitrangthai, String pheduyet, String nguoi_phe_duyet, String isNguoiTao) {
+			String nguoithaydoitrangthai, String pheduyet, String nguoi_phe_duyet, String isNguoiTao, String isXuLy) {
 		super();
 		this.id = id;
 		this.numberDispatch = numberDispatch;
@@ -95,6 +95,7 @@ public class Dispatch implements Serializable {
 		this.pheduyet = pheduyet;
 		this.nguoi_phe_duyet =  nguoi_phe_duyet;
 		this.isNguoiTao = isNguoiTao;
+		this.isXuLy = isXuLy;
 	}
 
 	public Dispatch(long id, String numberDispatch, String description,

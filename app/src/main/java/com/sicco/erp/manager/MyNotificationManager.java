@@ -25,7 +25,6 @@ import com.sicco.erp.model.ReportSteer;
 import com.sicco.erp.util.Utils;
 import com.sicco.task.erp.DetailTaskActivity;
 import com.sicco.task.erp.ListTask;
-import com.sicco.task.erp.OtherTaskActivity;
 import com.sicco.task.model.ReportSteerTask;
 import com.sicco.task.model.Task;
 
@@ -321,6 +320,7 @@ public class MyNotificationManager {
 				tencv = getTaskByState(data, "cancel");
 			}
 			id = data.get(i).getId();
+			taskCode = "" + data.get(i).getId();
 
 			Log.d("ToanNM", " === notifyState === " + state);
 			if (notification_count == 1) {
@@ -339,7 +339,8 @@ public class MyNotificationManager {
 		}
 		int notifi_id = safeLongToInt(id);
 		if (notifi_id != 0) {
-			notify(context, notifi_id, 6);
+			//notify(context, notifi_id, 6);
+			notify(context, notifi_id, 6, taskCode);
 		}
 	}
 	
@@ -399,7 +400,9 @@ public class MyNotificationManager {
 			notIntent = new Intent(context, DetailTaskActivity.class);
 			notIntent.putExtra("id_task", Long.parseLong(taskCode));
 		} else if (notify_type == 6) {
-			notIntent = new Intent(context, OtherTaskActivity.class);
+			//notIntent = new Intent(context, OtherTaskActivity.class);
+			notIntent = new Intent(context, DetailTaskActivity.class);
+			notIntent.putExtra("id_task", Long.parseLong(taskCode));
 		} else if(notify_type == 7){
 			notIntent = new Intent(context, DetailDispatchActivity.class);
 			notIntent.putExtra("dispatch", dispatch);
@@ -465,7 +468,11 @@ public class MyNotificationManager {
 			notIntent.putExtra("id_task", Long.parseLong(task_id));
 			notIntent.putExtra("com.sicco.erp.manager.insertdb", true);
 		} else if (notify_type == 6) {
-			notIntent = new Intent(context, OtherTaskActivity.class);
+			notIntent = new Intent(context, DetailTaskActivity.class);
+			Log.d("ToanNM" , "" + Long.parseLong(taskCode));
+			notIntent.putExtra("id_task", Long.parseLong(task_id));
+			notIntent.putExtra("com.sicco.erp.manager.insertdb", true);
+			//notIntent = new Intent(context, OtherTaskActivity.class);
 		} else if(notify_type == 7){
 			notIntent = new Intent(context, DetailDispatchActivity.class);
 			notIntent.putExtra("dispatch", dispatch);

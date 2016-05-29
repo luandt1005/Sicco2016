@@ -1,7 +1,5 @@
 package com.sicco.task.erp;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -29,24 +27,23 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.sicco.erp.DealtWithActivity;
 import com.sicco.erp.HomeActivity;
 import com.sicco.erp.R;
 import com.sicco.erp.adapter.SpinnerStatusAdapter;
 import com.sicco.erp.database.NotificationDBController;
-import com.sicco.erp.manager.SessionManager;
 import com.sicco.erp.model.Status;
 import com.sicco.erp.service.GetAllNotificationService;
 import com.sicco.erp.util.BadgeUtils;
 import com.sicco.erp.util.Keyboard;
 import com.sicco.erp.util.Utils;
-import com.sicco.erp.util.ViewDispatch;
 import com.sicco.task.adapter.TaskAdapter;
 import com.sicco.task.callback.OnSuccess;
 import com.sicco.task.model.Task;
 import com.sicco.task.ultil.DialogChangeStatusTask;
 import com.sicco.task.ultil.DialogConfirmDeleteTask;
 import com.sicco.task.ultil.DialogSetProcess;
+
+import java.util.ArrayList;
 
 public class ListTask extends Activity implements OnClickListener,
 		OnItemClickListener {
@@ -70,7 +67,7 @@ public class ListTask extends Activity implements OnClickListener,
 
 	NotificationDBController db;
 	Cursor cursor;
-
+	private long keyFilter = 0;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -86,7 +83,7 @@ public class ListTask extends Activity implements OnClickListener,
 	
 	@Override
 	protected void onResume() {
-		spnFilter.setSelection(0);
+		//spnFilter.setSelection(0);
 		HomeActivity.checkDate(ListTask.this);
 		
 		task = new Task(ListTask.this);
@@ -104,6 +101,7 @@ public class ListTask extends Activity implements OnClickListener,
 					@Override
 					public void onSuccess() {
 						loading.setVisibility(View.GONE);
+						adapter.setData(task.filter(arrTask, keyFilter));
 						adapter.notifyDataSetChanged();
 						if (adapter.getCount() <= 0) {
 							listTask.setEmptyView(emptyView);
@@ -118,6 +116,7 @@ public class ListTask extends Activity implements OnClickListener,
 				});
 		adapter = new TaskAdapter(ListTask.this, arrTask, 2);
 		listTask.setAdapter(adapter);
+
 		adapter.setOnActionClickLisstener(new TaskAdapter.OnActionClickLisstener() {
 			@Override
 			public void onClick(View view, final ArrayList<Status> listStatus, final ArrayList<Status> listProcess, int type, final Task task, final boolean isUpdateStatusAndRate) {
@@ -271,6 +270,7 @@ public class ListTask extends Activity implements OnClickListener,
 				if (!arrTask.isEmpty()) {
 					// Log.d("TuNT", "data size: "+task.filter(arrTask,
 					// status.getKey()).size());
+					keyFilter = status.getKey();
 					adapter.setData(task.filter(arrTask, status.getKey()));
 					adapter.notifyDataSetChanged();
 				}

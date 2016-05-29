@@ -1,7 +1,5 @@
 package com.sicco.task.erp;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -30,13 +28,14 @@ import com.sicco.erp.R;
 import com.sicco.erp.adapter.SpinnerStatusAdapter;
 import com.sicco.erp.model.Status;
 import com.sicco.erp.util.Keyboard;
-import com.sicco.erp.util.ViewDispatch;
 import com.sicco.task.adapter.TaskAdapter;
 import com.sicco.task.callback.OnSuccess;
 import com.sicco.task.model.Task;
 import com.sicco.task.ultil.DialogChangeStatusTask;
 import com.sicco.task.ultil.DialogConfirmDeleteTask;
 import com.sicco.task.ultil.DialogSetProcess;
+
+import java.util.ArrayList;
 
 public class OtherTaskActivity extends Activity implements OnClickListener,
 		OnItemClickListener {
@@ -58,6 +57,7 @@ public class OtherTaskActivity extends Activity implements OnClickListener,
 	private Button btnAssignNewTask;
 	private Spinner spnFilter;
 	private SpinnerStatusAdapter spinnerStatusAdapter;
+	private long keyFilter = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +71,7 @@ public class OtherTaskActivity extends Activity implements OnClickListener,
 
 	@Override
 	protected void onResume() {
-		spnFilter.setSelection(0);
+		//spnFilter.setSelection(0);
 		displayLisview();
 		super.onResume();
 	}
@@ -129,6 +129,7 @@ public class OtherTaskActivity extends Activity implements OnClickListener,
 					int position, long id) {
 				Status status = (Status) parent.getAdapter().getItem(position);
 				if (!arrTask.isEmpty()) {
+					keyFilter = status.getKey();
 					adapter.setData(task.filter(arrTask, status.getKey()));
 					adapter.notifyDataSetChanged();
 				}
@@ -158,6 +159,7 @@ public class OtherTaskActivity extends Activity implements OnClickListener,
 					@Override
 					public void onSuccess() {
 						loading.setVisibility(View.GONE);
+						adapter.setData(task.filter(arrTask, keyFilter));
 						adapter.notifyDataSetChanged();
 						if (adapter.getCount() <= 0) {
 							listTask.setEmptyView(emptyView);

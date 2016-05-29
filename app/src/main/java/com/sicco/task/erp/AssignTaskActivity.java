@@ -85,6 +85,7 @@ public class AssignTaskActivity extends ChooseFileActivity implements
 	private SpinnerPriorityAdapter spinnerPriorityAdapter;
 	private ArrayList<Priority> listPriority;
 	private String keyPriority;
+	private long keyFilter = 0;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
