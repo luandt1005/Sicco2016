@@ -1,15 +1,5 @@
 package com.sicco.task.model;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.Serializable;
-import java.util.ArrayList;
-
-import org.apache.http.Header;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
@@ -20,6 +10,16 @@ import com.loopj.android.http.RequestParams;
 import com.sicco.erp.R;
 import com.sicco.erp.util.AccentRemover;
 import com.sicco.erp.util.Utils;
+
+import org.apache.http.Header;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Task implements Serializable {
 	private long id;
@@ -592,7 +592,7 @@ public class Task implements Serializable {
 			return task;
 		}
 
-	public void changeDaDoc(String username, String id_cv,
+	public void changeDaDoc(String url, String username, String id_cv,
 							  OnLoadListener OnLoadListener) {
 		this.onLoadListener = OnLoadListener;
 		onLoadListener.onStart();
@@ -603,7 +603,6 @@ public class Task implements Serializable {
 
 		Log.d("LuanDT", "changeDaDoc => params: " + params);
 		AsyncHttpClient client = new AsyncHttpClient();
-		String url = "http://office.sicco.vn/api_distpatch/dadoccongviec.php";
 		client.post(url, params, new JsonHttpResponseHandler() {
 
 			@Override

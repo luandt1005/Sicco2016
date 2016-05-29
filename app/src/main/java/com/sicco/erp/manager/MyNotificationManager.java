@@ -1,8 +1,5 @@
 package com.sicco.erp.manager;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.app.Notification;
@@ -10,11 +7,9 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -23,7 +18,6 @@ import com.sicco.erp.DealtWithActivity;
 import com.sicco.erp.DetailDispatchActivity;
 import com.sicco.erp.OtherActivity;
 import com.sicco.erp.R;
-import com.sicco.erp.SteerReportActivity;
 import com.sicco.erp.database.NotificationDBController;
 import com.sicco.erp.model.Dispatch;
 import com.sicco.erp.model.NotificationModel;
@@ -34,6 +28,9 @@ import com.sicco.task.erp.ListTask;
 import com.sicco.task.erp.OtherTaskActivity;
 import com.sicco.task.model.ReportSteerTask;
 import com.sicco.task.model.Task;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MyNotificationManager {
 
@@ -151,7 +148,7 @@ public class MyNotificationManager {
 				String mota = context.getResources().getString(R.string.mota);
 
 					contentText = "" + ten_cv + " " + ten + "\n" + nguoi_xem_cv + " " + nguoi_xem + "\n"
-						+ nguoi_thuc_hien_cv + " " + nguoi_thuc_hien + "\n" + mo_ta;
+						+ nguoi_thuc_hien_cv + " " + nguoi_thuc_hien + "\n" + mota + " " + mo_ta;
 
 			//} else if (notification_count > 1) {
 			//	message = context.getResources().getString(R.string.new_noti_mess) + " " + notification_count + " "

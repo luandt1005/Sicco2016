@@ -1,9 +1,5 @@
 package com.sicco.task.erp;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -31,7 +27,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sicco.erp.R;
-import com.sicco.erp.database.NotificationDBController;
 import com.sicco.erp.model.Status;
 import com.sicco.erp.service.GetAllNotificationService;
 import com.sicco.erp.util.BadgeUtils;
@@ -43,6 +38,9 @@ import com.sicco.task.model.Task;
 import com.sicco.task.ultil.DialogChangeStatusTask;
 import com.sicco.task.ultil.DialogConfirmDeleteTask;
 import com.sicco.task.ultil.DialogSetProcess;
+
+import java.io.File;
+import java.util.ArrayList;
 
 @SuppressWarnings("deprecation")
 public class DetailTaskActivity extends Activity implements OnClickListener,
@@ -198,6 +196,27 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
             process.setVisibility(View.GONE);
         }
 
+        checkVisibleReceiveTask();
+        String username = Utils.getString(context, "name");
+        String url = context.getString(R.string.api_da_doc);
+        task.changeDaDoc(url, username, task.getId() + "", new Task.OnLoadListener() {
+
+            @Override
+            public void onSuccess() {
+                Log.d("LuanDT", "dadooooooooooooooooooooooooc is succcceeeeeessss");
+            }
+
+            @Override
+            public void onStart() {
+            }
+
+            @Override
+            public void onFalse() {
+            }
+        });
+    }
+
+    private void checkVisibleReceiveTask(){
         //check view nhan cong viec
         boolean checkIsXuly = false;
         final String userName = Utils.getString(DetailTaskActivity.this, "name");
@@ -209,7 +228,7 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
             }
         }
 
-        if (taskType == 2 && checkIsXuly && task.getIsXuLy().equals("0")) {
+        if ((taskType == 2 || insertToDB) && checkIsXuly && task.getIsXuLy().equals("0")) {
             btnReceiveTask.setVisibility(View.VISIBLE);
             btnReceiveTask.setOnClickListener(this);
         }
@@ -289,32 +308,7 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
 
                             }
                         });
-       // if(insertToDB){
-            // ToanNM
-        String username = Utils.getString(context, "name");
-        task.changeDaDoc(username , id_task, new Task.OnLoadListener() {
 
-            @Override
-            public void onSuccess() {
-                Log.d("LuanDT", "dadooooooooooooooooooooooooc is succcceeeeeessss");
-                int cv_count = Utils.getInt(getApplicationContext(), GetAllNotificationService.CV_KEY, 0);
-                int total_count = Utils.getInt(getApplicationContext(), GetAllNotificationService.TOTAL_KEY, 0);
-                cv_count--;
-                total_count--;
-                Utils.saveInt(DetailTaskActivity.this, GetAllNotificationService.CV_KEY, cv_count);
-                Utils.saveInt(DetailTaskActivity.this, GetAllNotificationService.TOTAL_KEY, total_count);
-                BadgeUtils.setBadge(getApplicationContext(), total_count);
-            }
-
-            @Override
-            public void onStart() {
-            }
-
-            @Override
-            public void onFalse() {
-            }
-        });
-        //}
     }
 
     @Override

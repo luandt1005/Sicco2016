@@ -213,7 +213,9 @@
     <string name="api_xoacongviec">http://office.sicco.vn/api_distpatch/xoacongviec.php</string>
 	<string name="api_get_infor_task_by_id">http://office.sicco.vn/api_distpatch/infortaskbyid.php</string>
     <string name="api_edit_task">http://office.sicco.vn/api_distpatch/chinhsuacongviec.php</string>
-    
+    <string name="api_da_doc">http://office.sicco.vn/api_distpatch/dadoccongviec.php</string>
+    <string name="api_get_cv_duoc_giao_noti">http://office.sicco.vn/api_distpatch/dscongviecduocgiao_noti.php</string>
+
      <!-- ToanNM -->
     <string name="cong_van">công văn cần phê</string>
     <string name="cong_viec">công văn cần xử lý</string>
