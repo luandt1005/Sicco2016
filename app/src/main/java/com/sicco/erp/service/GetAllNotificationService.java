@@ -276,7 +276,7 @@ public class GetAllNotificationService extends Service {
                             }
                             //data show noti
                             taskData.add(new Task(Long.parseLong(id), ten_cong_viec, nguoi_thuc_hien,
-                                    nguoi_xem, mo_ta, is_nguoi_xem));
+                                    nguoi_xem, mo_ta, trang_thai, is_nguoi_xem));
                         }
 
                         boolean firstRun = Utils.getBoolean(getApplicationContext(), "FIRSTRUN", true);
@@ -450,6 +450,7 @@ public class GetAllNotificationService extends Service {
                                     .getString("nguoi_thay_doi_trang_thai");
                             String cv_pheduyet = row.getString("phe_duyet");
                             String cv_nguoi_phe_duyet = row.getString("nguoi_phe_duyet");
+                            String isNguoiTao = row.getString("isNguoiTao");
 
                             cv_content = content.replace(" ", "%20");
                             cv_date = date.substring(0, 10);
@@ -466,13 +467,13 @@ public class GetAllNotificationService extends Service {
                                                 cv_numberDispatch, cv_description,
                                                 cv_content, cv_date, cv_handler, cv_status,
                                                 cv_coQuanBanHanh, type.getTitle(),
-                                                cv_nguoithaydoitrangthai, cv_pheduyet, cv_nguoi_phe_duyet);
+                                                cv_nguoithaydoitrangthai, cv_pheduyet, cv_nguoi_phe_duyet, isNguoiTao);
                                     } else {
                                         dispatch = new Dispatch(id_cong_van,
                                                 cv_numberDispatch, cv_description,
                                                 cv_content, cv_date, cv_handler, cv_status,
                                                 cv_coQuanBanHanh, "",
-                                                cv_nguoithaydoitrangthai, cv_pheduyet, cv_nguoi_phe_duyet);
+                                                cv_nguoithaydoitrangthai, cv_pheduyet, cv_nguoi_phe_duyet, isNguoiTao);
                                     }
                                 }
                             } else {
@@ -480,7 +481,7 @@ public class GetAllNotificationService extends Service {
                                         cv_numberDispatch, cv_description,
                                         cv_content, cv_date, cv_handler, cv_status,
                                         cv_coQuanBanHanh, "",
-                                        cv_nguoithaydoitrangthai, cv_pheduyet, cv_nguoi_phe_duyet);
+                                        cv_nguoithaydoitrangthai, cv_pheduyet, cv_nguoi_phe_duyet, isNguoiTao);
                             }
                             // add to db
 

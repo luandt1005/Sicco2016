@@ -1,30 +1,5 @@
 package com.sicco.erp;
 
-import java.io.File;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-
-import org.apache.http.Header;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.sicco.erp.adapter.ReportSteerAdapter;
-import com.sicco.erp.database.NotificationDBController;
-import com.sicco.erp.manager.SessionManager;
-import com.sicco.erp.model.Department;
-import com.sicco.erp.model.Dispatch;
-import com.sicco.erp.model.DispatchType;
-import com.sicco.erp.model.ReportSteer;
-import com.sicco.erp.model.ReportSteer.OnLoadListener;
-import com.sicco.erp.model.User;
-import com.sicco.erp.util.DialogChooseUser;
-import com.sicco.erp.util.Utils;
-import com.sicco.erp.util.ViewDispatch;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -41,6 +16,29 @@ import android.widget.PopupMenu;
 import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.sicco.erp.adapter.ReportSteerAdapter;
+import com.sicco.erp.database.NotificationDBController;
+import com.sicco.erp.manager.SessionManager;
+import com.sicco.erp.model.Dispatch;
+import com.sicco.erp.model.DispatchType;
+import com.sicco.erp.model.ReportSteer;
+import com.sicco.erp.model.ReportSteer.OnLoadListener;
+import com.sicco.erp.util.DialogChooseUser;
+import com.sicco.erp.util.Utils;
+import com.sicco.erp.util.ViewDispatch;
+
+import org.apache.http.Header;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 public class DetailDispatchActivity extends Activity {
 	private ImageView back, action;
@@ -163,25 +161,25 @@ public class DetailDispatchActivity extends Activity {
 			public void onClick(View arg0) {
 				PopupMenu popupMenu = new PopupMenu(DetailDispatchActivity.this, action);
 				boolean checkIsXuly = false;
-//				boolean checkDaXuly = false;
 				final String userName = Utils.getString(DetailDispatchActivity.this, "name");
 				String[] nguoixuly = dispatch.getHandler().split(",");
-//				String[] daxuly = dispatch.getDa_xu_ly().split(",");
 				for (int i = 0; i < nguoixuly.length; i++){
 					if(nguoixuly[i].equals(userName)){
 						checkIsXuly = true;
 						break;
 					}
 				}
-//				for (int i = 0; i < daxuly.length; i++){
-//					if(daxuly[i].equals(userName)){
-//						checkDaXuly = true;
-//						break;
-//					}
-//				}
+				boolean checkPheDuyet = false;
+				String[] pheDuyet = dispatch.getNguoi_phe_duyet().split(",");
+				for (int i = 0; i < pheDuyet.length; i++){
+					if(pheDuyet[i].equals(userName)){
+						checkPheDuyet = true;
+						break;
+					}
+				}
 				if (checkIsXuly && dispatch.getIsXuLy().equals("0")) {
 					popupMenu.getMenuInflater().inflate(R.menu.menu_dispatch_without_detail, popupMenu.getMenu());
-				} else if(checkIsXuly) {
+				} else if(checkIsXuly || checkPheDuyet || dispatch.getIsNguoiTao().equals("true")) {
 					popupMenu.getMenuInflater().inflate(R.menu.menu_dispatch_without_receiver_cv_detail,
 							popupMenu.getMenu());
 				} else {

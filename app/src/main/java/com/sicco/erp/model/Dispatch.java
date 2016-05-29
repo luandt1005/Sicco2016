@@ -1,12 +1,9 @@
 package com.sicco.erp.model;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-
-import org.apache.http.Header;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.util.Log;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -17,11 +14,13 @@ import com.sicco.erp.manager.SessionManager;
 import com.sicco.erp.util.AccentRemover;
 import com.sicco.erp.util.Utils;
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
-import android.util.Log;
-import android.widget.Toast;
+import org.apache.http.Header;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Dispatch implements Serializable {
 	/**
@@ -42,6 +41,7 @@ public class Dispatch implements Serializable {
 	private String nguoiXem;
 	private String da_xu_ly;
 	private String isXuLy;
+	private String isNguoiTao;
 
 	private ArrayList<Dispatch> data;
 	private ArrayList<DispatchType> dataDispatchType;
@@ -56,7 +56,8 @@ public class Dispatch implements Serializable {
 	public Dispatch(long id, String numberDispatch, String description,
 			String content, String date, String handler, String status,
 			String coQuanBanHanh, String loaicongvan, String idLoaicongvan,
-			String nguoithaydoitrangthai, String pheduyet, String nguoi_phe_duyet, String nguoiXem, String da_xu_ly, String isXuLy) {
+			String nguoithaydoitrangthai, String pheduyet, String nguoi_phe_duyet,
+					String nguoiXem, String da_xu_ly, String isXuLy, String isNguoiTao) {
 		super();
 		this.id = id;
 		this.numberDispatch = numberDispatch;
@@ -74,11 +75,12 @@ public class Dispatch implements Serializable {
 		this.nguoiXem =  nguoiXem;
 		this.da_xu_ly = da_xu_ly;
 		this.isXuLy = isXuLy;
+		this.isNguoiTao = isNguoiTao;
 	}
 	public Dispatch(long id, String numberDispatch, String description,
 			String content, String date, String handler, String status,
 			String coQuanBanHanh, String loaicongvan,
-			String nguoithaydoitrangthai, String pheduyet, String nguoi_phe_duyet) {
+			String nguoithaydoitrangthai, String pheduyet, String nguoi_phe_duyet, String isNguoiTao) {
 		super();
 		this.id = id;
 		this.numberDispatch = numberDispatch;
@@ -92,6 +94,7 @@ public class Dispatch implements Serializable {
 		this.nguoithaydoitrangthai = nguoithaydoitrangthai;
 		this.pheduyet = pheduyet;
 		this.nguoi_phe_duyet =  nguoi_phe_duyet;
+		this.isNguoiTao = isNguoiTao;
 	}
 
 	public Dispatch(long id, String numberDispatch, String description,
@@ -104,6 +107,14 @@ public class Dispatch implements Serializable {
 		this.date = date;
 		this.handler = handler;
 		this.status = status;
+	}
+
+	public String getIsNguoiTao() {
+		return isNguoiTao;
+	}
+
+	public void setIsNguoiTao(String isNguoiTao) {
+		this.isNguoiTao = isNguoiTao;
 	}
 
 	public long getId() {
@@ -334,6 +345,7 @@ public class Dispatch implements Serializable {
 							//
 							String da_xu_ly = row.getString("da_xu_ly");
 							String isXuLy = row.getString("isXuLy");
+							String isNguoiTao = row.getString("isNguoiTao");
 							Log.d("ToanNM", "da_xu_ly =>> " + da_xu_ly);
 
 							content = content.replace(" ", "%20");
@@ -346,7 +358,7 @@ public class Dispatch implements Serializable {
 												numberDispatch, description,
 												content, date, handler, status,
 												coQuanBanHanh, type.getTitle(), idloaicv,
-												nguoithaydoitrangthai, pheduyet, nguoi_phe_duyet, nguoiXem, da_xu_ly, isXuLy));
+												nguoithaydoitrangthai, pheduyet, nguoi_phe_duyet, nguoiXem, da_xu_ly, isXuLy, isNguoiTao));
 										// Log.d("LuanDT",
 										// "----->>>loai cong van: "
 										// + type.getTitle());
@@ -356,7 +368,7 @@ public class Dispatch implements Serializable {
 								data.add(new Dispatch(id, numberDispatch,
 										description, content, date, handler,
 										status, coQuanBanHanh, "", idloaicv,
-										nguoithaydoitrangthai, pheduyet, nguoi_phe_duyet, nguoiXem, da_xu_ly, isXuLy));
+										nguoithaydoitrangthai, pheduyet, nguoi_phe_duyet, nguoiXem, da_xu_ly, isXuLy, isNguoiTao));
 							}
 
 							addToDB(context, type, id, numberDispatch, content,
