@@ -332,7 +332,7 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
             case R.id.action:
                 PopupMenu popupMenu = new PopupMenu(context, arg0);
                 if (taskType == 1) {
-                    popupMenu.getMenuInflater().inflate(R.menu.assigned_task_2,
+                    popupMenu.getMenuInflater().inflate(R.menu.assigned_task2_2,
                             popupMenu.getMenu());
                 } else if(taskType == 4) {
                     popupMenu.getMenuInflater()
