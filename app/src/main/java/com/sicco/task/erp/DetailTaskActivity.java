@@ -40,11 +40,12 @@ import com.sicco.task.ultil.DialogConfirmDeleteTask;
 import com.sicco.task.ultil.DialogSetProcess;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 @SuppressWarnings("deprecation")
 public class DetailTaskActivity extends Activity implements OnClickListener,
-        OnItemClickListener {
+        OnItemClickListener, Serializable {
     private Context context;
     private TextView title, content, assigner, implementers, assigned_at,
             expired_at, completed_infact, process, emptyView, attach_file;
@@ -355,10 +356,11 @@ public class DetailTaskActivity extends Activity implements OnClickListener,
                                         intent.setClass(context,
                                                 SteerReportTaskActivity.class);
                                         if(!insertToDB)
-                                            intent.putExtra("task", task);
+                                            //intent.putExtra("task", task);
+                                            intent.putExtra("id_task", task.getId());
                                         else
                                             intent.putExtra("id_task", id_task);
-                                        startActivity(intent);
+                                        context.startActivity(intent);
                                         break;
                                     case R.id.action_detail:
                                         intent.setClass(context,
