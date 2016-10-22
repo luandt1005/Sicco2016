@@ -1,0 +1,5 @@
+<application>
+  <component name="IntentionManagerSettings">
+    <ignoreAction name="XML/Add Xsi schema location for external resource" />
+  </component>
+</application>

@@ -1,0 +1,5 @@
+<application>
+  <component name="ExternalResourceManagerImpl">
+    <ignored-resource url="http://jakarta.apache.org/log4j/" />
+  </component>
+</application>
